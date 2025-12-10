@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Contributing - rakam_system docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Contributing";
+        var mkdocs_page_input_path = "contributing.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> rakam_system docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Contributing</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../start/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quick_start/">Quick Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../development_guide/">Development Guid</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../components/">Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../pipelines/">Pipelines</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gradio/">Gradio</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../deployment/">Deployment & Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../templates/">Templates</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">rakam_system docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Contributing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="contributing-to-rakam-systems">🤝 Contributing to Rakam Systems</h2>
+<p>Rakam Systems — an end-to-end AI Systems Lifecycle Framework.</p>
+<p>Rakam Systems is built in layers to maximize reuse, maintainability, and clarity.
+To contribute effectively, please follow the guidelines below.</p>
+<h1 id="contribution-levels">🏗️ Contribution Levels</h1>
+<p>Rakam Systems has four contribution layers.
+Each layer has its own review expectations, coding standards, and acceptance criteria.</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+<th>Who usually contributes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Level 1 — Syntax</strong></td>
+<td>Typing, formatting, docstrings, naming consistency</td>
+<td>Everyone</td>
+</tr>
+<tr>
+<td><strong>Level 2 — Components</strong></td>
+<td>Reusable blocks: tools, gateways, metrics, RAG primitives</td>
+<td>AI Team</td>
+</tr>
+<tr>
+<td><strong>Level 3 — Pipelines</strong></td>
+<td>Higher-level flows: evaluation runners, monitoring handlers, data flows</td>
+<td>Everyone</td>
+</tr>
+<tr>
+<td><strong>Level 4 — Templates</strong></td>
+<td>Project generators, system templates, agent templates</td>
+<td>Everyone</td>
+</tr>
+</tbody>
+</table>
+<p>Below is a detailed explanation of how to contribute at each level.</p>
+<h1 id="level-1-syntax-contributions">🔹 Level 1 — Syntax Contributions</h1>
+<p>(Formatting, typing, naming, documentation)</p>
+<p>These contributions focus on code quality, clarity, and internal consistency.
+They are essential for readability and long-term maintainability.</p>
+<h2 id="what-counts-as-a-level-1-contribution">✔️ What counts as a Level-1 contribution</h2>
+<ul>
+<li>
+<p>Fixing typos</p>
+</li>
+<li>
+<p>Update DSL (Domain Specific Language)</p>
+</li>
+<li>
+<p>Adding missing type hints</p>
+</li>
+<li>
+<p>Renaming variables/functions for consistency</p>
+</li>
+<li>
+<p>Improving documentations</p>
+</li>
+<li>
+<p>Adding small unit tests</p>
+</li>
+<li>
+<p>Fixing imports or unused code</p>
+</li>
+<li>
+<p>Refactoring long functions into readable blocks (no behavior change)</p>
+</li>
+<li>
+<p>Adding new syntax</p>
+</li>
+</ul>
+<h2 id="how-to-contribute">🛠️ How to contribute</h2>
+<p>Ensure your changes do not modify behavior (unless it's a bugfix).</p>
+<p>Follow the project conventions:</p>
+<ul>
+<li>
+<p>Black for formatting</p>
+</li>
+<li>
+<p>Ruff for linting</p>
+</li>
+<li>
+<p>mypy for type checking</p>
+</li>
+</ul>
+<p>Run:</p>
+<pre><code>pre-commit run --all-files
+pytest
+</code></pre>
+<p>Submit a PR with a clear title:</p>
+<p>example <code>chores: Renamed run_evaluation function to evaluate</code></p>
+<h3 id="review-expectations">📝 Review expectations:</h3>
+<ul>
+<li>1 reviewer required</li>
+<li>Changes should be safe, isolated, and reversible</li>
+</ul>
+<h1 id="level-2-component-contributions">🔹 Level 2 — Component Contributions</h1>
+<p>(Metrics, gateways, tools, utilities, RAG primitives, memory blocks, policies)</p>
+<p>Components are the building blocks of Rakam Systems.
+They should be generic, reusable, strongly typed, and easily composable. Contributions may involve improving an existing component or creating a new one.</p>
+<h2 id="what-counts-as-a-level-2-contribution">✔️ What counts as a Level-2 contribution</h2>
+<ul>
+<li>
+<p>A new metric (e.g., retrieval_hit_rate, hallucination_score)</p>
+</li>
+<li>
+<p>A new LLM Gateway (Bedrock, Azure OpenAI, Together AI…)</p>
+</li>
+<li>
+<p>New tool types (search tool, web tool, SQL tool…)</p>
+</li>
+</ul>
+<h2 id="how-to-contribute_1">🛠️ How to contribute</h2>
+<h3 id="in-case-of-updating-component">In case of updating component</h3>
+<ul>
+<li>develop new feature in the client's project</li>
+<li>Identify the base compoonent from rakam_system to inherent from.</li>
+<li>create new class that inheret from choosen base class</li>
+<li>Implement new core logic</li>
+<li>switch to rakam_system repo:</li>
+<li>checkout from main</li>
+<li>copy and adapt new implementaion from the first step</li>
+<li>push, open pr and request review</li>
+</ul>
+<pre><code class="language-python"># e.g. of new gateway implemented in the client's project
+from __future__ import annotations
+
+from abc import ABC, abstractmethod
+from typing import Any, Dict, Iterator, Optional, Type, TypeVar
+from pydantic import BaseModel
+from rakam_systems.rakam_systems.ai_core.interfaces.llm_gateway import (
+    LLMGateway,
+    LLMRequest,
+    LLMResponse,
+)
+
+
+T = TypeVar(&quot;T&quot;, bound=BaseModel)
+
+
+class AnthropicGateway(LLMGateway):
+    &quot;&quot;&quot;
+    ...
+    &quot;&quot;&quot;
+
+    def __init__(
+        self,
+        name: str = &quot;llm_gateway&quot;,
+        ...
+    ):
+        ...
+
+    @abstractmethod
+    def generate(
+        self,
+        request: LLMRequest,
+    ) -&gt; LLMResponse:
+        &quot;&quot;&quot;Generate a response from the LLM.
+
+        Args:
+            request: Standardized LLM request
+
+        Returns:
+            Standardized LLM response
+        &quot;&quot;&quot;
+        raise NotImplementedError
+
+    @abstractmethod
+    def generate_structured(
+        self,
+        request: LLMRequest,
+        schema: Type[T],
+    ) -&gt; T:
+        &quot;&quot;&quot;Generate structured output conforming to a Pydantic schema.
+
+        Args:
+            request: Standardized LLM request
+            schema: Pydantic model class to parse response into
+
+        Returns:
+            Instance of the schema class
+        &quot;&quot;&quot;
+        raise NotImplementedError
+
+    def stream(
+        self,
+        request: LLMRequest,
+    ) -&gt; Iterator[str]:
+        &quot;&quot;&quot;Stream token/segment responses.
+
+        Args:
+            request: Standardized LLM request
+
+        Yields:
+            String chunks from the LLM
+        &quot;&quot;&quot;
+        ...
+
+    @abstractmethod
+    def count_tokens(
+        self,
+        text: str,
+        model: Optional[str] = None,
+    ) -&gt; int:
+        &quot;&quot;&quot;Count tokens in text.
+
+        Args:
+            text: Text to count tokens for
+            model: Model name to determine encoding
+
+        Returns:
+            Number of tokens
+        &quot;&quot;&quot;
+        raise NotImplementedError
+
+    # Legacy methods for backward compatibility
+    def run(self, prompt: str, **kwargs: Any) -&gt; str:
+        &quot;&quot;&quot;Legacy synchronous text completion.&quot;&quot;&quot;
+        ...
+
+</code></pre>
+<h3 id="in-case-of-creating-a-new-component">In case of creating a new component</h3>
+<ul>
+<li>in client's project</li>
+<li>develop new component logic</li>
+<li>write evaluation</li>
+<li>adapt new logic to become rakam component</li>
+<li>switch to rakam_system repo:</li>
+<li>create new module under rakam_system</li>
+<li>copy and adapt code from first step ( try to follow examples of other existing components)</li>
+<li>push, open pr and request review</li>
+</ul>
+<h1 id="level-3-pipeline-contributions">🔹 Level 3 — Pipeline Contributions</h1>
+<p>(Evaluation pipelines, monitoring flows, data ingestion, orchestration)</p>
+<p>Pipelines are end-to-end flows.
+They orchestrate multiple components together.</p>
+<h2 id="what-counts-as-a-level-3">✔️ What counts as a Level-3</h2>
+<ul>
+<li>New evaluation pipeline</li>
+<li>Improvements to EvalService:</li>
+<li>run → test case → entry → metrics → reasons → logs</li>
+<li>Data preparation pipelines</li>
+</ul>
+<h2 id="how-to-contribute_2">🛠️ How to contribute</h2>
+<h3 id="in-case-of-updating-component_1">In case of updating component</h3>
+<ul>
+<li>develop new pipeline in the client's project</li>
+<li>Identify the base compoonent from rakam_system to inherent from.</li>
+<li>create new class that inheret from choosen base class</li>
+<li>Implement new pipeline logic</li>
+<li>switch to rakam_system repo:</li>
+<li>checkout from main</li>
+<li>copy and adapt new implementaion from the first step</li>
+<li>push, open pr and request review</li>
+</ul>
+<h1 id="level-4-template-contributions">🔹 Level 4 — Template Contributions</h1>
+<p>(System templates, agent templates, scaffolds, generators)</p>
+<p>Templates define the starting point of entire AI systems.</p>
+<h2 id="what-counts-as-a-level-4-contribution">✔️ What counts as a Level-4 contribution</h2>
+<ul>
+<li>A full agent template:</li>
+<li>Support Agent</li>
+<li>RAG Agent</li>
+<li>OCR Agent</li>
+<li>...</li>
+<li>A new service template (FastAPI, Django ...)</li>
+<li>A deployment template (Terraform/K8s)</li>
+<li>Improvements to project generation</li>
+<li>Integrate Monitoring features</li>
+</ul>
+<h2 id="how-to-contribute_3">🛠️ How to contribute</h2>
+<ul>
+<li>update template (e.g. versions upgrade, update available rakam_system components, bug fixes...)</li>
+<li>push, open pr and request review</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../start/" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../start/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
