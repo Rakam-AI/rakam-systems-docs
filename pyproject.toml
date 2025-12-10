@@ -1,0 +1,15 @@
+
+[project]
+name = "rakam_system_doc"
+version = "0.1.0"
+description = "A Rakam Docs repo"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Clément Malige" }
+]
+dependencies = [
+    "mkdocs>=1.6.1",
+]
+
