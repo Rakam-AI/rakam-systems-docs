@@ -5,7 +5,8 @@ on:
         branches:
             - main # Deploy whenever main is updated
     workflow_dispatch: # Allow manual deployments
-
+permissions:
+    contents: write
 jobs:
     deploy:
         runs-on: ubuntu-latest
