@@ -65,6 +65,126 @@
               </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Development Guid</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">📑 Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#development-environment-setup">Development Environment Setup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#project-structure">Project Structure</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#architecture-overview">Architecture Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#design-principles">Design Principles</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#component-hierarchy">Component Hierarchy</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-concepts">Core Concepts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basecomponent">BaseComponent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-patterns">Usage Patterns</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interfaces">Interfaces</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#developing-components">Developing Components</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#step-1-choose-the-right-interface">Step 1: Choose the Right Interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-2-implement-required-methods">Step 2: Implement Required Methods</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-3-add-configuration-support">Step 3: Add Configuration Support</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-custom-agents">Creating Custom Agents</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-agent">Basic Agent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent-with-structured-output">Agent with Structured Output</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent-with-dynamic-system-prompts">Agent with Dynamic System Prompts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#building-tools">Building Tools</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#method-1-class-based-tool">Method 1: Class-Based Tool</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-2-function-based-tool-recommended-for-simple-tools">Method 2: Function-Based Tool (Recommended for Simple Tools)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-3-async-tool">Method 3: Async Tool</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#registering-tools-with-toolregistry">Registering Tools with ToolRegistry</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementing-vector-stores">Implementing Vector Stores</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#custom-vector-store">Custom Vector Store</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-document-loaders">Creating Document Loaders</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#custom-loader">Custom Loader</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integrating-with-adaptiveloader">Integrating with AdaptiveLoader</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-system">Configuration System</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#yaml-configuration">YAML Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loading-configuration">Loading Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing-guidelines">Testing Guidelines</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#unit-test-structure">Unit Test Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#async-test-structure">Async Test Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-style-conventions">Code Style &amp; Conventions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#python-style">Python Style</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#type-hints">Type Hints</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatting-tools">Formatting Tools</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#publishing-distribution">Publishing &amp; Distribution</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#version-management">Version Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#building-the-package">Building the Package</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#publishing-to-pypi">Publishing to PyPI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-a-release">Creating a Release</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#additional-resources">Additional Resources</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -110,7 +230,1151 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="rakam-systems-development-guide">Rakam Systems Development Guide</h1>
+<p>This guide provides comprehensive instructions for developers who want to contribute to or extend the <code>rakam_systems</code> framework. It covers architecture patterns, component development, testing strategies, and best practices.</p>
+<h2 id="table-of-contents">📑 Table of Contents</h2>
+<ol>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#core-concepts">Core Concepts</a></li>
+<li><a href="#developing-components">Developing Components</a></li>
+<li><a href="#creating-custom-agents">Creating Custom Agents</a></li>
+<li><a href="#building-tools">Building Tools</a></li>
+<li><a href="#implementing-vector-stores">Implementing Vector Stores</a></li>
+<li><a href="#creating-document-loaders">Creating Document Loaders</a></li>
+<li><a href="#configuration-system">Configuration System</a></li>
+<li><a href="#testing-guidelines">Testing Guidelines</a></li>
+<li><a href="#code-style--conventions">Code Style &amp; Conventions</a></li>
+<li><a href="#publishing--distribution">Publishing &amp; Distribution</a></li>
+</ol>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="development-environment-setup">Development Environment Setup</h3>
+<pre><code class="language-bash"># Clone the repository
+git clone &lt;repository_url&gt;
+cd rakam_systems/app/rakam_systems
+
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install with all dependencies including dev tools
+pip install -e &quot;.[complete]&quot;
+
+# Setup pre-commit hooks
+pre-commit install
+
+# Verify installation
+python -c &quot;from rakam_systems.ai_core.base import BaseComponent; print('✅ Setup complete!')&quot;
+</code></pre>
+<h3 id="project-structure">Project Structure</h3>
+<pre><code>rakam_systems/
+├── rakam_systems/               # Main package
+│   ├── ai_core/                 # Core abstractions &amp; interfaces
+│   │   ├── base.py              # BaseComponent class
+│   │   ├── interfaces/          # Abstract interfaces
+│   │   ├── config_loader.py     # Configuration system
+│   │   ├── tracking.py          # Input/output tracking
+│   │   └── mcp/                 # MCP server support
+│   ├── ai_agents/               # Agent implementations
+│   │   ├── components/          # Agent components
+│   │   │   ├── base_agent.py    # BaseAgent implementation
+│   │   │   ├── llm_gateway/     # LLM provider gateways
+│   │   │   ├── chat_history/    # Chat history backends
+│   │   │   └── tools/           # Built-in tools
+│   │   └── server/              # MCP server for agents
+│   ├── ai_vectorstore/          # Vector store implementations
+│   │   ├── core.py              # Node, VSFile data structures
+│   │   ├── config.py            # VectorStoreConfig
+│   │   └── components/          # Vector store components
+│   │       ├── vectorstore/     # Store implementations
+│   │       ├── embedding_model/ # Embedding models
+│   │       ├── loader/          # Document loaders
+│   │       └── chunker/         # Text chunkers
+│   ├── ai_utils/                # Utilities (logging, metrics)
+│   └── examples/                # Usage examples
+├── tests/                       # Test suite
+├── docs/                        # Documentation
+├── pyproject.toml               # Package configuration
+└── requirements.txt             # Locked dependencies
+</code></pre>
+<hr />
+<h2 id="architecture-overview">Architecture Overview</h2>
+<h3 id="design-principles">Design Principles</h3>
+<ol>
+<li><strong>Component-Based Architecture</strong>: All functionality is encapsulated in components that extend <code>BaseComponent</code></li>
+<li><strong>Interface-Driven Development</strong>: Abstract interfaces define contracts; implementations are swappable</li>
+<li><strong>Configuration-First</strong>: YAML/JSON configuration support for all components</li>
+<li><strong>Provider-Agnostic</strong>: Support multiple backends (LLMs, embeddings, vector stores)</li>
+<li><strong>Lifecycle Management</strong>: Components have <code>setup()</code> and <code>shutdown()</code> hooks for resource management</li>
+</ol>
+<h3 id="component-hierarchy">Component Hierarchy</h3>
+<pre><code>BaseComponent (ai_core/base.py)
+├── AgentComponent (ai_core/interfaces/agent.py)
+│   └── BaseAgent (ai_agents/components/base_agent.py)
+├── ToolComponent (ai_core/interfaces/tool.py)
+│   └── FunctionToolComponent
+├── LLMGateway (ai_core/interfaces/llm_gateway.py)
+│   ├── OpenAIGateway
+│   └── MistralGateway
+├── VectorStore (ai_core/interfaces/vectorstore.py)
+│   ├── ConfigurablePgVectorStore
+│   └── FAISSVectorStore
+├── EmbeddingModel (ai_core/interfaces/embedding_model.py)
+│   └── ConfigurableEmbeddings
+├── Loader (ai_core/interfaces/loader.py)
+│   ├── AdaptiveLoader
+│   ├── PdfLoader, DocLoader, etc.
+└── Chunker (ai_core/interfaces/chunker.py)
+    └── TextChunker
+</code></pre>
+<hr />
+<h2 id="core-concepts">Core Concepts</h2>
+<h3 id="basecomponent">BaseComponent</h3>
+<p>Every component in the system extends <code>BaseComponent</code>, which provides:</p>
+<ul>
+<li><strong>Lifecycle management</strong>: <code>setup()</code> and <code>shutdown()</code> methods</li>
+<li><strong>Auto-initialization</strong>: <code>__call__</code> automatically calls <code>setup()</code> if needed</li>
+<li><strong>Context manager support</strong>: Use <code>with</code> statement for automatic cleanup</li>
+<li><strong>Evaluation harness</strong>: Built-in method for testing components</li>
+</ul>
+<pre><code class="language-python">from abc import abstractmethod
+from typing import Any, Dict, Optional
+from rakam_systems.ai_core.base import BaseComponent
+
+class MyComponent(BaseComponent):
+    &quot;&quot;&quot;Example custom component.&quot;&quot;&quot;
+
+    def __init__(self, name: str, config: Optional[Dict[str, Any]] = None):
+        super().__init__(name, config)
+        self.heavy_resource = None
+
+    def setup(self) -&gt; None:
+        &quot;&quot;&quot;Initialize heavy resources.&quot;&quot;&quot;
+        super().setup()  # Sets self.initialized = True
+        # Initialize expensive resources here
+        self.heavy_resource = self._load_model()
+
+    def shutdown(self) -&gt; None:
+        &quot;&quot;&quot;Release resources.&quot;&quot;&quot;
+        if self.heavy_resource:
+            self.heavy_resource = None
+        super().shutdown()  # Sets self.initialized = False
+
+    @abstractmethod
+    def run(self, *args, **kwargs) -&gt; Any:
+        &quot;&quot;&quot;Execute the primary operation.&quot;&quot;&quot;
+        raise NotImplementedError
+
+    def _load_model(self):
+        &quot;&quot;&quot;Private method to load model.&quot;&quot;&quot;
+        return &quot;loaded_model&quot;
+</code></pre>
+<h3 id="usage-patterns">Usage Patterns</h3>
+<pre><code class="language-python"># Pattern 1: Manual lifecycle
+component = MyComponent(&quot;my_component&quot;)
+component.setup()
+result = component.run(input_data)
+component.shutdown()
+
+# Pattern 2: Auto-setup via __call__
+component = MyComponent(&quot;my_component&quot;)
+result = component(input_data)  # setup() called automatically
+
+# Pattern 3: Context manager (recommended)
+with MyComponent(&quot;my_component&quot;) as component:
+    result = component.run(input_data)
+# shutdown() called automatically
+</code></pre>
+<h3 id="interfaces">Interfaces</h3>
+<p>Interfaces define contracts that implementations must follow. They are located in <code>ai_core/interfaces/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Purpose</th>
+<th>Key Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AgentComponent</code></td>
+<td>AI agents</td>
+<td><code>run()</code>, <code>arun()</code>, <code>stream()</code>, <code>astream()</code></td>
+</tr>
+<tr>
+<td><code>ToolComponent</code></td>
+<td>Callable tools</td>
+<td><code>run()</code>, <code>acall()</code></td>
+</tr>
+<tr>
+<td><code>LLMGateway</code></td>
+<td>LLM providers</td>
+<td><code>generate()</code>, <code>stream()</code>, <code>count_tokens()</code></td>
+</tr>
+<tr>
+<td><code>VectorStore</code></td>
+<td>Vector storage</td>
+<td><code>add()</code>, <code>query()</code>, <code>count()</code></td>
+</tr>
+<tr>
+<td><code>EmbeddingModel</code></td>
+<td>Text embeddings</td>
+<td><code>run()</code>, <code>encode_query()</code>, <code>encode_documents()</code></td>
+</tr>
+<tr>
+<td><code>Loader</code></td>
+<td>Document loading</td>
+<td><code>load_as_text()</code>, <code>load_as_chunks()</code>, <code>load_as_nodes()</code></td>
+</tr>
+<tr>
+<td><code>Chunker</code></td>
+<td>Text chunking</td>
+<td><code>run()</code>, <code>chunk_text()</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="developing-components">Developing Components</h2>
+<h3 id="step-1-choose-the-right-interface">Step 1: Choose the Right Interface</h3>
+<p>Determine which interface your component should implement:</p>
+<pre><code class="language-python"># For a new LLM provider
+from rakam_systems.ai_core.interfaces.llm_gateway import LLMGateway
+
+# For a new vector store backend
+from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+
+# For a new document loader
+from rakam_systems.ai_core.interfaces.loader import Loader
+
+# For a custom tool
+from rakam_systems.ai_core.interfaces.tool import ToolComponent
+</code></pre>
+<h3 id="step-2-implement-required-methods">Step 2: Implement Required Methods</h3>
+<pre><code class="language-python">from typing import List, Dict, Any, Optional
+from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+
+class MyCustomVectorStore(VectorStore):
+    &quot;&quot;&quot;Custom vector store implementation.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        name: str = &quot;my_vectorstore&quot;,
+        config: Optional[Dict[str, Any]] = None
+    ):
+        super().__init__(name, config)
+        self.index = None
+        self.dimension = config.get(&quot;dimension&quot;, 384) if config else 384
+
+    def setup(self) -&gt; None:
+        &quot;&quot;&quot;Initialize the vector index.&quot;&quot;&quot;
+        super().setup()
+        # Initialize your backend here
+        self.index = self._create_index()
+
+    def shutdown(self) -&gt; None:
+        &quot;&quot;&quot;Clean up resources.&quot;&quot;&quot;
+        if self.index:
+            self._save_index()
+            self.index = None
+        super().shutdown()
+
+    def run(self, *args, **kwargs) -&gt; Any:
+        &quot;&quot;&quot;Default run delegates to query.&quot;&quot;&quot;
+        return self.query(*args, **kwargs)
+
+    def add(
+        self,
+        vectors: List[List[float]],
+        metadatas: List[Dict[str, Any]]
+    ) -&gt; Any:
+        &quot;&quot;&quot;Add vectors to the store.&quot;&quot;&quot;
+        if not self.initialized:
+            self.setup()
+        # Implementation here
+        return {&quot;added&quot;: len(vectors)}
+
+    def query(
+        self,
+        vector: List[float],
+        top_k: int = 5
+    ) -&gt; List[Dict[str, Any]]:
+        &quot;&quot;&quot;Query similar vectors.&quot;&quot;&quot;
+        if not self.initialized:
+            self.setup()
+        # Implementation here
+        return [{&quot;id&quot;: i, &quot;score&quot;: 0.9} for i in range(top_k)]
+
+    def count(self) -&gt; Optional[int]:
+        &quot;&quot;&quot;Return total vector count.&quot;&quot;&quot;
+        return len(self.index) if self.index else 0
+
+    def _create_index(self):
+        &quot;&quot;&quot;Private method to create index.&quot;&quot;&quot;
+        return {}
+
+    def _save_index(self):
+        &quot;&quot;&quot;Private method to save index.&quot;&quot;&quot;
+        pass
+</code></pre>
+<h3 id="step-3-add-configuration-support">Step 3: Add Configuration Support</h3>
+<p>Support both programmatic and YAML/JSON configuration:</p>
+<pre><code class="language-python">from pydantic import BaseModel, Field
+from typing import Optional
+import yaml
+
+class MyVectorStoreConfig(BaseModel):
+    &quot;&quot;&quot;Configuration for MyCustomVectorStore.&quot;&quot;&quot;
+
+    name: str = &quot;my_vectorstore&quot;
+    dimension: int = Field(default=384, ge=1)
+    backend: str = Field(default=&quot;memory&quot;, pattern=&quot;^(memory|disk|redis)$&quot;)
+    cache_size: int = Field(default=1000, ge=0)
+
+    @classmethod
+    def from_yaml(cls, path: str) -&gt; &quot;MyVectorStoreConfig&quot;:
+        &quot;&quot;&quot;Load configuration from YAML file.&quot;&quot;&quot;
+        with open(path, 'r') as f:
+            data = yaml.safe_load(f)
+        return cls(**data)
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Convert to dictionary.&quot;&quot;&quot;
+        return self.model_dump()
+
+
+class MyCustomVectorStore(VectorStore):
+    &quot;&quot;&quot;Custom vector store with config support.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        config: Optional[MyVectorStoreConfig | Dict | str] = None
+    ):
+        # Handle different config types
+        if isinstance(config, str):
+            config = MyVectorStoreConfig.from_yaml(config)
+        elif isinstance(config, dict):
+            config = MyVectorStoreConfig(**config)
+        elif config is None:
+            config = MyVectorStoreConfig()
+
+        super().__init__(config.name, config.to_dict())
+        self.config_obj = config
+</code></pre>
+<hr />
+<h2 id="creating-custom-agents">Creating Custom Agents</h2>
+<h3 id="basic-agent">Basic Agent</h3>
+<pre><code class="language-python">import asyncio
+from typing import Optional, List, Any
+from pydantic import BaseModel
+from rakam_systems.ai_agents.components import BaseAgent
+from rakam_systems.ai_core.interfaces.agent import AgentInput, AgentOutput
+from rakam_systems.ai_core.interfaces.tool import ToolComponent
+
+class MyCustomAgent(BaseAgent):
+    &quot;&quot;&quot;Custom agent with specialized behavior.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        name: str = &quot;custom_agent&quot;,
+        model: str = &quot;openai:gpt-4o&quot;,
+        system_prompt: str = &quot;You are a helpful assistant.&quot;,
+        tools: Optional[List[ToolComponent]] = None,
+        output_type: Optional[type[BaseModel]] = None,
+        **kwargs
+    ):
+        super().__init__(
+            name=name,
+            model=model,
+            system_prompt=system_prompt,
+            tools=tools,
+            output_type=output_type,
+            **kwargs
+        )
+
+    async def arun(
+        self,
+        input_data: str | AgentInput,
+        deps: Any = None,
+        **kwargs
+    ) -&gt; AgentOutput:
+        &quot;&quot;&quot;Override to add custom preprocessing/postprocessing.&quot;&quot;&quot;
+        # Preprocess
+        if isinstance(input_data, str):
+            input_data = self._preprocess(input_data)
+
+        # Call parent implementation
+        result = await super().arun(input_data, deps, **kwargs)
+
+        # Postprocess
+        result = self._postprocess(result)
+
+        return result
+
+    def _preprocess(self, text: str) -&gt; str:
+        &quot;&quot;&quot;Add preprocessing logic.&quot;&quot;&quot;
+        # Example: Add context or modify input
+        return f&quot;[User Query] {text}&quot;
+
+    def _postprocess(self, result: AgentOutput) -&gt; AgentOutput:
+        &quot;&quot;&quot;Add postprocessing logic.&quot;&quot;&quot;
+        # Example: Format output
+        return result
+</code></pre>
+<h3 id="agent-with-structured-output">Agent with Structured Output</h3>
+<pre><code class="language-python">from pydantic import BaseModel, Field
+from typing import List
+
+class AnalysisResult(BaseModel):
+    &quot;&quot;&quot;Structured output for analysis agent.&quot;&quot;&quot;
+
+    summary: str = Field(description=&quot;Brief summary of the analysis&quot;)
+    key_points: List[str] = Field(description=&quot;Key points extracted&quot;)
+    confidence: float = Field(ge=0.0, le=1.0, description=&quot;Confidence score&quot;)
+    needs_review: bool = Field(default=False, description=&quot;Whether human review is needed&quot;)
+
+# Create agent with structured output
+analysis_agent = BaseAgent(
+    name=&quot;analysis_agent&quot;,
+    model=&quot;openai:gpt-4o&quot;,
+    system_prompt=&quot;You analyze text and provide structured analysis.&quot;,
+    output_type=AnalysisResult  # Enforces structured output
+)
+
+# Usage
+async def analyze(text: str) -&gt; AnalysisResult:
+    result = await analysis_agent.arun(f&quot;Analyze this: {text}&quot;)
+    return result.output  # Typed as AnalysisResult
+</code></pre>
+<h3 id="agent-with-dynamic-system-prompts">Agent with Dynamic System Prompts</h3>
+<pre><code class="language-python">from datetime import date
+from pydantic_ai import RunContext
+
+agent = BaseAgent(
+    name=&quot;dynamic_agent&quot;,
+    model=&quot;openai:gpt-4o&quot;,
+    system_prompt=&quot;You are a helpful assistant.&quot;
+)
+
+# Add dynamic prompts that are evaluated at runtime
+@agent.dynamic_system_prompt
+def add_date_context() -&gt; str:
+    &quot;&quot;&quot;Add current date to system prompt.&quot;&quot;&quot;
+    return f&quot;Today's date is {date.today().strftime('%B %d, %Y')}.&quot;
+
+@agent.dynamic_system_prompt
+def add_user_context(ctx: RunContext[dict]) -&gt; str:
+    &quot;&quot;&quot;Add user-specific context from dependencies.&quot;&quot;&quot;
+    if ctx.deps and &quot;user_name&quot; in ctx.deps:
+        return f&quot;You are assisting {ctx.deps['user_name']}.&quot;
+    return &quot;&quot;
+
+# Usage with dependencies
+result = await agent.arun(
+    &quot;What day is it?&quot;,
+    deps={&quot;user_name&quot;: &quot;Alice&quot;}
+)
+</code></pre>
+<hr />
+<h2 id="building-tools">Building Tools</h2>
+<h3 id="method-1-class-based-tool">Method 1: Class-Based Tool</h3>
+<pre><code class="language-python">from typing import Any, Dict
+from rakam_systems.ai_core.interfaces.tool import ToolComponent
+
+class WeatherTool(ToolComponent):
+    &quot;&quot;&quot;Tool to get weather information.&quot;&quot;&quot;
+
+    def __init__(self, api_key: str = None):
+        super().__init__(
+            name=&quot;get_weather&quot;,
+            description=&quot;Get current weather for a location&quot;,
+            json_schema={
+                &quot;type&quot;: &quot;object&quot;,
+                &quot;properties&quot;: {
+                    &quot;city&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;description&quot;: &quot;City name&quot;
+                    },
+                    &quot;units&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;enum&quot;: [&quot;celsius&quot;, &quot;fahrenheit&quot;],
+                        &quot;default&quot;: &quot;celsius&quot;
+                    }
+                },
+                &quot;required&quot;: [&quot;city&quot;],
+                &quot;additionalProperties&quot;: False
+            }
+        )
+        self.api_key = api_key
+
+    def run(self, city: str, units: str = &quot;celsius&quot;) -&gt; str:
+        &quot;&quot;&quot;Fetch weather data.&quot;&quot;&quot;
+        # Implementation here
+        return f&quot;Weather in {city}: 22°{units[0].upper()}, Sunny&quot;
+</code></pre>
+<h3 id="method-2-function-based-tool-recommended-for-simple-tools">Method 2: Function-Based Tool (Recommended for Simple Tools)</h3>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.tool import ToolComponent
+
+def calculate_bmi(weight_kg: float, height_m: float) -&gt; dict:
+    &quot;&quot;&quot;Calculate BMI given weight and height.&quot;&quot;&quot;
+    bmi = weight_kg / (height_m ** 2)
+    category = (
+        &quot;Underweight&quot; if bmi &lt; 18.5 else
+        &quot;Normal&quot; if bmi &lt; 25 else
+        &quot;Overweight&quot; if bmi &lt; 30 else
+        &quot;Obese&quot;
+    )
+    return {&quot;bmi&quot;: round(bmi, 2), &quot;category&quot;: category}
+
+# Create tool from function
+bmi_tool = ToolComponent.from_function(
+    function=calculate_bmi,
+    name=&quot;calculate_bmi&quot;,
+    description=&quot;Calculate Body Mass Index from weight and height&quot;,
+    json_schema={
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;weight_kg&quot;: {
+                &quot;type&quot;: &quot;number&quot;,
+                &quot;description&quot;: &quot;Weight in kilograms&quot;
+            },
+            &quot;height_m&quot;: {
+                &quot;type&quot;: &quot;number&quot;, 
+                &quot;description&quot;: &quot;Height in meters&quot;
+            }
+        },
+        &quot;required&quot;: [&quot;weight_kg&quot;, &quot;height_m&quot;],
+        &quot;additionalProperties&quot;: False
+    }
+)
+</code></pre>
+<h3 id="method-3-async-tool">Method 3: Async Tool</h3>
+<pre><code class="language-python">import aiohttp
+from rakam_systems.ai_core.interfaces.tool import ToolComponent
+
+class AsyncSearchTool(ToolComponent):
+    &quot;&quot;&quot;Async tool for web search.&quot;&quot;&quot;
+
+    def __init__(self):
+        super().__init__(
+            name=&quot;web_search&quot;,
+            description=&quot;Search the web for information&quot;,
+            json_schema={
+                &quot;type&quot;: &quot;object&quot;,
+                &quot;properties&quot;: {
+                    &quot;query&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Search query&quot;}
+                },
+                &quot;required&quot;: [&quot;query&quot;]
+            }
+        )
+
+    async def run(self, query: str) -&gt; str:
+        &quot;&quot;&quot;Perform async web search.&quot;&quot;&quot;
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f&quot;https://api.search.com?q={query}&quot;) as resp:
+                data = await resp.json()
+                return data.get(&quot;results&quot;, [])
+
+    # acall is automatically handled for async run methods
+</code></pre>
+<h3 id="registering-tools-with-toolregistry">Registering Tools with ToolRegistry</h3>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.tool_registry import ToolRegistry, ToolMode
+
+registry = ToolRegistry()
+
+# Register tools
+registry.register_direct_tool(
+    name=&quot;weather&quot;,
+    function=get_weather_fn,
+    description=&quot;Get weather information&quot;,
+    json_schema={...},
+    category=&quot;utility&quot;,
+    tags=[&quot;weather&quot;, &quot;external&quot;]
+)
+
+registry.register_direct_tool(
+    name=&quot;calculator&quot;,
+    function=calculate_fn,
+    description=&quot;Perform calculations&quot;,
+    json_schema={...},
+    category=&quot;math&quot;,
+    tags=[&quot;calculation&quot;]
+)
+
+# Query tools
+math_tools = registry.get_tools_by_category(&quot;math&quot;)
+external_tools = registry.get_tools_by_tag(&quot;external&quot;)
+all_direct_tools = registry.get_tools_by_mode(ToolMode.DIRECT)
+</code></pre>
+<hr />
+<h2 id="implementing-vector-stores">Implementing Vector Stores</h2>
+<h3 id="custom-vector-store">Custom Vector Store</h3>
+<pre><code class="language-python">from typing import List, Dict, Any, Optional
+from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+from rakam_systems.ai_vectorstore.core import Node, NodeMetadata
+
+class RedisVectorStore(VectorStore):
+    &quot;&quot;&quot;Redis-backed vector store implementation.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        name: str = &quot;redis_vectorstore&quot;,
+        host: str = &quot;localhost&quot;,
+        port: int = 6379,
+        index_name: str = &quot;vectors&quot;,
+        dimension: int = 384,
+        config: Optional[Dict] = None
+    ):
+        super().__init__(name, config or {})
+        self.host = host
+        self.port = port
+        self.index_name = index_name
+        self.dimension = dimension
+        self.client = None
+
+    def setup(self) -&gt; None:
+        &quot;&quot;&quot;Connect to Redis and create index.&quot;&quot;&quot;
+        super().setup()
+        import redis
+        from redis.commands.search.field import VectorField, TextField
+        from redis.commands.search.indexDefinition import IndexDefinition, IndexType
+
+        self.client = redis.Redis(host=self.host, port=self.port)
+
+        # Create vector index
+        try:
+            self.client.ft(self.index_name).create_index(
+                fields=[
+                    VectorField(&quot;embedding&quot;, &quot;HNSW&quot;, {
+                        &quot;TYPE&quot;: &quot;FLOAT32&quot;,
+                        &quot;DIM&quot;: self.dimension,
+                        &quot;DISTANCE_METRIC&quot;: &quot;COSINE&quot;
+                    }),
+                    TextField(&quot;content&quot;),
+                ],
+                definition=IndexDefinition(
+                    prefix=[f&quot;{self.index_name}:&quot;],
+                    index_type=IndexType.HASH
+                )
+            )
+        except Exception:
+            pass  # Index already exists
+
+    def shutdown(self) -&gt; None:
+        &quot;&quot;&quot;Close Redis connection.&quot;&quot;&quot;
+        if self.client:
+            self.client.close()
+            self.client = None
+        super().shutdown()
+
+    def run(self, *args, **kwargs) -&gt; Any:
+        return self.query(*args, **kwargs)
+
+    def add(
+        self,
+        vectors: List[List[float]],
+        metadatas: List[Dict[str, Any]]
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Add vectors to Redis.&quot;&quot;&quot;
+        if not self.initialized:
+            self.setup()
+
+        import numpy as np
+
+        added = 0
+        for i, (vector, metadata) in enumerate(zip(vectors, metadatas)):
+            doc_id = metadata.get(&quot;id&quot;, f&quot;doc_{i}&quot;)
+            self.client.hset(
+                f&quot;{self.index_name}:{doc_id}&quot;,
+                mapping={
+                    &quot;embedding&quot;: np.array(vector, dtype=np.float32).tobytes(),
+                    &quot;content&quot;: metadata.get(&quot;content&quot;, &quot;&quot;),
+                    **metadata
+                }
+            )
+            added += 1
+
+        return {&quot;added&quot;: added}
+
+    def query(
+        self,
+        vector: List[float],
+        top_k: int = 5
+    ) -&gt; List[Dict[str, Any]]:
+        &quot;&quot;&quot;Search for similar vectors.&quot;&quot;&quot;
+        if not self.initialized:
+            self.setup()
+
+        import numpy as np
+        from redis.commands.search.query import Query
+
+        query_vector = np.array(vector, dtype=np.float32).tobytes()
+
+        q = (
+            Query(f&quot;*=&gt;[KNN {top_k} @embedding $vec AS score]&quot;)
+            .sort_by(&quot;score&quot;)
+            .return_fields(&quot;content&quot;, &quot;score&quot;)
+            .dialect(2)
+        )
+
+        results = self.client.ft(self.index_name).search(
+            q, query_params={&quot;vec&quot;: query_vector}
+        )
+
+        return [
+            {
+                &quot;id&quot;: doc.id,
+                &quot;content&quot;: doc.content,
+                &quot;score&quot;: float(doc.score)
+            }
+            for doc in results.docs
+        ]
+
+    def count(self) -&gt; Optional[int]:
+        &quot;&quot;&quot;Count total documents.&quot;&quot;&quot;
+        if not self.client:
+            return 0
+        info = self.client.ft(self.index_name).info()
+        return int(info.get(&quot;num_docs&quot;, 0))
+</code></pre>
+<hr />
+<h2 id="creating-document-loaders">Creating Document Loaders</h2>
+<h3 id="custom-loader">Custom Loader</h3>
+<pre><code class="language-python">from typing import List, Union, Optional, Dict, Any
+from pathlib import Path
+from rakam_systems.ai_core.interfaces.loader import Loader
+from rakam_systems.ai_vectorstore.core import Node, NodeMetadata, VSFile
+
+class XMLLoader(Loader):
+    &quot;&quot;&quot;Loader for XML documents.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        name: str = &quot;xml_loader&quot;,
+        config: Optional[Dict[str, Any]] = None
+    ):
+        super().__init__(name, config or {})
+        self.chunk_size = self.config.get(&quot;chunk_size&quot;, 512)
+        self.encoding = self.config.get(&quot;encoding&quot;, &quot;utf-8&quot;)
+
+    def run(self, source: Union[str, Path]) -&gt; List[str]:
+        &quot;&quot;&quot;Default run delegates to load_as_chunks.&quot;&quot;&quot;
+        return self.load_as_chunks(source)
+
+    def load_as_text(self, source: Union[str, Path]) -&gt; str:
+        &quot;&quot;&quot;Load XML as plain text (elements removed).&quot;&quot;&quot;
+        import xml.etree.ElementTree as ET
+
+        tree = ET.parse(source)
+        root = tree.getroot()
+
+        # Extract all text content
+        texts = []
+        for elem in root.iter():
+            if elem.text:
+                texts.append(elem.text.strip())
+            if elem.tail:
+                texts.append(elem.tail.strip())
+
+        return &quot; &quot;.join(filter(None, texts))
+
+    def load_as_chunks(self, source: Union[str, Path]) -&gt; List[str]:
+        &quot;&quot;&quot;Load XML and split into chunks.&quot;&quot;&quot;
+        text = self.load_as_text(source)
+
+        # Simple chunking by character count
+        chunks = []
+        for i in range(0, len(text), self.chunk_size):
+            chunk = text[i:i + self.chunk_size]
+            if chunk.strip():
+                chunks.append(chunk)
+
+        return chunks
+
+    def load_as_nodes(
+        self,
+        source: Union[str, Path],
+        source_id: Optional[str] = None,
+        custom_metadata: Optional[Dict[str, Any]] = None
+    ) -&gt; List[Node]:
+        &quot;&quot;&quot;Load XML as nodes with metadata.&quot;&quot;&quot;
+        source_path = Path(source)
+        chunks = self.load_as_chunks(source)
+
+        nodes = []
+        for i, chunk in enumerate(chunks):
+            metadata = NodeMetadata(
+                source_file_uuid=source_id or str(source_path),
+                position=i,
+                custom=custom_metadata or {}
+            )
+            nodes.append(Node(content=chunk, metadata=metadata))
+
+        return nodes
+
+    def load_as_vsfile(
+        self,
+        file_path: Union[str, Path],
+        custom_metadata: Optional[Dict[str, Any]] = None
+    ) -&gt; VSFile:
+        &quot;&quot;&quot;Load XML as VSFile with nodes attached.&quot;&quot;&quot;
+        vsfile = VSFile(file_path=str(file_path))
+        vsfile.nodes = self.load_as_nodes(
+            file_path,
+            source_id=str(vsfile.uuid),
+            custom_metadata=custom_metadata
+        )
+        return vsfile
+</code></pre>
+<h3 id="integrating-with-adaptiveloader">Integrating with AdaptiveLoader</h3>
+<p>To make your loader work with <code>AdaptiveLoader</code>, register the file extension:</p>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore.components.loader import AdaptiveLoader
+
+class EnhancedAdaptiveLoader(AdaptiveLoader):
+    &quot;&quot;&quot;AdaptiveLoader with XML support.&quot;&quot;&quot;
+
+    EXTENSION_LOADERS = {
+        **AdaptiveLoader.EXTENSION_LOADERS,
+        &quot;.xml&quot;: XMLLoader,
+        &quot;.xhtml&quot;: XMLLoader,
+    }
+</code></pre>
+<hr />
+<h2 id="configuration-system">Configuration System</h2>
+<h3 id="yaml-configuration">YAML Configuration</h3>
+<p>The framework supports comprehensive YAML configuration:</p>
+<pre><code class="language-yaml"># config/agent_config.yaml
+version: &quot;1.0&quot;
+
+# Prompt library
+prompts:
+  assistant:
+    name: &quot;assistant&quot;
+    system_prompt: |
+      You are a helpful AI assistant.
+      Always be accurate and helpful.
+    skills:
+      - &quot;Information retrieval&quot;
+      - &quot;Task automation&quot;
+
+# Tool library
+tools:
+  search:
+    name: &quot;search&quot;
+    type: &quot;direct&quot;
+    module: &quot;myapp.tools&quot;
+    function: &quot;search_documents&quot;
+    description: &quot;Search documents&quot;
+    json_schema:
+      type: &quot;object&quot;
+      properties:
+        query:
+          type: &quot;string&quot;
+      required: [&quot;query&quot;]
+
+# Agent configurations
+agents:
+  main_agent:
+    name: &quot;main_agent&quot;
+    model_config:
+      model: &quot;openai:gpt-4o&quot;
+      temperature: 0.7
+      max_tokens: 2000
+    prompt_config: &quot;assistant&quot;
+    tools:
+      - &quot;search&quot;
+    enable_tracking: true
+</code></pre>
+<h3 id="loading-configuration">Loading Configuration</h3>
+<pre><code class="language-python">from rakam_systems.ai_core.config_loader import ConfigurationLoader
+
+loader = ConfigurationLoader()
+
+# Load from YAML
+config = loader.load_from_yaml(&quot;config/agent_config.yaml&quot;)
+
+# Create single agent
+agent = loader.create_agent(&quot;main_agent&quot;, config)
+
+# Create all agents
+all_agents = loader.create_all_agents(config)
+
+# Get tool registry
+registry = loader.get_tool_registry(config)
+
+# Validate configuration
+is_valid, errors = loader.validate_config(&quot;config/agent_config.yaml&quot;)
+if not is_valid:
+    for error in errors:
+        print(f&quot;Config error: {error}&quot;)
+</code></pre>
+<hr />
+<h2 id="testing-guidelines">Testing Guidelines</h2>
+<h3 id="unit-test-structure">Unit Test Structure</h3>
+<pre><code class="language-python"># tests/test_my_component.py
+import pytest
+from typing import List, Dict, Any
+from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+
+class DummyVectorStore(VectorStore):
+    &quot;&quot;&quot;Mock implementation for testing.&quot;&quot;&quot;
+
+    def __init__(self):
+        super().__init__(&quot;dummy_store&quot;)
+        self.data = []
+
+    def run(self, *args, **kwargs):
+        return self.query(*args, **kwargs)
+
+    def add(self, vectors: List[List[float]], metadatas: List[Dict]) -&gt; Dict:
+        self.data.extend(zip(vectors, metadatas))
+        return {&quot;added&quot;: len(vectors)}
+
+    def query(self, vector: List[float], top_k: int = 5) -&gt; List[Dict]:
+        return [{&quot;id&quot;: i, &quot;score&quot;: 0.9} for i in range(min(top_k, len(self.data)))]
+
+    def count(self) -&gt; int:
+        return len(self.data)
+
+
+class TestVectorStore:
+    &quot;&quot;&quot;Test suite for VectorStore implementations.&quot;&quot;&quot;
+
+    @pytest.fixture
+    def store(self):
+        &quot;&quot;&quot;Create a fresh store for each test.&quot;&quot;&quot;
+        store = DummyVectorStore()
+        yield store
+        store.shutdown()
+
+    def test_add_vectors(self, store):
+        &quot;&quot;&quot;Test adding vectors to store.&quot;&quot;&quot;
+        vectors = [[0.1, 0.2], [0.3, 0.4]]
+        metadatas = [{&quot;id&quot;: 1}, {&quot;id&quot;: 2}]
+
+        result = store.add(vectors, metadatas)
+
+        assert result[&quot;added&quot;] == 2
+        assert store.count() == 2
+
+    def test_query_vectors(self, store):
+        &quot;&quot;&quot;Test querying vectors.&quot;&quot;&quot;
+        store.add([[0.1, 0.2]], [{&quot;id&quot;: 1}])
+
+        results = store.query([0.1, 0.2], top_k=5)
+
+        assert len(results) &lt;= 5
+        assert all(&quot;score&quot; in r for r in results)
+
+    def test_lifecycle(self, store):
+        &quot;&quot;&quot;Test setup/shutdown lifecycle.&quot;&quot;&quot;
+        assert not store.initialized
+
+        store.setup()
+        assert store.initialized
+
+        store.shutdown()
+        assert not store.initialized
+
+    def test_evaluate_harness(self, store):
+        &quot;&quot;&quot;Test built-in evaluation harness.&quot;&quot;&quot;
+        store.add([[0.1]], [{&quot;id&quot;: 1}])
+
+        test_cases = {
+            &quot;query&quot;: [
+                {&quot;args&quot;: [[0.1, 0.2]], &quot;kwargs&quot;: {&quot;top_k&quot;: 3}}
+            ]
+        }
+
+        results = store.evaluate(
+            methods=[&quot;query&quot;],
+            test_cases=test_cases,
+            verbose=False
+        )
+
+        assert &quot;query&quot; in results
+        assert results[&quot;query&quot;][0][&quot;success&quot;]
+</code></pre>
+<h3 id="async-test-structure">Async Test Structure</h3>
+<pre><code class="language-python">import pytest
+import asyncio
+
+@pytest.fixture
+def event_loop():
+    &quot;&quot;&quot;Create event loop for async tests.&quot;&quot;&quot;
+    loop = asyncio.new_event_loop()
+    yield loop
+    loop.close()
+
+
+@pytest.mark.asyncio
+async def test_async_agent():
+    &quot;&quot;&quot;Test async agent methods.&quot;&quot;&quot;
+    from rakam_systems.ai_agents.components import BaseAgent
+
+    agent = BaseAgent(
+        name=&quot;test_agent&quot;,
+        model=&quot;openai:gpt-4o-mini&quot;,
+        system_prompt=&quot;You are a test assistant.&quot;
+    )
+
+    result = await agent.arun(&quot;Say 'hello'&quot;)
+
+    assert result.output_text is not None
+    assert len(result.output_text) &gt; 0
+</code></pre>
+<h3 id="running-tests">Running Tests</h3>
+<pre><code class="language-bash"># Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=rakam_systems --cov-report=html
+
+# Run specific test file
+pytest tests/test_my_component.py
+
+# Run tests matching pattern
+pytest -k &quot;test_vector&quot;
+
+# Run async tests
+pytest -v tests/test_async_*.py
+</code></pre>
+<hr />
+<h2 id="code-style-conventions">Code Style &amp; Conventions</h2>
+<h3 id="python-style">Python Style</h3>
+<p>Follow PEP 8 with these project-specific conventions:</p>
+<pre><code class="language-python"># Imports: Standard library, third-party, local (separated by blank lines)
+from __future__ import annotations
+
+import asyncio
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+from pydantic import BaseModel
+
+from rakam_systems.ai_core.base import BaseComponent
+
+
+# Class docstrings: Brief description + Attributes + Methods
+class MyComponent(BaseComponent):
+    &quot;&quot;&quot;Brief description of the component.
+
+    This component does X, Y, and Z. Use it when you need to...
+
+    Attributes:
+        name: Component identifier
+        config: Configuration dictionary
+        some_param: Description of parameter
+
+    Example:
+        ```python
+        component = MyComponent(&quot;my_comp&quot;, config={&quot;key&quot;: &quot;value&quot;})
+        with component:
+            result = component.run(input_data)
+        ```
+    &quot;&quot;&quot;
+
+
+# Method docstrings: Brief description + Args + Returns + Raises
+def my_method(self, param1: str, param2: int = 10) -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;Brief description of what this method does.
+
+    Args:
+        param1: Description of param1
+        param2: Description of param2 (default: 10)
+
+    Returns:
+        Dictionary containing:
+            - key1: Description
+            - key2: Description
+
+    Raises:
+        ValueError: When param1 is empty
+        RuntimeError: When operation fails
+    &quot;&quot;&quot;
+</code></pre>
+<h3 id="type-hints">Type Hints</h3>
+<p>Always use type hints:</p>
+<pre><code class="language-python">from typing import Any, Dict, List, Optional, Union, TypeVar, Generic
+
+T = TypeVar(&quot;T&quot;)
+
+class GenericComponent(BaseComponent, Generic[T]):
+    def run(self, data: T) -&gt; T:
+        ...
+
+def process_items(
+    items: List[Dict[str, Any]],
+    filter_fn: Optional[callable] = None,
+    *,
+    limit: int = 100
+) -&gt; List[Dict[str, Any]]:
+    ...
+</code></pre>
+<h3 id="formatting-tools">Formatting Tools</h3>
+<pre><code class="language-bash"># Format code with black
+black rakam_systems/
+
+# Lint with ruff
+ruff check rakam_systems/
+
+# Type check (optional)
+mypy rakam_systems/
+</code></pre>
+<hr />
+<h2 id="publishing-distribution">Publishing &amp; Distribution</h2>
+<h3 id="version-management">Version Management</h3>
+<p>Update version in <code>pyproject.toml</code>:</p>
+<pre><code class="language-toml">[project]
+name = &quot;rakam-systems&quot;
+version = &quot;0.2.4&quot;  # Update this
+</code></pre>
+<h3 id="building-the-package">Building the Package</h3>
+<pre><code class="language-bash"># Install build tools
+pip install build twine
+
+# Build distribution
+python -m build
+
+# Check distribution
+twine check dist/*
+</code></pre>
+<h3 id="publishing-to-pypi">Publishing to PyPI</h3>
+<pre><code class="language-bash"># Upload to TestPyPI first
+twine upload --repository testpypi dist/*
+
+# Test installation from TestPyPI
+pip install --index-url https://test.pypi.org/simple/ rakam-systems
+
+# Upload to PyPI
+twine upload dist/*
+</code></pre>
+<h3 id="creating-a-release">Creating a Release</h3>
+<ol>
+<li>Update version in <code>pyproject.toml</code></li>
+<li>Update <code>CHANGELOG.md</code></li>
+<li>Commit changes: <code>git commit -m "Release v0.2.4"</code></li>
+<li>Tag release: <code>git tag v0.2.4</code></li>
+<li>Push: <code>git push &amp;&amp; git push --tags</code></li>
+<li>Build and publish to PyPI</li>
+</ol>
+<hr />
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><strong>Component Documentation</strong>: <code>docs/components.md</code></li>
+<li><strong>Installation Guide</strong>: <code>INSTALLATION.md</code></li>
+<li><strong>Example Configurations</strong>: <code>rakam_systems/examples/configs/</code></li>
+<li><strong>Agent Examples</strong>: <code>rakam_systems/examples/ai_agents_examples/</code></li>
+<li><strong>Vector Store Examples</strong>: <code>rakam_systems/examples/ai_vectorstore_examples/</code></li>
+</ul>
+<h2 id="getting-help">Getting Help</h2>
+<ul>
+<li><strong>GitHub Issues</strong>: Report bugs or request features</li>
+<li><strong>Documentation</strong>: Check component-specific READMEs</li>
+<li><strong>Examples</strong>: Explore the <code>examples/</code> directory for working code</li>
+</ul>
+<hr />
+<p><strong>Happy Developing! 🚀</strong></p>
               
             </div>
           </div><footer>

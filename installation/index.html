@@ -57,6 +57,146 @@
               </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">📑 Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#option-1-install-everything">Option 1: Install Everything</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-2-install-specific-modules">Option 2: Install Specific Modules</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-3-development-setup">Option 3: Development Setup</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#minimum-requirements">Minimum Requirements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#module-specific-requirements">Module-Specific Requirements</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ai-vectorstore-with-local-embeddings">AI Vectorstore (with local embeddings)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ai-agents">AI Agents</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modular-installation">Modular Installation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-package-minimal">Core Package (Minimal)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ai-vectorstore">AI Vectorstore</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ai-agents_1">AI Agents</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#llm-gateway">LLM Gateway</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#document-loaders">Document Loaders</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#development-tools">Development Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combining-modules">Combining Modules</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-recipes">Installation Recipes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#recipe-1-rag-application">Recipe 1: RAG Application</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recipe-2-simple-chatbot">Recipe 2: Simple Chatbot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recipe-3-document-processing-pipeline">Recipe 3: Document Processing Pipeline</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recipe-4-llm-abstraction-layer">Recipe 4: LLM Abstraction Layer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recipe-5-full-development-environment">Recipe 5: Full Development Environment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#environment-setup">Environment Setup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#api-keys">API Keys</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postgresql-with-pgvector">PostgreSQL with pgvector</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#option-1-docker-recommended">Option 1: Docker (Recommended)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#option-2-docker-compose">Option 2: Docker Compose</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#environment-variables-for-postgresql">Environment Variables for PostgreSQL</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#django-configuration">Django Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#verify-core-installation">Verify Core Installation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verify-ai-agents">Verify AI Agents</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verify-ai-vectorstore">Verify AI Vectorstore</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verify-llm-gateway">Verify LLM Gateway</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#full-verification-script">Full Verification Script</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#docker-setup">Docker Setup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#development-with-docker">Development with Docker</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#docker-compose-for-full-stack">Docker Compose for Full Stack</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-modulenotfounderror">1. ModuleNotFoundError</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-missing-optional-dependencies">2. Missing Optional Dependencies</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-django-not-configured">3. Django Not Configured</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4-pytorch-installation-issues">4. PyTorch Installation Issues</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#5-faiss-gpu-support">5. FAISS GPU Support</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#6-libmagic-not-found">6. libmagic Not Found</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#7-postgresql-connection-refused">7. PostgreSQL Connection Refused</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#8-permission-errors">8. Permission Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#getting-help">Getting Help</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#upgrading">Upgrading</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrade-to-latest-version">Upgrade to Latest Version</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#regenerate-locked-dependencies">Regenerate Locked Dependencies</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#uninstallation">Uninstallation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary-of-commands">Summary of Commands</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -110,7 +250,766 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="rakam-systems-installation-guide">Rakam Systems Installation Guide</h1>
+<p>Complete installation instructions for the <code>rakam_systems</code> modular AI framework.</p>
+<h2 id="table-of-contents">📑 Table of Contents</h2>
+<ul>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#system-requirements">System Requirements</a></li>
+<li><a href="#modular-installation">Modular Installation</a></li>
+<li><a href="#installation-recipes">Installation Recipes</a></li>
+<li><a href="#environment-setup">Environment Setup</a></li>
+<li><a href="#verification">Verification</a></li>
+<li><a href="#docker-setup">Docker Setup</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="option-1-install-everything">Option 1: Install Everything</h3>
+<pre><code class="language-bash"># Navigate to the package directory
+cd app/rakam_systems
+
+# Install all features
+pip install -e &quot;.[all]&quot;
+</code></pre>
+<h3 id="option-2-install-specific-modules">Option 2: Install Specific Modules</h3>
+<pre><code class="language-bash"># AI Agents only
+pip install -e &quot;.[ai-agents]&quot;
+
+# Vector Store only
+pip install -e &quot;.[ai-vectorstore]&quot;
+
+# LLM Gateway only
+pip install -e &quot;.[llm-gateway]&quot;
+
+# Multiple modules
+pip install -e &quot;.[ai-agents,ai-vectorstore]&quot;
+</code></pre>
+<h3 id="option-3-development-setup">Option 3: Development Setup</h3>
+<pre><code class="language-bash"># Full installation with dev tools
+pip install -e &quot;.[complete]&quot;
+
+# Setup pre-commit hooks
+pre-commit install
+</code></pre>
+<hr />
+<h2 id="system-requirements">System Requirements</h2>
+<h3 id="minimum-requirements">Minimum Requirements</h3>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Python</strong></td>
+<td>3.10</td>
+<td>3.11+</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>4 GB</td>
+<td>8 GB+</td>
+</tr>
+<tr>
+<td><strong>Disk Space</strong></td>
+<td>1 GB</td>
+<td>5 GB+</td>
+</tr>
+<tr>
+<td><strong>OS</strong></td>
+<td>Linux, macOS, Windows</td>
+<td>Linux, macOS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="module-specific-requirements">Module-Specific Requirements</h3>
+<h4 id="ai-vectorstore-with-local-embeddings">AI Vectorstore (with local embeddings)</h4>
+<ul>
+<li><strong>RAM</strong>: 8 GB+ (embedding models are loaded into memory)</li>
+<li><strong>Disk</strong>: 5 GB+ (for downloading model weights)</li>
+<li><strong>GPU</strong>: Optional but recommended for faster inference</li>
+<li><strong>PostgreSQL</strong>: 12+ with pgvector extension (for persistent storage)</li>
+</ul>
+<h4 id="ai-agents">AI Agents</h4>
+<ul>
+<li><strong>RAM</strong>: 4 GB minimum</li>
+<li><strong>Network</strong>: Internet access for LLM API calls</li>
+<li><strong>API Keys</strong>: OpenAI and/or Mistral API keys</li>
+</ul>
+<hr />
+<h2 id="modular-installation">Modular Installation</h2>
+<p>Rakam Systems uses a modular architecture. Install only what you need:</p>
+<h3 id="core-package-minimal">Core Package (Minimal)</h3>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<p><strong>Includes:</strong>
+- <code>pydantic</code> - Data validation
+- <code>pyyaml</code> - YAML configuration
+- <code>python-dotenv</code> - Environment variables
+- <code>colorlog</code> - Logging
+- <code>requests</code> - HTTP client</p>
+<h3 id="ai-vectorstore">AI Vectorstore</h3>
+<pre><code class="language-bash">pip install -e &quot;.[ai-vectorstore]&quot;
+</code></pre>
+<p><strong>Includes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sentence-transformers</code></td>
+<td>Local embedding models</td>
+</tr>
+<tr>
+<td><code>faiss-cpu</code></td>
+<td>Vector similarity search</td>
+</tr>
+<tr>
+<td><code>psycopg2-binary</code></td>
+<td>PostgreSQL driver</td>
+</tr>
+<tr>
+<td><code>pgvector</code></td>
+<td>PostgreSQL vector extension</td>
+</tr>
+<tr>
+<td><code>django</code></td>
+<td>ORM for database operations</td>
+</tr>
+<tr>
+<td><code>torch</code></td>
+<td>Deep learning backend</td>
+</tr>
+<tr>
+<td><code>pymupdf</code></td>
+<td>PDF processing</td>
+</tr>
+<tr>
+<td><code>python-docx</code></td>
+<td>DOCX processing</td>
+</tr>
+<tr>
+<td><code>beautifulsoup4</code></td>
+<td>HTML parsing</td>
+</tr>
+<tr>
+<td><code>chonkie</code></td>
+<td>Text chunking</td>
+</tr>
+<tr>
+<td><code>docling</code></td>
+<td>Advanced document processing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use Cases:</strong>
+- Semantic search applications
+- RAG (Retrieval-Augmented Generation)
+- Document Q&amp;A systems
+- Knowledge base management</p>
+<h3 id="ai-agents_1">AI Agents</h3>
+<pre><code class="language-bash">pip install -e &quot;.[ai-agents]&quot;
+</code></pre>
+<p><strong>Includes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pydantic-ai</code></td>
+<td>Agent framework</td>
+</tr>
+<tr>
+<td><code>mistralai</code></td>
+<td>Mistral AI provider</td>
+</tr>
+<tr>
+<td><code>tiktoken</code></td>
+<td>Token counting</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use Cases:</strong>
+- Building AI agents with tools
+- Multi-step reasoning systems
+- Conversational AI
+- Structured output generation</p>
+<h3 id="llm-gateway">LLM Gateway</h3>
+<pre><code class="language-bash">pip install -e &quot;.[llm-gateway]&quot;
+</code></pre>
+<p><strong>Includes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openai</code></td>
+<td>OpenAI API client</td>
+</tr>
+<tr>
+<td><code>mistralai</code></td>
+<td>Mistral AI client</td>
+</tr>
+<tr>
+<td><code>tiktoken</code></td>
+<td>Token counting</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use Cases:</strong>
+- Multi-provider LLM abstraction
+- Chat interfaces
+- Text generation
+- Structured output</p>
+<h3 id="document-loaders">Document Loaders</h3>
+<pre><code class="language-bash">pip install -e &quot;.[loaders]&quot;
+</code></pre>
+<p><strong>Includes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beautifulsoup4</code></td>
+<td>HTML parsing</td>
+</tr>
+<tr>
+<td><code>python-docx</code></td>
+<td>Word documents</td>
+</tr>
+<tr>
+<td><code>pymupdf</code></td>
+<td>PDF documents</td>
+</tr>
+<tr>
+<td><code>python-magic</code></td>
+<td>File type detection</td>
+</tr>
+<tr>
+<td><code>playwright</code></td>
+<td>Web scraping</td>
+</tr>
+<tr>
+<td><code>odfpy</code></td>
+<td>ODT files</td>
+</tr>
+<tr>
+<td><code>openpyxl</code></td>
+<td>Excel files</td>
+</tr>
+<tr>
+<td><code>docling</code></td>
+<td>Advanced document parsing</td>
+</tr>
+<tr>
+<td><code>docling-core</code></td>
+<td>Core document processing</td>
+</tr>
+<tr>
+<td><code>docling-ibm-models</code></td>
+<td>IBM document models</td>
+</tr>
+<tr>
+<td><code>docling-parse</code></td>
+<td>Document parsing engine</td>
+</tr>
+</tbody>
+</table>
+<h3 id="development-tools">Development Tools</h3>
+<pre><code class="language-bash">pip install -e &quot;.[dev]&quot;
+</code></pre>
+<p><strong>Includes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pytest</code></td>
+<td>Testing framework</td>
+</tr>
+<tr>
+<td><code>pytest-asyncio</code></td>
+<td>Async test support</td>
+</tr>
+<tr>
+<td><code>black</code></td>
+<td>Code formatting</td>
+</tr>
+<tr>
+<td><code>ruff</code></td>
+<td>Linting</td>
+</tr>
+<tr>
+<td><code>pre-commit</code></td>
+<td>Git hooks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="combining-modules">Combining Modules</h3>
+<p>Install multiple modules in a single command:</p>
+<pre><code class="language-bash"># Agents + Vector Store
+pip install -e &quot;.[ai-agents,ai-vectorstore]&quot;
+
+# Everything except dev tools
+pip install -e &quot;.[all]&quot;
+
+# Everything including dev tools
+pip install -e &quot;.[complete]&quot;
+</code></pre>
+<hr />
+<h2 id="installation-recipes">Installation Recipes</h2>
+<h3 id="recipe-1-rag-application">Recipe 1: RAG Application</h3>
+<p>Build a Retrieval-Augmented Generation system:</p>
+<pre><code class="language-bash">pip install -e &quot;.[ai-vectorstore,ai-agents]&quot;
+</code></pre>
+<p>This gives you:
+- Document loading and chunking
+- Vector storage (FAISS or PostgreSQL)
+- Embedding models
+- AI agents for query processing</p>
+<h3 id="recipe-2-simple-chatbot">Recipe 2: Simple Chatbot</h3>
+<p>Build a conversational AI without vector storage:</p>
+<pre><code class="language-bash">pip install -e &quot;.[ai-agents]&quot;
+</code></pre>
+<h3 id="recipe-3-document-processing-pipeline">Recipe 3: Document Processing Pipeline</h3>
+<p>Process and index documents without AI agents:</p>
+<pre><code class="language-bash">pip install -e &quot;.[ai-vectorstore]&quot;
+</code></pre>
+<h3 id="recipe-4-llm-abstraction-layer">Recipe 4: LLM Abstraction Layer</h3>
+<p>Use multiple LLM providers with a unified interface:</p>
+<pre><code class="language-bash">pip install -e &quot;.[llm-gateway]&quot;
+</code></pre>
+<h3 id="recipe-5-full-development-environment">Recipe 5: Full Development Environment</h3>
+<p>Complete setup for contributing:</p>
+<pre><code class="language-bash">pip install -e &quot;.[complete]&quot;
+pre-commit install
+</code></pre>
+<hr />
+<h2 id="environment-setup">Environment Setup</h2>
+<h3 id="api-keys">API Keys</h3>
+<p>Create a <code>.env</code> file in your project root:</p>
+<pre><code class="language-bash"># OpenAI (for GPT models and embeddings)
+OPENAI_API_KEY=sk-your-openai-key
+
+# Mistral AI (for Mistral models)
+MISTRAL_API_KEY=your-mistral-key
+
+# Cohere (for Cohere embeddings)
+COHERE_API_KEY=your-cohere-key
+</code></pre>
+<p>Load in your code:</p>
+<pre><code class="language-python">from dotenv import load_dotenv
+load_dotenv()
+</code></pre>
+<h3 id="postgresql-with-pgvector">PostgreSQL with pgvector</h3>
+<h4 id="option-1-docker-recommended">Option 1: Docker (Recommended)</h4>
+<pre><code class="language-bash">docker run -d \
+  --name postgres-vectorstore \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=vectorstore_db \
+  -p 5432:5432 \
+  pgvector/pgvector:pg16
+</code></pre>
+<h4 id="option-2-docker-compose">Option 2: Docker Compose</h4>
+<p>Create <code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: '3.8'
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vectorstore_db
+    ports:
+      - &quot;5432:5432&quot;
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+</code></pre>
+<p>Run:</p>
+<pre><code class="language-bash">docker compose up -d
+</code></pre>
+<h4 id="environment-variables-for-postgresql">Environment Variables for PostgreSQL</h4>
+<pre><code class="language-bash">export POSTGRES_HOST=localhost
+export POSTGRES_PORT=5432
+export POSTGRES_DB=vectorstore_db
+export POSTGRES_USER=postgres
+export POSTGRES_PASSWORD=postgres
+</code></pre>
+<h3 id="django-configuration">Django Configuration</h3>
+<p>For PostgreSQL-backed vector stores, configure Django:</p>
+<pre><code class="language-python">import os
+import django
+from django.conf import settings
+
+if not settings.configured:
+    settings.configure(
+        INSTALLED_APPS=[
+            'django.contrib.contenttypes',
+            'rakam_systems.ai_vectorstore.components.vectorstore',
+        ],
+        DATABASES={
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': os.getenv('POSTGRES_DB', 'vectorstore_db'),
+                'USER': os.getenv('POSTGRES_USER', 'postgres'),
+                'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
+                'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+                'PORT': os.getenv('POSTGRES_PORT', '5432'),
+            }
+        },
+        DEFAULT_AUTO_FIELD='django.db.models.BigAutoField',
+    )
+    django.setup()
+</code></pre>
+<hr />
+<h2 id="verification">Verification</h2>
+<h3 id="verify-core-installation">Verify Core Installation</h3>
+<pre><code class="language-python"># Test core imports
+from rakam_systems.ai_core.base import BaseComponent
+from rakam_systems.ai_core.interfaces import ToolComponent, VectorStore
+print(&quot;✅ Core installed successfully!&quot;)
+</code></pre>
+<h3 id="verify-ai-agents">Verify AI Agents</h3>
+<pre><code class="language-python">try:
+    from rakam_systems.ai_agents import BaseAgent
+    from rakam_systems.ai_core.interfaces.agent import AgentInput, AgentOutput
+    print(&quot;✅ AI Agents installed successfully!&quot;)
+except ImportError as e:
+    print(f&quot;❌ AI Agents not installed: {e}&quot;)
+</code></pre>
+<h3 id="verify-ai-vectorstore">Verify AI Vectorstore</h3>
+<pre><code class="language-python">try:
+    from rakam_systems.ai_vectorstore import (
+        VectorStoreConfig,
+        Node,
+        VSFile,
+        ConfigurableEmbeddings
+    )
+    print(&quot;✅ AI Vectorstore installed successfully!&quot;)
+except ImportError as e:
+    print(f&quot;❌ AI Vectorstore not installed: {e}&quot;)
+</code></pre>
+<h3 id="verify-llm-gateway">Verify LLM Gateway</h3>
+<pre><code class="language-python">try:
+    from rakam_systems.ai_agents.components.llm_gateway import (
+        OpenAIGateway,
+        MistralGateway,
+        LLMGatewayFactory
+    )
+    print(&quot;✅ LLM Gateway installed successfully!&quot;)
+except ImportError as e:
+    print(f&quot;❌ LLM Gateway not installed: {e}&quot;)
+</code></pre>
+<h3 id="full-verification-script">Full Verification Script</h3>
+<pre><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Verify rakam_systems installation.&quot;&quot;&quot;
+
+def check_module(name: str, import_fn):
+    &quot;&quot;&quot;Check if a module is properly installed.&quot;&quot;&quot;
+    try:
+        import_fn()
+        print(f&quot;✅ {name}&quot;)
+        return True
+    except ImportError as e:
+        print(f&quot;❌ {name}: {e}&quot;)
+        return False
+
+def main():
+    print(&quot;=&quot; * 50)
+    print(&quot;Rakam Systems Installation Verification&quot;)
+    print(&quot;=&quot; * 50)
+
+    results = []
+
+    # Core (always required)
+    results.append(check_module(
+        &quot;Core&quot;,
+        lambda: __import__('rakam_systems.ai_core.base', fromlist=['BaseComponent'])
+    ))
+
+    # AI Agents
+    results.append(check_module(
+        &quot;AI Agents&quot;,
+        lambda: __import__('rakam_systems.ai_agents', fromlist=['BaseAgent'])
+    ))
+
+    # AI Vectorstore
+    results.append(check_module(
+        &quot;AI Vectorstore&quot;,
+        lambda: __import__('rakam_systems.ai_vectorstore', fromlist=['VectorStoreConfig'])
+    ))
+
+    # LLM Gateway
+    results.append(check_module(
+        &quot;LLM Gateway&quot;,
+        lambda: __import__('rakam_systems.ai_agents.components.llm_gateway', fromlist=['OpenAIGateway'])
+    ))
+
+    print(&quot;=&quot; * 50)
+    passed = sum(results)
+    total = len(results)
+    print(f&quot;Result: {passed}/{total} modules installed&quot;)
+
+    if passed == total:
+        print(&quot;🎉 All modules installed successfully!&quot;)
+    else:
+        print(&quot;⚠️  Some modules are missing. Install them with:&quot;)
+        print('   pip install -e &quot;.[all]&quot;')
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<hr />
+<h2 id="docker-setup">Docker Setup</h2>
+<h3 id="development-with-docker">Development with Docker</h3>
+<p>Create a <code>Dockerfile</code>:</p>
+<pre><code class="language-dockerfile">FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update &amp;&amp; apt-get install -y \
+    libmagic1 \
+    libpq-dev \
+    gcc \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Copy package files
+COPY app/rakam_systems /app/rakam_systems
+
+# Install the package
+WORKDIR /app/rakam_systems
+RUN pip install -e &quot;.[all]&quot;
+
+# Set working directory back
+WORKDIR /app
+
+# Default command
+CMD [&quot;python&quot;]
+</code></pre>
+<h3 id="docker-compose-for-full-stack">Docker Compose for Full Stack</h3>
+<pre><code class="language-yaml">version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=vectorstore_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - postgres
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vectorstore_db
+    ports:
+      - &quot;5432:5432&quot;
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+</code></pre>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<h4 id="1-modulenotfounderror">1. ModuleNotFoundError</h4>
+<pre><code>ModuleNotFoundError: No module named 'rakam_systems'
+</code></pre>
+<p><strong>Solution:</strong> Install from the correct directory:</p>
+<pre><code class="language-bash">cd app/rakam_systems
+pip install -e .
+</code></pre>
+<h4 id="2-missing-optional-dependencies">2. Missing Optional Dependencies</h4>
+<pre><code>ImportError: cannot import name 'BaseAgent' from 'rakam_systems.ai_agents'
+</code></pre>
+<p><strong>Solution:</strong> Install the required module:</p>
+<pre><code class="language-bash">pip install -e &quot;.[ai-agents]&quot;
+</code></pre>
+<h4 id="3-django-not-configured">3. Django Not Configured</h4>
+<pre><code>django.core.exceptions.ImproperlyConfigured: Requested setting INSTALLED_APPS...
+</code></pre>
+<p><strong>Solution:</strong> Configure Django before importing Django-dependent components:</p>
+<pre><code class="language-python">import django
+from django.conf import settings
+
+settings.configure(
+    INSTALLED_APPS=['rakam_systems.ai_vectorstore.components.vectorstore'],
+    DATABASES={'default': {...}}
+)
+django.setup()
+
+# Now import Django-dependent components
+from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore
+</code></pre>
+<h4 id="4-pytorch-installation-issues">4. PyTorch Installation Issues</h4>
+<p>PyTorch is large (~2GB). For CPU-only installation:</p>
+<pre><code class="language-bash">pip install torch --index-url https://download.pytorch.org/whl/cpu
+pip install -e &quot;.[ai-vectorstore]&quot;
+</code></pre>
+<p>For CUDA support:</p>
+<pre><code class="language-bash">pip install torch --index-url https://download.pytorch.org/whl/cu118
+pip install -e &quot;.[ai-vectorstore]&quot;
+</code></pre>
+<h4 id="5-faiss-gpu-support">5. FAISS GPU Support</h4>
+<p>Replace CPU version with GPU version:</p>
+<pre><code class="language-bash">pip uninstall faiss-cpu
+pip install faiss-gpu
+</code></pre>
+<h4 id="6-libmagic-not-found">6. libmagic Not Found</h4>
+<p>On macOS:</p>
+<pre><code class="language-bash">brew install libmagic
+</code></pre>
+<p>On Ubuntu/Debian:</p>
+<pre><code class="language-bash">apt-get install libmagic1
+</code></pre>
+<p>On Windows:</p>
+<pre><code class="language-bash">pip install python-magic-bin
+</code></pre>
+<h4 id="7-postgresql-connection-refused">7. PostgreSQL Connection Refused</h4>
+<p>Ensure PostgreSQL is running:</p>
+<pre><code class="language-bash"># Check if running
+docker ps | grep postgres
+
+# Start if not running
+docker start postgres-vectorstore
+
+# Or start with docker compose
+docker compose up -d postgres
+</code></pre>
+<h4 id="8-permission-errors">8. Permission Errors</h4>
+<p>Use a virtual environment:</p>
+<pre><code class="language-bash">python -m venv venv
+source venv/bin/activate  # Linux/macOS
+# or
+.\venv\Scripts\activate  # Windows
+
+pip install -e &quot;.[all]&quot;
+</code></pre>
+<h3 id="getting-help">Getting Help</h3>
+<ul>
+<li><strong>Documentation</strong>: See <code>docs/</code> directory</li>
+<li><strong>Examples</strong>: Check <code>rakam_systems/examples/</code></li>
+<li><strong>Issues</strong>: <a href="https://github.com/Rakam-AI/rakam_systems/issues">GitHub Issues</a></li>
+</ul>
+<hr />
+<h2 id="upgrading">Upgrading</h2>
+<h3 id="upgrade-to-latest-version">Upgrade to Latest Version</h3>
+<pre><code class="language-bash">cd app/rakam_systems
+git pull
+pip install -e &quot;.[all]&quot; --upgrade
+</code></pre>
+<h3 id="regenerate-locked-dependencies">Regenerate Locked Dependencies</h3>
+<pre><code class="language-bash">pip install -e &quot;.[complete]&quot;
+pip freeze &gt; requirements.txt
+</code></pre>
+<hr />
+<h2 id="uninstallation">Uninstallation</h2>
+<pre><code class="language-bash">pip uninstall rakam-systems
+</code></pre>
+<p>To remove all dependencies:</p>
+<pre><code class="language-bash">pip uninstall rakam-systems
+pip freeze | xargs pip uninstall -y  # Be careful: removes ALL packages
+</code></pre>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<p>After installation:</p>
+<ol>
+<li><strong>Read the Documentation</strong></li>
+<li><a href="../components/">Components Guide</a></li>
+<li>
+<p><a href="../development_guide/">Development Guide</a></p>
+</li>
+<li>
+<p><strong>Explore Examples</strong></p>
+</li>
+<li><code>rakam_systems/examples/ai_agents_examples/</code></li>
+<li>
+<p><code>rakam_systems/examples/ai_vectorstore_examples/</code></p>
+</li>
+<li>
+<p><strong>Try Quick Start Code</strong></p>
+</li>
+</ol>
+<pre><code class="language-python">import asyncio
+from rakam_systems.ai_agents import BaseAgent
+
+async def main():
+    agent = BaseAgent(
+        name=&quot;my_agent&quot;,
+        model=&quot;openai:gpt-4o&quot;,
+        system_prompt=&quot;You are a helpful assistant.&quot;
+    )
+    result = await agent.arun(&quot;Hello, world!&quot;)
+    print(result.output_text)
+
+asyncio.run(main())
+</code></pre>
+<hr />
+<h2 id="summary-of-commands">Summary of Commands</h2>
+<pre><code class="language-bash"># Core only
+pip install -e .
+
+# AI Agents
+pip install -e &quot;.[ai-agents]&quot;
+
+# AI Vectorstore
+pip install -e &quot;.[ai-vectorstore]&quot;
+
+# LLM Gateway
+pip install -e &quot;.[llm-gateway]&quot;
+
+# Document Loaders
+pip install -e &quot;.[loaders]&quot;
+
+# All features
+pip install -e &quot;.[all]&quot;
+
+# All features + dev tools
+pip install -e &quot;.[complete]&quot;
+
+# Custom combination
+pip install -e &quot;.[ai-agents,ai-vectorstore,dev]&quot;
+</code></pre>
+<hr />
+<p><strong>License:</strong> Apache 2.0</p>
+<p><strong>Support:</strong> <a href="https://github.com/Rakam-AI/rakam_systems">GitHub Repository</a></p>
               
             </div>
           </div><footer>

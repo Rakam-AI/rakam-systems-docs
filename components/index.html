@@ -70,13 +70,131 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Components</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#llm-gateway">LLM Gateway</a>
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">📑 Table of Contents</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ocr">OCR</a>
+    <li class="toctree-l2"><a class="reference internal" href="#architecture-overview">🏗️ Architecture Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#design-principles">Design Principles</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#agent">Agent</a>
+        </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#vector-store">Vector store</a>
+    <li class="toctree-l2"><a class="reference internal" href="#core-module-ai_core">Core Module (ai_core)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basecomponent">BaseComponent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interfaces">Interfaces</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#agentcomponent">AgentComponent</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#toolcomponent">ToolComponent</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#toolregistry">ToolRegistry</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#llmgateway">LLMGateway</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vectorstore">VectorStore</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#loader">Loader</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tracking-system">Tracking System</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-loader">Configuration Loader</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agents-module-ai_agents">🤖 Agents Module (ai_agents)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#baseagent">BaseAgent</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#dynamic-system-prompts">Dynamic System Prompts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#llm-gateways">LLM Gateways</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#openai-gateway">OpenAI Gateway</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mistral-gateway">Mistral Gateway</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gateway-factory">Gateway Factory</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#chat-history">Chat History</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#json-chat-history">JSON Chat History</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sql-chat-history">SQL Chat History</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vector-store-module-ai_vectorstore">🔍 Vector Store Module (ai_vectorstore)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configurablepgvectorstore">ConfigurablePgVectorStore</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#multi-model-support">Multi-Model Support</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configurableembeddings">ConfigurableEmbeddings</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-function">Factory Function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adaptiveloader">AdaptiveLoader</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-function_1">Factory Function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#specialized-loaders">Specialized Loaders</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#textchunker">TextChunker</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#utilities-module-ai_utils">🛠️ Utilities Module (ai_utils)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#metrics-and-tracing">Metrics and Tracing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration-system">⚙️ Configuration System</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#vectorstoreconfig">VectorStoreConfig</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#yaml-configuration-example">YAML Configuration Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent-configuration-example">Agent Configuration Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start-examples">🚀 Quick Start Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-agent">Basic Agent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent-with-tools">Agent with Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#document-search-pipeline">Document Search Pipeline</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#full-rag-pipeline">Full RAG Pipeline</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">✅ Best Practices</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#further-reading">📚 Further Reading</a>
     </li>
     </ul>
                 </li>
@@ -120,11 +238,944 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="_1"></h1>
-<h2 id="llm-gateway">LLM Gateway</h2>
-<h2 id="ocr">OCR</h2>
-<h2 id="agent">Agent</h2>
-<h2 id="vector-store">Vector store</h2>
+                <h1 id="rakam-systems-components-documentation">Rakam Systems Components Documentation</h1>
+<p>Rakam Systems is a modular AI framework designed to build production-ready AI applications. It provides a comprehensive set of components for building AI agents, vector stores, and LLM-powered applications.</p>
+<h2 id="table-of-contents">📑 Table of Contents</h2>
+<ol>
+<li><a href="#️-architecture-overview">🏗️ Architecture Overview</a></li>
+<li><a href="#-core-module-ai_core">🧱 Core Module (<code>ai_core</code>)</a></li>
+<li><a href="#-agents-module-ai_agents">🤖 Agents Module (<code>ai_agents</code>)</a></li>
+<li><a href="#-vector-store-module-ai_vectorstore">🔍 Vector Store Module (<code>ai_vectorstore</code>)</a></li>
+<li><a href="#️-utilities-module-ai_utils">🛠️ Utilities Module (<code>ai_utils</code>)</a></li>
+<li><a href="#️-configuration-system">⚙️ Configuration System</a></li>
+<li><a href="#-quick-start-examples">🚀 Quick Start Examples</a></li>
+<li><a href="#-environment-variables">🌍 Environment Variables</a></li>
+<li><a href="#-best-practices">✅ Best Practices</a></li>
+<li><a href="#-further-reading">📚 Further Reading</a></li>
+</ol>
+<hr />
+<h2 id="architecture-overview">🏗️ Architecture Overview</h2>
+<p>Rakam Systems is organized into four main modules:</p>
+<pre><code>rakam_systems/
+├── ai_core/           # Core abstractions, interfaces, and base classes
+├── ai_agents/         # Agent implementations and LLM gateways
+├── ai_vectorstore/    # Vector storage, embeddings, and document loading
+├── ai_utils/          # Logging, metrics, and tracing utilities
+└── examples/          # Usage examples and configuration templates
+</code></pre>
+<h3 id="design-principles">Design Principles</h3>
+<ul>
+<li><strong>Component-Based Architecture</strong>: All components extend <code>BaseComponent</code> with lifecycle management (<code>setup()</code>, <code>shutdown()</code>)</li>
+<li><strong>Interface-Driven</strong>: Abstract interfaces define contracts for extensibility</li>
+<li><strong>Configuration-First</strong>: YAML/JSON configuration support for all components</li>
+<li><strong>Provider-Agnostic</strong>: Support for multiple LLM providers, embedding models, and vector stores</li>
+</ul>
+<hr />
+<h2 id="core-module-ai_core">Core Module (<code>ai_core</code>)</h2>
+<p>The core module provides foundational abstractions used throughout the system.</p>
+<h3 id="basecomponent">BaseComponent</h3>
+<p>The base class for all components, providing lifecycle management and evaluation capabilities.</p>
+<pre><code class="language-python">from rakam_systems.ai_core.base import BaseComponent
+
+class BaseComponent(ABC):
+    &quot;&quot;&quot;
+    Base class with:
+    - name and config attributes
+    - setup()/shutdown() lifecycle hooks
+    - __call__ for auto-setup execution
+    - Context manager support
+    - Built-in evaluation harness
+    &quot;&quot;&quot;
+
+    def __init__(self, name: str, config: Optional[Dict] = None):
+        self.name = name
+        self.config = config or {}
+        self.initialized = False
+
+    def setup(self) -&gt; None:
+        &quot;&quot;&quot;Initialize heavy resources - override in subclasses.&quot;&quot;&quot;
+        self.initialized = True
+
+    def shutdown(self) -&gt; None:
+        &quot;&quot;&quot;Release resources - override in subclasses.&quot;&quot;&quot;
+        self.initialized = False
+
+    @abstractmethod
+    def run(self, *args, **kwargs) -&gt; Any:
+        &quot;&quot;&quot;Execute the primary operation.&quot;&quot;&quot;
+        raise NotImplementedError
+</code></pre>
+<h3 id="interfaces">Interfaces</h3>
+<p>Located in <code>ai_core/interfaces/</code>, these define the contracts for various component types:</p>
+<h4 id="agentcomponent">AgentComponent</h4>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.agent import AgentComponent, AgentInput, AgentOutput
+
+class AgentInput:
+    &quot;&quot;&quot;Input DTO for agents.&quot;&quot;&quot;
+    input_text: str
+    context: Dict[str, Any]
+
+class AgentOutput:
+    &quot;&quot;&quot;Output DTO for agents.&quot;&quot;&quot;
+    output_text: str
+    metadata: Dict[str, Any]
+    output: Optional[Any]  # Structured output when output_type is used
+
+class AgentComponent(BaseComponent, ABC):
+    &quot;&quot;&quot;Abstract agent interface with streaming and async support.&quot;&quot;&quot;
+
+    def run(input_data, deps=None, model_settings=None) -&gt; AgentOutput
+    async def arun(input_data, deps=None, model_settings=None) -&gt; AgentOutput
+    def stream(input_data, deps=None) -&gt; Iterator[str]
+    async def astream(input_data, deps=None) -&gt; AsyncIterator[str]
+</code></pre>
+<h4 id="toolcomponent">ToolComponent</h4>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.tool import ToolComponent
+
+class ToolComponent(BaseComponent, ABC):
+    &quot;&quot;&quot;
+    Base class for callable tools, compatible with Pydantic AI.
+
+    Attributes:
+        name: Unique tool name
+        description: Human-readable description
+        function: The callable function
+        json_schema: JSON schema for parameters
+        takes_ctx: Whether tool takes context as first argument
+    &quot;&quot;&quot;
+
+    @classmethod
+    def from_function(cls, function, name, description, json_schema, takes_ctx=False):
+        &quot;&quot;&quot;Create a ToolComponent from a standalone function.&quot;&quot;&quot;
+</code></pre>
+<h4 id="toolregistry">ToolRegistry</h4>
+<p>Central registry for managing tools across the system:</p>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.tool_registry import ToolRegistry, ToolMode
+
+registry = ToolRegistry()
+
+# Register a direct tool
+registry.register_direct_tool(
+    name=&quot;calculate&quot;,
+    function=lambda x, y: x + y,
+    description=&quot;Add two numbers&quot;,
+    json_schema={...},
+    category=&quot;math&quot;,
+    tags=[&quot;arithmetic&quot;]
+)
+
+# Register an MCP tool
+registry.register_mcp_tool(
+    name=&quot;search&quot;,
+    mcp_server=&quot;search_server&quot;,
+    mcp_tool_name=&quot;web_search&quot;,
+    description=&quot;Search the web&quot;
+)
+
+# Query tools
+tools = registry.get_tools_by_category(&quot;math&quot;)
+tools = registry.get_tools_by_tag(&quot;arithmetic&quot;)
+tools = registry.get_tools_by_mode(ToolMode.DIRECT)
+</code></pre>
+<h4 id="llmgateway">LLMGateway</h4>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.llm_gateway import LLMGateway, LLMRequest, LLMResponse
+
+class LLMRequest(BaseModel):
+    system_prompt: Optional[str]
+    user_prompt: str
+    temperature: Optional[float]
+    max_tokens: Optional[int]
+    extra_params: Dict[str, Any]
+
+class LLMResponse(BaseModel):
+    content: str
+    parsed_content: Optional[Any]
+    usage: Optional[Dict[str, Any]]
+    model: Optional[str]
+    finish_reason: Optional[str]
+
+class LLMGateway(BaseComponent, ABC):
+    &quot;&quot;&quot;Abstract LLM gateway for provider-agnostic LLM interactions.&quot;&quot;&quot;
+
+    def generate(request: LLMRequest) -&gt; LLMResponse
+    def generate_structured(request: LLMRequest, schema: Type[T]) -&gt; T
+    def stream(request: LLMRequest) -&gt; Iterator[str]
+    def count_tokens(text: str, model: str = None) -&gt; int
+</code></pre>
+<h4 id="vectorstore">VectorStore</h4>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+
+class VectorStore(BaseComponent, ABC):
+    &quot;&quot;&quot;Abstract vector store interface.&quot;&quot;&quot;
+
+    def add(vectors: List[List[float]], metadatas: List[Dict]) -&gt; Any
+    def query(vector: List[float], top_k: int = 5) -&gt; List[Dict]
+    def count() -&gt; Optional[int]
+</code></pre>
+<h4 id="loader">Loader</h4>
+<pre><code class="language-python">from rakam_systems.ai_core.interfaces.loader import Loader
+
+class Loader(BaseComponent, ABC):
+    &quot;&quot;&quot;Abstract document loader interface.&quot;&quot;&quot;
+
+    def load_as_text(source: Union[str, Path]) -&gt; str
+    def load_as_chunks(source: Union[str, Path]) -&gt; List[str]
+    def load_as_nodes(source, source_id=None, custom_metadata=None) -&gt; List[Node]
+    def load_as_vsfile(file_path, custom_metadata=None) -&gt; VSFile
+</code></pre>
+<h3 id="tracking-system">Tracking System</h3>
+<p>Built-in input/output tracking for debugging and evaluation:</p>
+<pre><code class="language-python">from rakam_systems.ai_core.tracking import TrackingManager, track_method, TrackingMixin
+
+class MyAgent(TrackingMixin, BaseAgent):
+    @track_method()
+    async def arun(self, input_data, deps=None):
+        return await super().arun(input_data, deps)
+
+# Enable tracking
+agent.enable_tracking(output_dir=&quot;./tracking&quot;)
+
+# Export tracking data
+agent.export_tracking_data(format='csv')
+agent.export_tracking_data(format='json')
+
+# Get statistics
+stats = agent.get_tracking_statistics()
+</code></pre>
+<h3 id="configuration-loader">Configuration Loader</h3>
+<p>Load agent configurations from YAML files:</p>
+<pre><code class="language-python">from rakam_systems.ai_core.config_loader import ConfigurationLoader
+
+loader = ConfigurationLoader()
+config = loader.load_from_yaml(&quot;agent_config.yaml&quot;)
+
+# Create agents from config
+agent = loader.create_agent(&quot;my_agent&quot;, config)
+all_agents = loader.create_all_agents(config)
+
+# Get tool registry
+registry = loader.get_tool_registry(config)
+
+# Validate configuration
+is_valid, errors = loader.validate_config(&quot;config.yaml&quot;)
+</code></pre>
+<hr />
+<h2 id="agents-module-ai_agents">🤖 Agents Module (<code>ai_agents</code>)</h2>
+<h3 id="baseagent">BaseAgent</h3>
+<p>The main agent implementation using Pydantic AI:</p>
+<pre><code class="language-python">from rakam_systems.ai_agents import BaseAgent
+from rakam_systems.ai_core.interfaces.agent import AgentInput, AgentOutput, ModelSettings
+
+agent = BaseAgent(
+    name=&quot;my_agent&quot;,
+    model=&quot;openai:gpt-4o&quot;,
+    system_prompt=&quot;You are a helpful assistant.&quot;,
+    tools=[my_tool],  # Optional tools
+    output_type=MyOutputModel,  # Optional structured output
+    enable_tracking=True  # Optional tracking
+)
+
+# Async inference (required for Pydantic AI)
+result = await agent.arun(&quot;What is AI?&quot;)
+print(result.output_text)
+
+# With dependencies
+result = await agent.arun(&quot;Hello&quot;, deps={&quot;user_id&quot;: &quot;123&quot;})
+
+# With model settings
+settings = ModelSettings(temperature=0.5, max_tokens=1000)
+result = await agent.arun(&quot;Explain quantum computing&quot;, model_settings=settings)
+
+# Streaming
+async for chunk in agent.astream(&quot;Tell me a story&quot;):
+    print(chunk, end=&quot;&quot;)
+</code></pre>
+<h4 id="dynamic-system-prompts">Dynamic System Prompts</h4>
+<pre><code class="language-python">from datetime import date
+from pydantic_ai import RunContext
+
+@agent.dynamic_system_prompt
+def add_date() -&gt; str:
+    return f&quot;Today's date is {date.today()}.&quot;
+
+@agent.dynamic_system_prompt
+def add_user_context(ctx: RunContext[str]) -&gt; str:
+    return f&quot;The user's name is {ctx.deps}.&quot;
+</code></pre>
+<h3 id="llm-gateways">LLM Gateways</h3>
+<h4 id="openai-gateway">OpenAI Gateway</h4>
+<pre><code class="language-python">from rakam_systems.ai_agents import OpenAIGateway, LLMRequest
+
+gateway = OpenAIGateway(
+    model=&quot;gpt-4o&quot;,
+    api_key=&quot;...&quot;,  # Or use OPENAI_API_KEY env var
+    default_temperature=0.7
+)
+
+# Text generation
+request = LLMRequest(
+    system_prompt=&quot;You are a helpful assistant&quot;,
+    user_prompt=&quot;What is AI?&quot;,
+    temperature=0.7
+)
+response = gateway.generate(request)
+print(response.content)
+
+# Structured output
+from pydantic import BaseModel
+
+class Answer(BaseModel):
+    answer: str
+    confidence: float
+
+result = gateway.generate_structured(request, Answer)
+print(result.answer, result.confidence)
+
+# Streaming
+for chunk in gateway.stream(request):
+    print(chunk, end=&quot;&quot;)
+
+# Token counting
+token_count = gateway.count_tokens(&quot;Hello, world!&quot;)
+</code></pre>
+<h4 id="mistral-gateway">Mistral Gateway</h4>
+<pre><code class="language-python">from rakam_systems.ai_agents import MistralGateway
+
+gateway = MistralGateway(
+    model=&quot;mistral-large-latest&quot;,
+    api_key=&quot;...&quot;  # Or use MISTRAL_API_KEY env var
+)
+</code></pre>
+<h4 id="gateway-factory">Gateway Factory</h4>
+<pre><code class="language-python">from rakam_systems.ai_agents import LLMGatewayFactory, get_llm_gateway
+
+# Using factory
+gateway = LLMGatewayFactory.create(
+    provider=&quot;openai&quot;,
+    model=&quot;gpt-4o&quot;,
+    api_key=&quot;...&quot;
+)
+
+# Using convenience function
+gateway = get_llm_gateway(provider=&quot;openai&quot;, model=&quot;gpt-4o&quot;)
+</code></pre>
+<h3 id="chat-history">Chat History</h3>
+<h4 id="json-chat-history">JSON Chat History</h4>
+<pre><code class="language-python">from rakam_systems.ai_agents.components.chat_history import JSONChatHistory
+
+history = JSONChatHistory(config={&quot;storage_path&quot;: &quot;./chat_history.json&quot;})
+
+# Add messages
+history.add_message(&quot;chat123&quot;, {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot;})
+history.add_message(&quot;chat123&quot;, {&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: &quot;Hi there!&quot;})
+
+# Get history
+messages = history.get_chat_history(&quot;chat123&quot;)
+readable = history.get_readable_chat_history(&quot;chat123&quot;)
+
+# Pydantic AI integration
+message_history = history.get_message_history(&quot;chat123&quot;)
+result = await agent.run(&quot;Hello&quot;, message_history=message_history)
+history.save_messages(&quot;chat123&quot;, result.all_messages())
+
+# Manage chats
+all_chats = history.get_all_chat_ids()
+history.delete_chat_history(&quot;chat123&quot;)
+history.clear_all()
+</code></pre>
+<h4 id="sql-chat-history">SQL Chat History</h4>
+<p>For production deployments with database-backed storage.</p>
+<hr />
+<h2 id="vector-store-module-ai_vectorstore">🔍 Vector Store Module (<code>ai_vectorstore</code>)</h2>
+<h3 id="core-data-structures">Core Data Structures</h3>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore.core import Node, NodeMetadata, VSFile
+
+# VSFile - Represents a document source
+vsfile = VSFile(file_path=&quot;/path/to/document.pdf&quot;)
+print(vsfile.uuid, vsfile.file_name, vsfile.mime_type)
+
+# NodeMetadata - Metadata for document chunks
+metadata = NodeMetadata(
+    source_file_uuid=str(vsfile.uuid),
+    position=0,  # Page number or chunk position
+    custom={&quot;author&quot;: &quot;John&quot;, &quot;date&quot;: &quot;2024-01-01&quot;}
+)
+
+# Node - A chunk with content and metadata
+node = Node(content=&quot;Document content here...&quot;, metadata=metadata)
+node.embedding = [0.1, 0.2, 0.3, ...]  # Set after embedding
+</code></pre>
+<h3 id="configurablepgvectorstore">ConfigurablePgVectorStore</h3>
+<p>Enhanced PostgreSQL vector store with full configuration support:</p>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+
+# From configuration object
+config = VectorStoreConfig()
+store = ConfigurablePgVectorStore(config=config)
+
+# From YAML file
+store = ConfigurablePgVectorStore(config=&quot;vectorstore_config.yaml&quot;)
+
+# From dictionary
+store = ConfigurablePgVectorStore(config={
+    &quot;name&quot;: &quot;my_store&quot;,
+    &quot;embedding&quot;: {
+        &quot;model_type&quot;: &quot;sentence_transformer&quot;,
+        &quot;model_name&quot;: &quot;Snowflake/snowflake-arctic-embed-m&quot;
+    },
+    &quot;search&quot;: {
+        &quot;similarity_metric&quot;: &quot;cosine&quot;,
+        &quot;enable_hybrid_search&quot;: True,
+        &quot;hybrid_alpha&quot;: 0.7
+    }
+})
+
+# Setup (initializes embedding model, database tables)
+store.setup()
+
+# Add documents
+store.add_nodes(nodes)
+store.add_vsfile(vsfile)
+
+# Search
+results = store.search(&quot;What is machine learning?&quot;, top_k=5)
+results = store.hybrid_search(&quot;machine learning&quot;, top_k=10, alpha=0.7)
+
+# Update vectors
+store.update_vector(node_id, new_embedding)
+
+# Cleanup
+store.shutdown()
+</code></pre>
+<h4 id="multi-model-support">Multi-Model Support</h4>
+<p>Each embedding model automatically gets dedicated tables:</p>
+<pre><code class="language-python"># Using different models - each gets its own tables
+store_minilm = ConfigurablePgVectorStore(config=config_minilm)
+store_mpnet = ConfigurablePgVectorStore(config=config_mpnet)
+
+# Table names are based on model names:
+# - application_nodeentry_all_minilm_l6_v2
+# - application_nodeentry_snowflake_arctic_embed_m
+
+# Disable model-specific tables if needed (not recommended)
+store = ConfigurablePgVectorStore(
+    config=config,
+    use_dimension_specific_tables=False
+)
+</code></pre>
+<h3 id="configurableembeddings">ConfigurableEmbeddings</h3>
+<p>Multi-backend embedding model with unified interface:</p>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore import ConfigurableEmbeddings, create_embedding_model
+
+# Using Sentence Transformers (local)
+embeddings = ConfigurableEmbeddings(config={
+    &quot;model_type&quot;: &quot;sentence_transformer&quot;,
+    &quot;model_name&quot;: &quot;Snowflake/snowflake-arctic-embed-m&quot;,
+    &quot;batch_size&quot;: 128,
+    &quot;normalize&quot;: True
+})
+
+# Using OpenAI
+embeddings = ConfigurableEmbeddings(config={
+    &quot;model_type&quot;: &quot;openai&quot;,
+    &quot;model_name&quot;: &quot;text-embedding-3-small&quot;,
+    &quot;api_key&quot;: &quot;...&quot;  # Or use OPENAI_API_KEY
+})
+
+# Using Cohere
+embeddings = ConfigurableEmbeddings(config={
+    &quot;model_type&quot;: &quot;cohere&quot;,
+    &quot;model_name&quot;: &quot;embed-english-v3.0&quot;,
+    &quot;api_key&quot;: &quot;...&quot;  # Or use COHERE_API_KEY
+})
+
+embeddings.setup()
+
+# Encode texts
+vectors = embeddings.run([&quot;Hello world&quot;, &quot;How are you?&quot;])
+query_vector = embeddings.encode_query(&quot;What is AI?&quot;)
+doc_vectors = embeddings.encode_documents(documents)
+
+# Get dimension
+dim = embeddings.embedding_dimension
+</code></pre>
+<h4 id="factory-function">Factory Function</h4>
+<pre><code class="language-python">embeddings = create_embedding_model(
+    model_type=&quot;sentence_transformer&quot;,
+    model_name=&quot;all-MiniLM-L6-v2&quot;,
+    batch_size=64
+)
+</code></pre>
+<h3 id="adaptiveloader">AdaptiveLoader</h3>
+<p>Automatically detects and processes various file types:</p>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore import AdaptiveLoader, create_adaptive_loader
+
+loader = AdaptiveLoader(config={
+    &quot;encoding&quot;: &quot;utf-8&quot;,
+    &quot;chunk_size&quot;: 512,
+    &quot;chunk_overlap&quot;: 50
+})
+
+# Supported file types:
+# - Text: .txt, .text
+# - Markdown: .md, .markdown
+# - Documents: .pdf, .docx, .doc, .odt
+# - Email: .eml, .msg
+# - Data: .json, .csv, .tsv, .xlsx, .xls
+# - HTML: .html, .htm, .xhtml
+# - Code: .py, .js, .ts, .java, .cpp, .go, .rs, .rb, etc.
+
+# Load as single text
+text = loader.load_as_text(&quot;document.pdf&quot;)
+
+# Load as chunks
+chunks = loader.load_as_chunks(&quot;document.pdf&quot;)
+
+# Load as nodes (with metadata)
+nodes = loader.load_as_nodes(&quot;document.pdf&quot;, custom_metadata={&quot;category&quot;: &quot;science&quot;})
+
+# Load as VSFile
+vsfile = loader.load_as_vsfile(&quot;document.pdf&quot;)
+
+# Also handles raw text
+chunks = loader.load_as_chunks(&quot;This is raw text content...&quot;)
+</code></pre>
+<h4 id="factory-function_1">Factory Function</h4>
+<pre><code class="language-python">loader = create_adaptive_loader(
+    chunk_size=1024,
+    chunk_overlap=100,
+    encoding='utf-8'
+)
+</code></pre>
+<h3 id="specialized-loaders">Specialized Loaders</h3>
+<p>Located in <code>ai_vectorstore/components/loader/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Loader</th>
+<th>File Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PdfLoader</code></td>
+<td><code>.pdf</code></td>
+<td>Text extraction, page-aware chunking</td>
+</tr>
+<tr>
+<td><code>DocLoader</code></td>
+<td><code>.docx</code>, <code>.doc</code></td>
+<td>Microsoft Word documents</td>
+</tr>
+<tr>
+<td><code>OdtLoader</code></td>
+<td><code>.odt</code></td>
+<td>OpenDocument Text</td>
+</tr>
+<tr>
+<td><code>MdLoader</code></td>
+<td><code>.md</code></td>
+<td>Markdown with structure preservation</td>
+</tr>
+<tr>
+<td><code>HtmlLoader</code></td>
+<td><code>.html</code>, <code>.htm</code></td>
+<td>HTML parsing and text extraction</td>
+</tr>
+<tr>
+<td><code>EmlLoader</code></td>
+<td><code>.eml</code>, <code>.msg</code></td>
+<td>Email files with attachments</td>
+</tr>
+<tr>
+<td><code>TabularLoader</code></td>
+<td><code>.csv</code>, <code>.tsv</code>, <code>.xlsx</code></td>
+<td>Tabular data processing</td>
+</tr>
+<tr>
+<td><code>CodeLoader</code></td>
+<td><code>.py</code>, <code>.js</code>, etc.</td>
+<td>Code-aware chunking</td>
+</tr>
+</tbody>
+</table>
+<h3 id="textchunker">TextChunker</h3>
+<p>Sentence-based text chunking using Chonkie:</p>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore.components.chunker import TextChunker, create_text_chunker
+
+chunker = TextChunker(
+    chunk_size=512,        # Tokens per chunk
+    chunk_overlap=50,      # Overlap in tokens
+    min_sentences_per_chunk=1,
+    tokenizer=&quot;character&quot;  # Or &quot;gpt2&quot;, HuggingFace tokenizer
+)
+
+chunks = chunker.chunk_text(&quot;Long document text...&quot;)
+# Returns: [{&quot;text&quot;: &quot;...&quot;, &quot;token_count&quot;: 100, &quot;start_index&quot;: 0, &quot;end_index&quot;: 500}, ...]
+
+# Process multiple documents
+all_chunks = chunker.run([&quot;doc1 text&quot;, &quot;doc2 text&quot;])
+</code></pre>
+<hr />
+<h2 id="utilities-module-ai_utils">🛠️ Utilities Module (<code>ai_utils</code>)</h2>
+<h3 id="logging">Logging</h3>
+<pre><code class="language-python">from rakam_systems.ai_utils import logging
+
+logger = logging.getLogger(__name__)
+logger.info(&quot;Processing document...&quot;)
+logger.debug(&quot;Detailed debug info&quot;)
+logger.error(&quot;An error occurred&quot;)
+</code></pre>
+<h3 id="metrics-and-tracing">Metrics and Tracing</h3>
+<p>For production monitoring and observability.</p>
+<hr />
+<h2 id="configuration-system">⚙️ Configuration System</h2>
+<h3 id="vectorstoreconfig">VectorStoreConfig</h3>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore.config import (
+    VectorStoreConfig,
+    EmbeddingConfig,
+    DatabaseConfig,
+    SearchConfig,
+    IndexConfig,
+    load_config
+)
+
+# Programmatic configuration
+config = VectorStoreConfig(
+    name=&quot;my_vectorstore&quot;,
+    embedding=EmbeddingConfig(
+        model_type=&quot;sentence_transformer&quot;,
+        model_name=&quot;Snowflake/snowflake-arctic-embed-m&quot;,
+        batch_size=128,
+        normalize=True
+    ),
+    database=DatabaseConfig(
+        host=&quot;localhost&quot;,
+        port=5432,
+        database=&quot;vectorstore_db&quot;,
+        user=&quot;postgres&quot;,
+        password=&quot;postgres&quot;
+    ),
+    search=SearchConfig(
+        similarity_metric=&quot;cosine&quot;,
+        default_top_k=5,
+        enable_hybrid_search=True,
+        hybrid_alpha=0.7
+    ),
+    index=IndexConfig(
+        chunk_size=512,
+        chunk_overlap=50,
+        batch_insert_size=10000
+    )
+)
+
+# From YAML file
+config = VectorStoreConfig.from_yaml(&quot;config.yaml&quot;)
+
+# From JSON file
+config = VectorStoreConfig.from_json(&quot;config.json&quot;)
+
+# From dictionary
+config = VectorStoreConfig.from_dict(config_dict)
+
+# Validation
+config.validate()
+
+# Save configuration
+config.save_yaml(&quot;output_config.yaml&quot;)
+config.save_json(&quot;output_config.json&quot;)
+</code></pre>
+<h3 id="yaml-configuration-example">YAML Configuration Example</h3>
+<pre><code class="language-yaml"># vectorstore_config.yaml
+name: production_vectorstore
+
+embedding:
+  model_type: sentence_transformer
+  model_name: Snowflake/snowflake-arctic-embed-m
+  batch_size: 128
+  normalize: true
+
+database:
+  host: localhost
+  port: 5432
+  database: vectorstore_db
+  user: postgres
+  password: postgres
+
+search:
+  similarity_metric: cosine
+  default_top_k: 5
+  enable_hybrid_search: true
+  hybrid_alpha: 0.7
+
+index:
+  chunk_size: 512
+  chunk_overlap: 50
+  batch_insert_size: 10000
+
+enable_caching: true
+cache_size: 1000
+enable_logging: true
+log_level: INFO
+</code></pre>
+<h3 id="agent-configuration-example">Agent Configuration Example</h3>
+<pre><code class="language-yaml"># agent_config.yaml
+agents:
+  my_agent:
+    name: my_agent
+    llm_config:
+      model: openai:gpt-4o
+      temperature: 0.7
+      max_tokens: 2000
+      parallel_tool_calls: true
+    prompt_config: default_prompt
+    tools:
+      - search_tool
+      - calculator
+    deps_type: myapp.models.AgentDeps
+    output_type:
+      name: AgentOutput
+      fields:
+        answer:
+          type: str
+          description: The answer
+        confidence:
+          type: float
+          description: Confidence score
+    enable_tracking: true
+
+prompts:
+  default_prompt:
+    system_prompt: |
+      You are a helpful AI assistant.
+      Always provide accurate and helpful responses.
+
+tools:
+  search_tool:
+    name: search_tool
+    type: direct
+    module: myapp.tools
+    function: search
+    description: Search for information
+    json_schema:
+      type: object
+      properties:
+        query:
+          type: string
+      required: [query]
+
+  calculator:
+    name: calculator
+    type: direct
+    module: myapp.tools
+    function: calculate
+    description: Perform calculations
+</code></pre>
+<hr />
+<h2 id="quick-start-examples">🚀 Quick Start Examples</h2>
+<h3 id="basic-agent">Basic Agent</h3>
+<pre><code class="language-python">import asyncio
+from rakam_systems.ai_agents import BaseAgent
+
+async def main():
+    agent = BaseAgent(
+        name=&quot;assistant&quot;,
+        model=&quot;openai:gpt-4o&quot;,
+        system_prompt=&quot;You are a helpful assistant.&quot;
+    )
+
+    result = await agent.arun(&quot;What is the capital of France?&quot;)
+    print(result.output_text)
+
+asyncio.run(main())
+</code></pre>
+<h3 id="agent-with-tools">Agent with Tools</h3>
+<pre><code class="language-python">import asyncio
+from rakam_systems.ai_agents import BaseAgent
+from rakam_systems.ai_core.interfaces.tool import ToolComponent
+
+def get_weather(city: str) -&gt; str:
+    return f&quot;The weather in {city} is sunny, 25°C&quot;
+
+weather_tool = ToolComponent.from_function(
+    function=get_weather,
+    name=&quot;get_weather&quot;,
+    description=&quot;Get the current weather for a city&quot;,
+    json_schema={
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {&quot;city&quot;: {&quot;type&quot;: &quot;string&quot;}},
+        &quot;required&quot;: [&quot;city&quot;]
+    }
+)
+
+async def main():
+    agent = BaseAgent(
+        name=&quot;weather_assistant&quot;,
+        model=&quot;openai:gpt-4o&quot;,
+        system_prompt=&quot;You help users with weather information.&quot;,
+        tools=[weather_tool]
+    )
+
+    result = await agent.arun(&quot;What's the weather in Paris?&quot;)
+    print(result.output_text)
+
+asyncio.run(main())
+</code></pre>
+<h3 id="document-search-pipeline">Document Search Pipeline</h3>
+<pre><code class="language-python">from rakam_systems.ai_vectorstore import (
+    ConfigurablePgVectorStore,
+    VectorStoreConfig,
+    AdaptiveLoader
+)
+
+# Configure vector store
+config = VectorStoreConfig()
+store = ConfigurablePgVectorStore(config=config)
+store.setup()
+
+# Load documents
+loader = AdaptiveLoader(config={&quot;chunk_size&quot;: 512})
+nodes = loader.load_as_nodes(&quot;documents/research_paper.pdf&quot;)
+
+# Add to vector store
+store.add_nodes(nodes)
+
+# Search
+results = store.search(&quot;What are the main findings?&quot;, top_k=5)
+for result in results:
+    print(f&quot;Score: {result['score']:.4f}&quot;)
+    print(f&quot;Content: {result['content'][:200]}...&quot;)
+    print(&quot;---&quot;)
+
+store.shutdown()
+</code></pre>
+<h3 id="full-rag-pipeline">Full RAG Pipeline</h3>
+<pre><code class="language-python">import asyncio
+from rakam_systems.ai_agents import BaseAgent
+from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, AdaptiveLoader, VectorStoreConfig
+from rakam_systems.ai_core.interfaces.tool import ToolComponent
+
+# Setup vector store
+config = VectorStoreConfig()
+store = ConfigurablePgVectorStore(config=config)
+store.setup()
+
+# Index documents
+loader = AdaptiveLoader()
+for doc_path in [&quot;doc1.pdf&quot;, &quot;doc2.pdf&quot;, &quot;doc3.pdf&quot;]:
+    nodes = loader.load_as_nodes(doc_path)
+    store.add_nodes(nodes)
+
+# Create search tool
+def search_documents(query: str, top_k: int = 5) -&gt; str:
+    results = store.search(query, top_k=top_k)
+    return &quot;\n\n&quot;.join([r['content'] for r in results])
+
+search_tool = ToolComponent.from_function(
+    function=search_documents,
+    name=&quot;search_documents&quot;,
+    description=&quot;Search the document database&quot;,
+    json_schema={
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;query&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Search query&quot;},
+            &quot;top_k&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;description&quot;: &quot;Number of results&quot;}
+        },
+        &quot;required&quot;: [&quot;query&quot;]
+    }
+)
+
+# Create RAG agent
+async def main():
+    agent = BaseAgent(
+        name=&quot;rag_agent&quot;,
+        model=&quot;openai:gpt-4o&quot;,
+        system_prompt=&quot;&quot;&quot;You are a helpful assistant with access to a document database.
+        Use the search_documents tool to find relevant information before answering questions.&quot;&quot;&quot;,
+        tools=[search_tool]
+    )
+
+    result = await agent.arun(&quot;What are the key points from the documents?&quot;)
+    print(result.output_text)
+
+asyncio.run(main())
+store.shutdown()
+</code></pre>
+<hr />
+<h2 id="environment-variables">Environment Variables</h2>
+<p>The system supports the following environment variables:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENAI_API_KEY</code></td>
+<td>OpenAI API key</td>
+<td>OpenAIGateway, ConfigurableEmbeddings</td>
+</tr>
+<tr>
+<td><code>MISTRAL_API_KEY</code></td>
+<td>Mistral API key</td>
+<td>MistralGateway</td>
+</tr>
+<tr>
+<td><code>COHERE_API_KEY</code></td>
+<td>Cohere API key</td>
+<td>ConfigurableEmbeddings</td>
+</tr>
+<tr>
+<td><code>POSTGRES_HOST</code></td>
+<td>PostgreSQL host</td>
+<td>DatabaseConfig</td>
+</tr>
+<tr>
+<td><code>POSTGRES_PORT</code></td>
+<td>PostgreSQL port</td>
+<td>DatabaseConfig</td>
+</tr>
+<tr>
+<td><code>POSTGRES_DB</code></td>
+<td>PostgreSQL database</td>
+<td>DatabaseConfig</td>
+</tr>
+<tr>
+<td><code>POSTGRES_USER</code></td>
+<td>PostgreSQL user</td>
+<td>DatabaseConfig</td>
+</tr>
+<tr>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td>PostgreSQL password</td>
+<td>DatabaseConfig</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="best-practices">✅ Best Practices</h2>
+<ol>
+<li><strong>Always use context managers</strong> or explicit <code>setup()</code>/<code>shutdown()</code> for proper resource management</li>
+<li><strong>Use configuration files</strong> for production deployments instead of hardcoded values</li>
+<li><strong>Enable tracking</strong> during development for debugging and evaluation</li>
+<li><strong>Use model-specific tables</strong> (default) to prevent mixing incompatible vector spaces</li>
+<li><strong>Batch operations</strong> when processing large document collections</li>
+<li><strong>Use async methods</strong> (<code>arun</code>, <code>astream</code>) for agents as they are powered by Pydantic AI</li>
+<li><strong>Validate configurations</strong> before deployment using <code>config.validate()</code> or <code>loader.validate_config()</code></li>
+</ol>
+<hr />
+<h2 id="further-reading">📚 Further Reading</h2>
+<ul>
+<li>Example configurations: <code>rakam_systems/examples/configs/</code></li>
+<li>Agent examples: <code>rakam_systems/examples/ai_agents_examples/</code></li>
+<li>Vector store examples: <code>rakam_systems/examples/ai_vectorstore_examples/</code></li>
+<li>Loader documentation: <code>rakam_systems/ai_vectorstore/components/loader/docs/</code></li>
+<li>Architecture documentation: <code>rakam_systems/ai_vectorstore/docs/ARCHITECTURE.md</code></li>
+</ul>
               
             </div>
           </div><footer>
