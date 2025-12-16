@@ -1,4 +1,4 @@
-🚀 Rakam Systems — AI Systems Lifecycle Framework
+# 🚀 Rakam Systems — AI Systems Lifecycle Framework
 
 From architecture to deployment — one unified toolkit to design, build, evaluate, deploy, and monitor AI systems.
 
@@ -7,15 +7,16 @@ Rakam Systems is an end-to-end Python framework that provides production-ready t
 Focus on what matters: your system logic and your business needs.
 Rakam Systems provides everything else: architecture scaffolds, evaluation pipelines, data collection templates, model development tooling, deployment-ready microservices, and integrated observability.
 
-⚡️ Build AI Systems End-to-End
+## ⚡️ Build AI Systems End-to-End
 
 🧩 Design → 📊 Evaluate → 📥 Collect → 🧪 Develop → 🚀 Serve → 📦 Deploy → 🔎 Manage
 
 All in a single library.
 
-✨ Key Pillars
+## ✨ Key Pillars
+
 | Stage | What Rakam Systems Automates |
-| ------------------------- | ------------------------------------------------------------------------ |
+|:--------------------------|:-------------------------------------------------------------------------|
 | **Design your Systems** | Architecture templates, diagram generation, SDK-first system definitions |
 | **Evaluate your Systems** | Dataset builders, metric definitions, evaluation pipelines |
 | **Collect your Data** | Auto-generated CSVs/templates based on evaluation requirements |
@@ -24,13 +25,13 @@ All in a single library.
 | **Deploy your Systems** | IaC provisioning, CI/CD pipelines, environment automation |
 | **Manage your Systems** | Monitoring, drift detection, observability dashboards |
 
-# 🧩 System Lifecycle Overview
+## 🧩 System Lifecycle Overview
 
 Rakam Systems implements a holistic **AI Systems Lifecycle**, enabling a seamless path from design to production.
 
 ---
 
-## 1. 🧩 Design your Systems
+### 1. 🧩 Design your Systems
 
 Create a clear, reproducible architecture:
 
@@ -39,74 +40,6 @@ Create a clear, reproducible architecture:
 - Generate architecture diagrams programmatically
 
 ---
-
-## 2. 📊 Evaluate your Systems
-
-Build measurable, reliable AI:
-
-- Define metrics
-- Build evaluation datasets
-- Structure evaluation scenarios
-- Run evaluation pipelines with a single command
-
----
-
-## 3. 📥 Collect your Data
-
-Your evaluation items become data templates:
-
-- Auto-generate CSVs and annotation formats
-- Pre-fill metadata
-- Validate incoming data
-
----
-
-## 4. 🧪 Develop your Systems
-
-Use Rakam Systems' component library or create your own:
-
-- Pre-built modules for ranking, routing, LLM orchestration
-- Reusable patterns for ML pipelines
-- Model development utilities
-
----
-
-## 5. 🚀 Serve your Systems
-
-Out-of-the-box microservices:
-
-- FastAPI templates with auth, rate limiting, tracing
-- Optional UI playground
-- Dockerized services with env-based configuration
-
----
-
-## 6. 📦 Deploy your Systems
-
-Provision infrastructure and CI/CD using the CLI:
-
-- Deploy to cloud environments
-- Terraform integration
-- Automatic pipelines for testing, building, and releasing
-
----
-
-## 7. 🔎 Manage your Systems
-
-Keep your system reliable after launch:
-
-- Monitoring dashboards
-- Latency and performance metrics
-- Data drift and quality checks
-- Alerts & logs automatically integrated
-
-### 1. 🧩 Design your Systems
-
-Create a clear, reproducible architecture:
-
-- Define system components using the Architecture SDK
-- Sync with Draw.io using exported files
-- Generate architecture diagrams programmatically
 
 ### 2. 📊 Evaluate your Systems
 
@@ -117,32 +50,37 @@ Build measurable, reliable AI:
 - Structure evaluation scenarios
 - Run evaluation pipelines with a single command
 
+---
+
 ### 3. 📥 Collect your Data
 
 Your evaluation items become data templates:
 
 - Auto-generate CSVs and annotation formats
 - Pre-fill metadata
+- Validate incoming data
+
+---
 
 ### 4. 🧪 Develop your Systems
 
 Use Rakam Systems' component library or create your own:
 
-- Pre-built modules for ranking, routing, LLM orchestration...
+- Pre-built modules for ranking, routing, LLM orchestration
 - Reusable patterns for ML pipelines
-- Complete systems templates
+- Model development utilities
 
-```bash
-rakam-systems create rag-system my-rag-app
-```
+---
 
 ### 5. 🚀 Serve your Systems
 
 Out-of-the-box microservices:
 
 - FastAPI templates with auth, rate limiting, tracing
-- gradio UI playground
+- Optional UI playground
 - Dockerized services with env-based configuration
+
+---
 
 ### 6. 📦 Deploy your Systems
 
@@ -150,7 +88,9 @@ Provision infrastructure and CI/CD using the CLI:
 
 - Deploy to cloud environments
 - Terraform integration
-- Automatic pipelines for testing and building
+- Automatic pipelines for testing, building, and releasing
+
+---
 
 ### 7. 🔎 Manage your Systems
 
@@ -160,6 +100,8 @@ Keep your system reliable after launch:
 - Latency and performance metrics
 - Data drift and quality checks
 - Alerts & logs automatically integrated
+
+---
 
 ## 🔧 Requirements
 
@@ -186,9 +128,9 @@ We're building an ecosystem of reusable system templates. Contribute your own ar
 - Community Examples
 - Add-on Components
 
-## 🤝 [Contributing](./contributing.md)
+## 🤝 Contributing
 
-Contributions are welcome! Please see the Contributing Guide for instructions on improving the framework.
+Contributions are welcome! Please see the [Contributing Guide](./contributing.md) for instructions on improving the framework.
 
 ## 💬 Feedback & Support
 
