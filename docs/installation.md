@@ -111,16 +111,24 @@ pip install -e ".[ai-vectorstore]"
 | Package | Purpose |
 |---------|---------|
 | `sentence-transformers` | Local embedding models |
+| `huggingface-hub` | HuggingFace model authentication |
 | `faiss-cpu` | Vector similarity search |
 | `psycopg2-binary` | PostgreSQL driver |
 | `pgvector` | PostgreSQL vector extension |
 | `django` | ORM for database operations |
 | `torch` | Deep learning backend |
 | `pymupdf` | PDF processing |
+| `pymupdf4llm` | Lightweight PDF to markdown |
 | `python-docx` | DOCX processing |
 | `beautifulsoup4` | HTML parsing |
 | `chonkie` | Text chunking |
 | `docling` | Advanced document processing |
+| `openai` | OpenAI embeddings (optional) |
+| `cohere` | Cohere embeddings (optional) |
+| `odfpy` | ODT file processing |
+| `openpyxl` | Excel file processing |
+| `pandas` | Tabular data handling |
+| `joblib` | Parallel processing |
 
 **Use Cases:**
 - Semantic search applications
@@ -289,6 +297,9 @@ MISTRAL_API_KEY=your-mistral-key
 
 # Cohere (for Cohere embeddings)
 COHERE_API_KEY=your-cohere-key
+
+# HuggingFace (for private/gated models)
+HUGGINGFACE_TOKEN=your-hf-token
 ```
 
 Load in your code:

@@ -458,6 +458,190 @@ result = await agent.arun(
 
 ---
 
+## Implementing Chat History Backends
+
+### Custom Chat History Component
+
+Create a custom chat history backend by implementing the `ChatHistoryComponent` interface:
+
+```python
+from typing import List, Dict, Any, Optional
+from rakam_systems.ai_core.interfaces.chat_history import ChatHistoryComponent
+from pydantic_ai.messages import ModelMessage
+
+class RedisChatHistory(ChatHistoryComponent):
+    """Redis-backed chat history implementation."""
+    
+    def __init__(
+        self,
+        name: str = "redis_chat_history",
+        config: Optional[Dict[str, Any]] = None
+    ):
+        super().__init__(name, config or {})
+        self.host = self.config.get("host", "localhost")
+        self.port = self.config.get("port", 6379)
+        self.db = self.config.get("db", 0)
+        self.client = None
+    
+    def setup(self) -> None:
+        """Initialize Redis connection."""
+        super().setup()
+        import redis
+        self.client = redis.Redis(
+            host=self.host,
+            port=self.port,
+            db=self.db,
+            decode_responses=True
+        )
+    
+    def shutdown(self) -> None:
+        """Close Redis connection."""
+        if self.client:
+            self.client.close()
+            self.client = None
+        super().shutdown()
+    
+    def add_message(
+        self,
+        chat_id: str,
+        message: Dict[str, Any]
+    ) -> None:
+        """Add a message to chat history."""
+        if not self.initialized:
+            self.setup()
+        
+        import json
+        key = f"chat:{chat_id}"
+        self.client.rpush(key, json.dumps(message))
+    
+    def get_chat_history(
+        self,
+        chat_id: str,
+        limit: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        """Get chat history for a chat ID."""
+        if not self.initialized:
+            self.setup()
+        
+        import json
+        key = f"chat:{chat_id}"
+        
+        if limit:
+            messages = self.client.lrange(key, -limit, -1)
+        else:
+            messages = self.client.lrange(key, 0, -1)
+        
+        return [json.loads(msg) for msg in messages]
+    
+    def save_messages(
+        self,
+        chat_id: str,
+        messages: List[ModelMessage]
+    ) -> None:
+        """Save Pydantic AI messages to history."""
+        for msg in messages:
+            self.add_message(chat_id, {
+                "role": msg.role,
+                "content": str(msg.content)
+            })
+    
+    def get_message_history(
+        self,
+        chat_id: str,
+        limit: Optional[int] = None
+    ) -> List[ModelMessage]:
+        """Get history as Pydantic AI ModelMessage objects."""
+        from pydantic_ai.messages import (
+            ModelMessage,
+            UserPromptPart,
+            TextPart
+        )
+        
+        messages = self.get_chat_history(chat_id, limit)
+        result = []
+        
+        for msg in messages:
+            if msg["role"] == "user":
+                result.append(ModelMessage(
+                    role="user",
+                    parts=[UserPromptPart(content=msg["content"])]
+                ))
+            elif msg["role"] == "assistant":
+                result.append(ModelMessage(
+                    role="assistant",
+                    parts=[TextPart(content=msg["content"])]
+                ))
+        
+        return result
+    
+    def delete_chat_history(self, chat_id: str) -> None:
+        """Delete chat history for a chat ID."""
+        if not self.initialized:
+            self.setup()
+        
+        key = f"chat:{chat_id}"
+        self.client.delete(key)
+    
+    def get_all_chat_ids(self) -> List[str]:
+        """Get all chat IDs."""
+        if not self.initialized:
+            self.setup()
+        
+        keys = self.client.keys("chat:*")
+        return [key.replace("chat:", "") for key in keys]
+    
+    def clear_all(self) -> None:
+        """Clear all chat histories."""
+        if not self.initialized:
+            self.setup()
+        
+        keys = self.client.keys("chat:*")
+        if keys:
+            self.client.delete(*keys)
+```
+
+### Using Custom Chat History
+
+```python
+import asyncio
+from rakam_systems.ai_agents import BaseAgent
+
+async def main():
+    # Initialize chat history
+    history = RedisChatHistory(config={
+        "host": "localhost",
+        "port": 6379
+    })
+    
+    # Create agent
+    agent = BaseAgent(
+        name="chat_agent",
+        model="openai:gpt-4o",
+        system_prompt="You are a helpful assistant."
+    )
+    
+    # Use with chat history
+    chat_id = "user_123"
+    
+    # Get existing history
+    message_history = history.get_message_history(chat_id)
+    
+    # Run agent with history
+    result = await agent.arun(
+        "What did we talk about?",
+        message_history=message_history
+    )
+    
+    # Save new messages
+    history.save_messages(chat_id, result.all_messages())
+    
+    print(result.output_text)
+
+asyncio.run(main())
+```
+
+---
+
 ## Building Tools
 
 ### Method 1: Class-Based Tool
@@ -829,6 +1013,92 @@ class XMLLoader(Loader):
             custom_metadata=custom_metadata
         )
         return vsfile
+```
+
+### Loader with Image Extraction
+
+Modern loaders support image extraction. Here's how to implement it:
+
+```python
+from typing import List, Union, Optional, Dict, Any
+from pathlib import Path
+from rakam_systems.ai_core.interfaces.loader import Loader
+from rakam_systems.ai_vectorstore.core import Node, NodeMetadata, VSFile
+
+class ImageAwareLoader(Loader):
+    """Loader with image extraction support."""
+    
+    def __init__(
+        self,
+        name: str = "image_loader",
+        config: Optional[Dict[str, Any]] = None
+    ):
+        super().__init__(name, config or {})
+        self.extract_images = self.config.get("extract_images", False)
+        self.image_path = self.config.get("image_path", "./extracted_images")
+        self.write_images = self.config.get("write_images", True)
+        self._image_paths = {}  # Store image ID to path mapping
+        
+        if self.extract_images and self.write_images:
+            Path(self.image_path).mkdir(parents=True, exist_ok=True)
+    
+    def load_as_text(self, source: Union[str, Path]) -> str:
+        """Load document as text with image references."""
+        # Extract text and images
+        text_content = self._extract_text(source)
+        
+        if self.extract_images:
+            images = self._extract_images(source)
+            for img_id, img_data in images.items():
+                if self.write_images:
+                    img_path = self._save_image(img_id, img_data)
+                    self._image_paths[img_id] = img_path
+                # Add image reference to text
+                text_content += f"\n[Image: {img_id}]"
+        
+        return text_content
+    
+    def get_image_paths(self) -> Dict[str, str]:
+        """Get mapping of image IDs to absolute paths."""
+        return {
+            img_id: str(Path(path).absolute())
+            for img_id, path in self._image_paths.items()
+        }
+    
+    def _extract_text(self, source: Union[str, Path]) -> str:
+        """Extract text from document."""
+        # Implementation specific to document type
+        pass
+    
+    def _extract_images(self, source: Union[str, Path]) -> Dict[str, bytes]:
+        """Extract images from document."""
+        # Implementation specific to document type
+        # Returns dict of {image_id: image_bytes}
+        pass
+    
+    def _save_image(self, img_id: str, img_data: bytes) -> str:
+        """Save image to disk and return path."""
+        img_path = Path(self.image_path) / f"{img_id}.png"
+        img_path.write_bytes(img_data)
+        return str(img_path)
+```
+
+**Example Usage:**
+
+```python
+loader = ImageAwareLoader(config={
+    "extract_images": True,
+    "image_path": "./my_images",
+    "write_images": True
+})
+
+# Load document
+text = loader.load_as_text("document.pdf")
+
+# Get extracted image paths
+image_paths = loader.get_image_paths()
+for img_id, img_path in image_paths.items():
+    print(f"Extracted image {img_id} to {img_path}")
 ```
 
 ### Integrating with AdaptiveLoader

@@ -301,17 +301,52 @@ async for chunk in agent.astream("Tell me a story"):
 
 #### Dynamic System Prompts
 
+Dynamic system prompts allow you to inject context at runtime based on current state, user information, or external data:
+
 ```python
-from datetime import date
+from datetime import date, datetime
 from pydantic_ai import RunContext
 
+agent = BaseAgent(
+    name="dynamic_agent",
+    model="openai:gpt-4o",
+    system_prompt="You are a helpful assistant."
+)
+
+# Method 1: Decorator syntax
 @agent.dynamic_system_prompt
 def add_date() -> str:
-    return f"Today's date is {date.today()}."
+    """Add current date to system prompt."""
+    return f"Today's date is {date.today().strftime('%B %d, %Y')}."
 
 @agent.dynamic_system_prompt
-def add_user_context(ctx: RunContext[str]) -> str:
-    return f"The user's name is {ctx.deps}."
+def add_user_context(ctx: RunContext[dict]) -> str:
+    """Add user-specific context from dependencies."""
+    if ctx.deps and "user_name" in ctx.deps:
+        return f"You are assisting {ctx.deps['user_name']}."
+    return ""
+
+# Method 2: Direct registration
+def add_time_context() -> str:
+    """Add current time to system prompt."""
+    return f"Current time: {datetime.now().strftime('%H:%M:%S')}"
+
+agent.add_dynamic_system_prompt(add_time_context)
+
+# Method 3: Async dynamic prompts
+@agent.dynamic_system_prompt
+async def fetch_external_context(ctx: RunContext[dict]) -> str:
+    """Fetch and add external context asynchronously."""
+    # Example: fetch from API or database
+    import asyncio
+    await asyncio.sleep(0.1)
+    return "Additional context from external source."
+
+# Usage with dependencies
+result = await agent.arun(
+    "What day is it?",
+    deps={"user_name": "Alice", "user_id": "123"}
+)
 ```
 
 ### LLM Gateways
@@ -409,9 +444,66 @@ history.delete_chat_history("chat123")
 history.clear_all()
 ```
 
-#### SQL Chat History
+#### SQL Chat History (SQLite)
 
-For production deployments with database-backed storage.
+```python
+from rakam_systems.ai_agents.components.chat_history import SQLChatHistory
+
+history = SQLChatHistory(config={"db_path": "./chat_history.db"})
+
+# Same API as JSON Chat History
+history.add_message("chat123", {"role": "user", "content": "Hello!"})
+history.add_message("chat123", {"role": "assistant", "content": "Hi there!"})
+
+# Get history
+messages = history.get_chat_history("chat123")
+
+# Pydantic AI integration
+message_history = history.get_message_history("chat123")
+result = await agent.run("Hello", message_history=message_history)
+history.save_messages("chat123", result.all_messages())
+```
+
+#### PostgreSQL Chat History
+
+For production deployments with PostgreSQL-backed storage:
+
+```python
+from rakam_systems.ai_agents.components.chat_history import PostgresChatHistory
+
+# Configuration
+history = PostgresChatHistory(config={
+    "host": "localhost",
+    "port": 5432,
+    "database": "chat_db",
+    "user": "postgres",
+    "password": "postgres"
+})
+
+# Or use environment variables (POSTGRES_HOST, POSTGRES_PORT, etc.)
+history = PostgresChatHistory()
+
+# Same API as other chat history backends
+history.add_message("chat123", {"role": "user", "content": "Hello!"})
+history.add_message("chat123", {"role": "assistant", "content": "Hi there!"})
+
+# Get history
+messages = history.get_chat_history("chat123")
+readable = history.get_readable_chat_history("chat123")
+
+# Pydantic AI integration
+message_history = history.get_message_history("chat123")
+result = await agent.run("Hello", message_history=message_history)
+history.save_messages("chat123", result.all_messages())
+
+# Manage chats
+all_chats = history.get_all_chat_ids()
+history.delete_chat_history("chat123")
+history.clear_all()
+
+# Cleanup
+history.shutdown()
+```
 
 ---
 
@@ -473,9 +565,20 @@ store.setup()
 store.add_nodes(nodes)
 store.add_vsfile(vsfile)
 
-# Search
+# Vector search (semantic similarity)
 results = store.search("What is machine learning?", top_k=5)
+
+# Hybrid search (combines vector + keyword search)
 results = store.hybrid_search("machine learning", top_k=10, alpha=0.7)
+
+# Keyword search (full-text search with BM25 or ts_rank)
+results = store.keyword_search(
+    query="machine learning algorithms",
+    top_k=10,
+    ranking_algorithm="bm25",  # or "ts_rank"
+    k1=1.2,  # BM25 parameter
+    b=0.75   # BM25 parameter
+)
 
 # Update vectors
 store.update_vector(node_id, new_embedding)
@@ -483,6 +586,52 @@ store.update_vector(node_id, new_embedding)
 # Cleanup
 store.shutdown()
 ```
+
+#### Keyword Search
+
+Full-text search using PostgreSQL's built-in capabilities with BM25 or ts_rank ranking:
+
+```python
+from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+
+config = VectorStoreConfig(
+    search={
+        "keyword_ranking_algorithm": "bm25",  # or "ts_rank"
+        "keyword_k1": 1.2,  # BM25 k1 parameter
+        "keyword_b": 0.75   # BM25 b parameter
+    }
+)
+
+store = ConfigurablePgVectorStore(config=config)
+store.setup()
+
+# Keyword search with BM25 ranking
+results = store.keyword_search(
+    query="machine learning neural networks",
+    top_k=10,
+    ranking_algorithm="bm25"
+)
+
+# Keyword search with ts_rank
+results = store.keyword_search(
+    query="deep learning",
+    top_k=10,
+    ranking_algorithm="ts_rank"
+)
+
+# Results include content and relevance scores
+for result in results:
+    print(f"Score: {result['score']:.4f}")
+    print(f"Content: {result['content'][:200]}...")
+```
+
+**Ranking Algorithms:**
+- **BM25**: Best Match 25, probabilistic ranking function
+  - `k1`: Term frequency saturation parameter (default: 1.2)
+  - `b`: Length normalization parameter (default: 0.75)
+- **ts_rank**: PostgreSQL's text search ranking function
+  - Weights different parts of documents differently
+  - Good for structured documents
 
 #### Multi-Model Support
 
@@ -519,11 +668,12 @@ embeddings = ConfigurableEmbeddings(config={
     "normalize": True
 })
 
-# Using OpenAI
+# Using OpenAI (with batch processing)
 embeddings = ConfigurableEmbeddings(config={
     "model_type": "openai",
     "model_name": "text-embedding-3-small",
-    "api_key": "..."  # Or use OPENAI_API_KEY
+    "api_key": "...",  # Or use OPENAI_API_KEY
+    "batch_size": 100   # OpenAI supports larger batches
 })
 
 # Using Cohere
@@ -533,16 +683,38 @@ embeddings = ConfigurableEmbeddings(config={
     "api_key": "..."  # Or use COHERE_API_KEY
 })
 
+# Using HuggingFace models with authentication
+embeddings = ConfigurableEmbeddings(config={
+    "model_type": "sentence_transformer",
+    "model_name": "private/model-name",
+    # Uses HUGGINGFACE_TOKEN environment variable
+})
+
 embeddings.setup()
 
-# Encode texts
+# Encode texts with automatic batch processing
 vectors = embeddings.run(["Hello world", "How are you?"])
+
+# Encode large datasets with progress tracking
+large_texts = ["text" + str(i) for i in range(10000)]
+vectors = embeddings.run(large_texts)  # Shows progress bar
+
+# Encode queries (optimized for single texts)
 query_vector = embeddings.encode_query("What is AI?")
+
+# Encode documents (optimized for batches)
 doc_vectors = embeddings.encode_documents(documents)
 
 # Get dimension
 dim = embeddings.embedding_dimension
 ```
+
+**Performance Features:**
+- Automatic batch processing with progress tracking
+- Memory optimization with garbage collection
+- Token truncation for oversized texts
+- Mini-batch processing for large datasets
+- CUDA memory management for GPU acceleration
 
 #### Factory Function
 
@@ -608,14 +780,90 @@ Located in `ai_vectorstore/components/loader/`:
 
 | Loader | File Types | Features |
 |--------|------------|----------|
-| `PdfLoader` | `.pdf` | Text extraction, page-aware chunking |
-| `DocLoader` | `.docx`, `.doc` | Microsoft Word documents |
-| `OdtLoader` | `.odt` | OpenDocument Text |
-| `MdLoader` | `.md` | Markdown with structure preservation |
+| `PdfLoader` | `.pdf` | Advanced PDF processing with Docling, image extraction, table detection |
+| `PdfLoaderLight` | `.pdf` | Lightweight PDF processing with pymupdf4llm, markdown conversion, image extraction |
+| `DocLoader` | `.docx`, `.doc` | Microsoft Word documents, image extraction |
+| `OdtLoader` | `.odt` | OpenDocument Text, image extraction |
+| `MdLoader` | `.md` | Markdown with structure preservation, YAML frontmatter |
 | `HtmlLoader` | `.html`, `.htm` | HTML parsing and text extraction |
-| `EmlLoader` | `.eml`, `.msg` | Email files with attachments |
-| `TabularLoader` | `.csv`, `.tsv`, `.xlsx` | Tabular data processing |
-| `CodeLoader` | `.py`, `.js`, etc. | Code-aware chunking |
+| `EmlLoader` | `.eml`, `.msg` | Email files (loaded as single nodes) |
+| `TabularLoader` | `.csv`, `.tsv`, `.xlsx` | Tabular data processing, preserves column structure |
+| `CodeLoader` | `.py`, `.js`, etc. | Code-aware chunking with syntax preservation |
+
+#### PdfLoaderLight
+
+A lightweight alternative to PdfLoader using pymupdf4llm for efficient PDF processing:
+
+```python
+from rakam_systems.ai_vectorstore.components.loader import PdfLoaderLight
+
+loader = PdfLoaderLight(
+    name="pdf_loader_light",
+    config={
+        "chunk_size": 512,
+        "chunk_overlap": 50,
+        "extract_images": True,
+        "image_path": "./extracted_images",
+        "page_chunks": True,  # Create one chunk per page
+        "write_images": True  # Save images to disk
+    }
+)
+
+# Load as markdown
+markdown_text = loader.load_as_text("document.pdf")
+
+# Load as chunks (one per page or custom chunking)
+chunks = loader.load_as_chunks("document.pdf")
+
+# Load as nodes with metadata
+nodes = loader.load_as_nodes("document.pdf")
+
+# Access extracted images
+image_paths = loader.get_image_paths()
+for img_id, img_path in image_paths.items():
+    print(f"Image {img_id}: {img_path}")
+```
+
+**Key Features:**
+- Fast PDF to markdown conversion
+- Optional image extraction and saving
+- Page-aware chunking
+- Thread-safe operations
+- Lower memory footprint than PdfLoader
+
+#### Image Extraction Support
+
+Multiple loaders now support image extraction:
+
+```python
+from rakam_systems.ai_vectorstore.components.loader import DocLoader, OdtLoader, PdfLoaderLight
+
+# DocLoader with image extraction
+doc_loader = DocLoader(config={
+    "extract_images": True,
+    "image_path": "./doc_images"
+})
+nodes = doc_loader.load_as_nodes("document.docx")
+
+# Access extracted images
+for img_id, img_path in doc_loader.get_image_paths().items():
+    print(f"Image {img_id}: {img_path}")
+
+# OdtLoader with image extraction
+odt_loader = OdtLoader(config={
+    "extract_images": True,
+    "image_path": "./odt_images"
+})
+nodes = odt_loader.load_as_nodes("document.odt")
+
+# PdfLoaderLight with image extraction
+pdf_loader = PdfLoaderLight(config={
+    "extract_images": True,
+    "image_path": "./pdf_images",
+    "write_images": True
+})
+nodes = pdf_loader.load_as_nodes("document.pdf")
+```
 
 ### TextChunker
 
@@ -637,6 +885,56 @@ chunks = chunker.chunk_text("Long document text...")
 # Process multiple documents
 all_chunks = chunker.run(["doc1 text", "doc2 text"])
 ```
+
+### AdvancedChunker
+
+Advanced document chunking using Docling for context-aware chunking with heading preservation:
+
+```python
+from rakam_systems.ai_vectorstore.components.chunker import AdvancedChunker
+
+chunker = AdvancedChunker(
+    name="advanced_chunker",
+    config={
+        "max_tokens": 512,           # Maximum tokens per chunk
+        "merge_peers": True,          # Merge peer sections
+        "min_chunk_tokens": 64,       # Minimum tokens per chunk
+        "filter_toc": True,           # Filter table of contents
+        "include_heading_markers": True  # Include markdown headings
+    }
+)
+
+# Chunk text with context preservation
+chunks = chunker.chunk_text("Document text with headings...")
+
+# Each chunk includes:
+# - text: The chunk content
+# - token_count: Number of tokens
+# - start_index: Starting position
+# - end_index: Ending position
+# - heading_context: Hierarchical heading information
+
+# Process with heading markers
+chunker_with_markers = AdvancedChunker(config={
+    "include_heading_markers": True
+})
+chunks = chunker_with_markers.chunk_text("""
+# Main Title
+## Section 1
+Content here...
+## Section 2
+More content...
+""")
+# Output includes markdown-style headings in chunks
+```
+
+**Key Features:**
+- Context-aware chunking with heading hierarchy
+- Automatic merging of small chunks
+- Table of contents filtering
+- Image and table fragment handling
+- Markdown heading markers support
+- Configurable token limits and merging behavior
 
 ---
 

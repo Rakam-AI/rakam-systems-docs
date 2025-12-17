@@ -245,6 +245,150 @@ asyncio.run(main())
 
 ---
 
+## Quick Start: Chat History
+
+Maintain conversation context across multiple interactions:
+
+### JSON Chat History (File-based)
+
+```python
+import asyncio
+from rakam_systems.ai_agents import BaseAgent
+from rakam_systems.ai_agents.components.chat_history import JSONChatHistory
+
+async def main():
+    # Initialize chat history
+    history = JSONChatHistory(config={
+        "storage_path": "./chat_history.json"
+    })
+    
+    # Create agent
+    agent = BaseAgent(
+        name="chat_agent",
+        model="openai:gpt-4o",
+        system_prompt="You are a helpful assistant with memory."
+    )
+    
+    chat_id = "user_123"
+    
+    # First conversation
+    message_history = history.get_message_history(chat_id)
+    result = await agent.arun(
+        "My name is Alice and I love Python programming.",
+        message_history=message_history
+    )
+    history.save_messages(chat_id, result.all_messages())
+    print(f"Agent: {result.output_text}\n")
+    
+    # Second conversation (agent remembers)
+    message_history = history.get_message_history(chat_id)
+    result = await agent.arun(
+        "What's my name and what do I love?",
+        message_history=message_history
+    )
+    history.save_messages(chat_id, result.all_messages())
+    print(f"Agent: {result.output_text}")
+
+asyncio.run(main())
+```
+
+### PostgreSQL Chat History (Production)
+
+For production deployments with PostgreSQL:
+
+```python
+import asyncio
+from rakam_systems.ai_agents import BaseAgent
+from rakam_systems.ai_agents.components.chat_history import PostgresChatHistory
+
+async def main():
+    # Initialize PostgreSQL chat history
+    history = PostgresChatHistory(config={
+        "host": "localhost",
+        "port": 5432,
+        "database": "chat_db",
+        "user": "postgres",
+        "password": "postgres"
+    })
+    
+    # Or use environment variables (POSTGRES_HOST, POSTGRES_PORT, etc.)
+    # history = PostgresChatHistory()
+    
+    # Create agent
+    agent = BaseAgent(
+        name="chat_agent",
+        model="openai:gpt-4o",
+        system_prompt="You are a helpful assistant."
+    )
+    
+    chat_id = "user_456"
+    
+    # Get existing history
+    message_history = history.get_message_history(chat_id)
+    
+    # Continue conversation
+    result = await agent.arun(
+        "Tell me about machine learning.",
+        message_history=message_history
+    )
+    
+    # Save new messages
+    history.save_messages(chat_id, result.all_messages())
+    print(f"Agent: {result.output_text}")
+    
+    # Get readable history
+    readable = history.get_readable_chat_history(chat_id)
+    print(f"\nConversation History:\n{readable}")
+    
+    # Cleanup
+    history.shutdown()
+
+asyncio.run(main())
+```
+
+### SQLite Chat History (Local Database)
+
+For local development with SQLite:
+
+```python
+import asyncio
+from rakam_systems.ai_agents import BaseAgent
+from rakam_systems.ai_agents.components.chat_history import SQLChatHistory
+
+async def main():
+    # Initialize SQLite chat history
+    history = SQLChatHistory(config={
+        "db_path": "./chat_history.db"
+    })
+    
+    agent = BaseAgent(
+        name="chat_agent",
+        model="openai:gpt-4o",
+        system_prompt="You are a helpful assistant."
+    )
+    
+    chat_id = "user_789"
+    
+    # Use with agent
+    message_history = history.get_message_history(chat_id)
+    result = await agent.arun(
+        "Hello! How are you?",
+        message_history=message_history
+    )
+    history.save_messages(chat_id, result.all_messages())
+    
+    print(f"Agent: {result.output_text}")
+
+asyncio.run(main())
+```
+
+**Choosing a Backend:**
+- **JSONChatHistory**: Simple file-based storage, good for prototyping
+- **SQLChatHistory**: SQLite database, good for local development
+- **PostgresChatHistory**: Production-ready, scalable, concurrent access
+
+---
+
 ## Quick Start: Configurable Agent
 
 Create agents from YAML configuration files for production deployments:
@@ -845,6 +989,74 @@ results = store.hybrid_search(
 for r in results:
     print(f"[{r['score']:.4f}] {r['content'][:100]}...")
 ```
+
+### Keyword Search
+
+Full-text search using PostgreSQL's BM25 or ts_rank:
+
+```python
+from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+
+# Configure keyword search
+config = VectorStoreConfig(
+    search={
+        "keyword_ranking_algorithm": "bm25",  # or "ts_rank"
+        "keyword_k1": 1.2,  # BM25 k1 parameter
+        "keyword_b": 0.75   # BM25 b parameter
+    }
+)
+
+store = ConfigurablePgVectorStore(config=config)
+store.setup()
+
+# Add some documents
+from rakam_systems.ai_vectorstore import Node, NodeMetadata
+
+nodes = [
+    Node(
+        content="Machine learning is a subset of artificial intelligence.",
+        metadata=NodeMetadata(source_file_uuid="doc1", position=0)
+    ),
+    Node(
+        content="Deep learning uses neural networks with multiple layers.",
+        metadata=NodeMetadata(source_file_uuid="doc1", position=1)
+    ),
+    Node(
+        content="Natural language processing helps computers understand text.",
+        metadata=NodeMetadata(source_file_uuid="doc1", position=2)
+    ),
+]
+store.add_nodes(nodes)
+
+# Keyword search with BM25
+results = store.keyword_search(
+    query="machine learning neural networks",
+    top_k=5,
+    ranking_algorithm="bm25"
+)
+
+print("Keyword Search Results (BM25):")
+for r in results:
+    print(f"  [{r['score']:.4f}] {r['content'][:80]}...")
+
+# Keyword search with ts_rank
+results = store.keyword_search(
+    query="artificial intelligence",
+    top_k=5,
+    ranking_algorithm="ts_rank"
+)
+
+print("\nKeyword Search Results (ts_rank):")
+for r in results:
+    print(f"  [{r['score']:.4f}] {r['content'][:80]}...")
+
+store.shutdown()
+```
+
+**When to use:**
+- **BM25**: Best for general text search, handles term frequency well
+- **ts_rank**: Good for structured documents with varying importance
+- **Hybrid Search**: Combines semantic (vector) + keyword for best results
 
 ### Full Example with All Features
 
