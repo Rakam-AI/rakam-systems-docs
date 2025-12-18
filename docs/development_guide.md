@@ -26,54 +26,71 @@ This guide provides comprehensive instructions for developers who want to contri
 ```bash
 # Clone the repository
 git clone <repository_url>
-cd rakam_systems/app/rakam_systems
+cd rakam-systems-inhouse
 
 # Create a virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install with all dependencies including dev tools
-pip install -e ".[complete]"
+# Install all packages in editable mode
+pip install -e ./rakam-system-core
+pip install -e ./rakam-system-agent
+pip install -e ./rakam-system-vectorstore
 
-# Setup pre-commit hooks
-pre-commit install
+# Or install specific packages you're working on
+pip install -e ./rakam-system-core  # Core only
+pip install -e ./rakam-system-agent # Agent + core
+
+# Setup pre-commit hooks (if available)
+# pre-commit install
 
 # Verify installation
-python -c "from rakam_systems.ai_core.base import BaseComponent; print('✅ Setup complete!')"
+python -c "from rakam_system_core.ai_core.base import BaseComponent; print('✅ Setup complete!')"
 ```
 
 ### Project Structure
 
 ```
-rakam_systems/
-├── rakam_systems/               # Main package
-│   ├── ai_core/                 # Core abstractions & interfaces
-│   │   ├── base.py              # BaseComponent class
-│   │   ├── interfaces/          # Abstract interfaces
-│   │   ├── config_loader.py     # Configuration system
-│   │   ├── tracking.py          # Input/output tracking
-│   │   └── mcp/                 # MCP server support
-│   ├── ai_agents/               # Agent implementations
-│   │   ├── components/          # Agent components
+rakam-systems-inhouse/
+├── rakam-system-core/           # Core package (required by others)
+│   ├── src/rakam_system_core/
+│   │   ├── ai_core/             # Core abstractions & interfaces
+│   │   │   ├── base.py          # BaseComponent class
+│   │   │   ├── interfaces/      # Abstract interfaces
+│   │   │   ├── config_loader.py # Configuration system
+│   │   │   ├── tracking.py      # Input/output tracking
+│   │   │   └── mcp/             # MCP server support
+│   │   └── ai_utils/            # Utilities (logging)
+│   ├── pyproject.toml
+│   └── README.md
+├── rakam-system-agent/          # Agent package (depends on core)
+│   ├── src/rakam_system_agent/
+│   │   ├── components/
 │   │   │   ├── base_agent.py    # BaseAgent implementation
 │   │   │   ├── llm_gateway/     # LLM provider gateways
 │   │   │   ├── chat_history/    # Chat history backends
 │   │   │   └── tools/           # Built-in tools
 │   │   └── server/              # MCP server for agents
-│   ├── ai_vectorstore/          # Vector store implementations
+│   ├── pyproject.toml
+│   └── README.md
+├── rakam-system-vectorstore/    # Vectorstore package (depends on core)
+│   ├── src/rakam_system_vectorstore/
 │   │   ├── core.py              # Node, VSFile data structures
 │   │   ├── config.py            # VectorStoreConfig
-│   │   └── components/          # Vector store components
-│   │       ├── vectorstore/     # Store implementations
-│   │       ├── embedding_model/ # Embedding models
-│   │       ├── loader/          # Document loaders
-│   │       └── chunker/         # Text chunkers
-│   ├── ai_utils/                # Utilities (logging, metrics)
-│   └── examples/                # Usage examples
+│   │   ├── components/
+│   │   │   ├── vectorstore/     # Store implementations
+│   │   │   ├── embedding_model/ # Embedding models
+│   │   │   ├── loader/          # Document loaders
+│   │   │   └── chunker/         # Text chunkers
+│   │   └── docs/                # Package-specific docs
+│   ├── pyproject.toml
+│   └── README.md
+├── examples/                    # Usage examples
+│   ├── ai_agents_examples/
+│   └── ai_vectorstore_examples/
 ├── tests/                       # Test suite
-├── docs/                        # Documentation
-├── pyproject.toml               # Package configuration
-└── requirements.txt             # Locked dependencies
+├── docs/                        # Project-wide documentation
+└── README.md                    # Main project README
 ```
 
 ---
@@ -127,7 +144,7 @@ Every component in the system extends `BaseComponent`, which provides:
 ```python
 from abc import abstractmethod
 from typing import Any, Dict, Optional
-from rakam_systems.ai_core.base import BaseComponent
+from rakam_system_core.ai_core.base import BaseComponent
 
 class MyComponent(BaseComponent):
     """Example custom component."""
@@ -201,23 +218,23 @@ Determine which interface your component should implement:
 
 ```python
 # For a new LLM provider
-from rakam_systems.ai_core.interfaces.llm_gateway import LLMGateway
+from rakam_system_core.ai_core.interfaces.llm_gateway import LLMGateway
 
 # For a new vector store backend
-from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+from rakam_system_core.ai_core.interfaces.vectorstore import VectorStore
 
 # For a new document loader
-from rakam_systems.ai_core.interfaces.loader import Loader
+from rakam_system_core.ai_core.interfaces.loader import Loader
 
 # For a custom tool
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 ```
 
 ### Step 2: Implement Required Methods
 
 ```python
 from typing import List, Dict, Any, Optional
-from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+from rakam_system_core.ai_core.interfaces.vectorstore import VectorStore
 
 class MyCustomVectorStore(VectorStore):
     """Custom vector store implementation."""
@@ -341,9 +358,9 @@ class MyCustomVectorStore(VectorStore):
 import asyncio
 from typing import Optional, List, Any
 from pydantic import BaseModel
-from rakam_systems.ai_agents.components import BaseAgent
-from rakam_systems.ai_core.interfaces.agent import AgentInput, AgentOutput
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_agent.components import BaseAgent
+from rakam_system_core.ai_core.interfaces.agent import AgentInput, AgentOutput
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 class MyCustomAgent(BaseAgent):
     """Custom agent with specialized behavior."""
@@ -466,7 +483,7 @@ Create a custom chat history backend by implementing the `ChatHistoryComponent` 
 
 ```python
 from typing import List, Dict, Any, Optional
-from rakam_systems.ai_core.interfaces.chat_history import ChatHistoryComponent
+from rakam_system_core.ai_core.interfaces.chat_history import ChatHistoryComponent
 from pydantic_ai.messages import ModelMessage
 
 class RedisChatHistory(ChatHistoryComponent):
@@ -604,7 +621,7 @@ class RedisChatHistory(ChatHistoryComponent):
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 async def main():
     # Initialize chat history
@@ -648,7 +665,7 @@ asyncio.run(main())
 
 ```python
 from typing import Any, Dict
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 class WeatherTool(ToolComponent):
     """Tool to get weather information."""
@@ -685,7 +702,7 @@ class WeatherTool(ToolComponent):
 ### Method 2: Function-Based Tool (Recommended for Simple Tools)
 
 ```python
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 def calculate_bmi(weight_kg: float, height_m: float) -> dict:
     """Calculate BMI given weight and height."""
@@ -725,7 +742,7 @@ bmi_tool = ToolComponent.from_function(
 
 ```python
 import aiohttp
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 class AsyncSearchTool(ToolComponent):
     """Async tool for web search."""
@@ -756,7 +773,7 @@ class AsyncSearchTool(ToolComponent):
 ### Registering Tools with ToolRegistry
 
 ```python
-from rakam_systems.ai_core.interfaces.tool_registry import ToolRegistry, ToolMode
+from rakam_system_core.ai_core.interfaces.tool_registry import ToolRegistry, ToolMode
 
 registry = ToolRegistry()
 
@@ -793,8 +810,8 @@ all_direct_tools = registry.get_tools_by_mode(ToolMode.DIRECT)
 
 ```python
 from typing import List, Dict, Any, Optional
-from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
-from rakam_systems.ai_vectorstore.core import Node, NodeMetadata
+from rakam_system_core.ai_core.interfaces.vectorstore import VectorStore
+from rakam_system_vectorstore.core import Node, NodeMetadata
 
 class RedisVectorStore(VectorStore):
     """Redis-backed vector store implementation."""
@@ -930,8 +947,8 @@ class RedisVectorStore(VectorStore):
 ```python
 from typing import List, Union, Optional, Dict, Any
 from pathlib import Path
-from rakam_systems.ai_core.interfaces.loader import Loader
-from rakam_systems.ai_vectorstore.core import Node, NodeMetadata, VSFile
+from rakam_system_core.ai_core.interfaces.loader import Loader
+from rakam_system_vectorstore.core import Node, NodeMetadata, VSFile
 
 class XMLLoader(Loader):
     """Loader for XML documents."""
@@ -1022,8 +1039,8 @@ Modern loaders support image extraction. Here's how to implement it:
 ```python
 from typing import List, Union, Optional, Dict, Any
 from pathlib import Path
-from rakam_systems.ai_core.interfaces.loader import Loader
-from rakam_systems.ai_vectorstore.core import Node, NodeMetadata, VSFile
+from rakam_system_core.ai_core.interfaces.loader import Loader
+from rakam_system_vectorstore.core import Node, NodeMetadata, VSFile
 
 class ImageAwareLoader(Loader):
     """Loader with image extraction support."""
@@ -1106,7 +1123,7 @@ for img_id, img_path in image_paths.items():
 To make your loader work with `AdaptiveLoader`, register the file extension:
 
 ```python
-from rakam_systems.ai_vectorstore.components.loader import AdaptiveLoader
+from rakam_system_vectorstore.components.loader import AdaptiveLoader
 
 class EnhancedAdaptiveLoader(AdaptiveLoader):
     """AdaptiveLoader with XML support."""
@@ -1173,7 +1190,7 @@ agents:
 ### Loading Configuration
 
 ```python
-from rakam_systems.ai_core.config_loader import ConfigurationLoader
+from rakam_system_core.ai_core.config_loader import ConfigurationLoader
 
 loader = ConfigurationLoader()
 
@@ -1206,7 +1223,7 @@ if not is_valid:
 # tests/test_my_component.py
 import pytest
 from typing import List, Dict, Any
-from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+from rakam_system_core.ai_core.interfaces.vectorstore import VectorStore
 
 class DummyVectorStore(VectorStore):
     """Mock implementation for testing."""
@@ -1305,7 +1322,7 @@ def event_loop():
 @pytest.mark.asyncio
 async def test_async_agent():
     """Test async agent methods."""
-    from rakam_systems.ai_agents.components import BaseAgent
+    from rakam_system_agent.components import BaseAgent
     
     agent = BaseAgent(
         name="test_agent",
@@ -1356,7 +1373,7 @@ from typing import Any, Dict, List, Optional
 import numpy as np
 from pydantic import BaseModel
 
-from rakam_systems.ai_core.base import BaseComponent
+from rakam_system_core.ai_core.base import BaseComponent
 
 
 # Class docstrings: Brief description + Attributes + Methods
@@ -1487,10 +1504,13 @@ twine upload dist/*
 ## Additional Resources
 
 - **Component Documentation**: `docs/components.md`
-- **Installation Guide**: `INSTALLATION.md`
-- **Example Configurations**: `rakam_systems/examples/configs/`
-- **Agent Examples**: `rakam_systems/examples/ai_agents_examples/`
-- **Vector Store Examples**: `rakam_systems/examples/ai_vectorstore_examples/`
+- **Installation Guide**: `docs/installation.md`
+- **Example Configurations**: `examples/configs/`
+- **Agent Examples**: `examples/ai_agents_examples/`
+- **Vector Store Examples**: `examples/ai_vectorstore_examples/`
+- **Core Package README**: `rakam-system-core/README.md`
+- **Agent Package README**: `rakam-system-agent/README.md`
+- **Vectorstore Package README**: `rakam-system-vectorstore/README.md`
 
 ## Getting Help
 

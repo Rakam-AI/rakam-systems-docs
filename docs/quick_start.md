@@ -1,6 +1,6 @@
 # Rakam Systems Quick Start Guide
 
-Get up and running with `rakam_systems` in 5 minutes!
+Get up and running with Rakam Systems in 5 minutes!
 
 ## 📑 Table of Contents
 
@@ -32,14 +32,17 @@ Get up and running with `rakam_systems` in 5 minutes!
 ## Installation
 
 ```bash
-# Navigate to the package
-cd app/rakam_systems
+# Install core package (required)
+pip install -e ./rakam-system-core
 
-# Install AI Agents module
-pip install -e ".[ai-agents]"
+# Install agent package for AI agents
+pip install -e ./rakam-system-agent
 
-# Or install everything
-pip install -e ".[all]"
+# Install vectorstore package for vector search
+pip install -e ./rakam-system-vectorstore
+
+# Or install everything at once
+pip install -e ./rakam-system-core ./rakam-system-agent ./rakam-system-vectorstore
 ```
 
 Set your API key:
@@ -60,7 +63,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 async def main():
     # Create an agent
@@ -81,7 +84,7 @@ asyncio.run(main())
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 async def main():
     agent = BaseAgent(
@@ -103,8 +106,8 @@ asyncio.run(main())
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_core.interfaces import ModelSettings
+from rakam_system_agent import BaseAgent
+from rakam_system_core.ai_core.interfaces import ModelSettings
 
 async def main():
     agent = BaseAgent(
@@ -131,8 +134,8 @@ Create an agent that can use tools:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_agent import BaseAgent
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 # Define a tool function
 def get_weather(city: str, units: str = "celsius") -> str:
@@ -209,7 +212,7 @@ Get structured, typed responses from your agent:
 ```python
 import asyncio
 from pydantic import BaseModel, Field
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 # Define output structure
 class MovieReview(BaseModel):
@@ -253,8 +256,8 @@ Maintain conversation context across multiple interactions:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_agents.components.chat_history import JSONChatHistory
+from rakam_system_agent import BaseAgent
+from rakam_system_agent.components.chat_history import JSONChatHistory
 
 async def main():
     # Initialize chat history
@@ -298,8 +301,8 @@ For production deployments with PostgreSQL:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_agents.components.chat_history import PostgresChatHistory
+from rakam_system_agent import BaseAgent
+from rakam_system_agent.components.chat_history import PostgresChatHistory
 
 async def main():
     # Initialize PostgreSQL chat history
@@ -352,8 +355,8 @@ For local development with SQLite:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_agents.components.chat_history import SQLChatHistory
+from rakam_system_agent import BaseAgent
+from rakam_system_agent.components.chat_history import SQLChatHistory
 
 async def main():
     # Initialize SQLite chat history
@@ -391,7 +394,11 @@ asyncio.run(main())
 
 ## Quick Start: Configurable Agent
 
-Create agents from YAML configuration files for production deployments:
+**The Power of Configuration-First Design**: Create agents from YAML configuration files and change behavior without touching your code! This is perfect for:
+- **Production deployments**: Tune parameters without redeploying
+- **A/B testing**: Test different models/settings by swapping config files
+- **Environment management**: Different configs for dev/staging/production
+- **Rapid iteration**: Experiment with prompts, tools, and settings instantly
 
 ### Agent Configuration File
 
@@ -438,7 +445,7 @@ tools:
   get_weather:
     name: "get_weather"
     type: "direct"
-    module: "rakam_systems.ai_agents.components.tools.example_tools"
+    module: "rakam_system_agent.components.tools.example_tools"
     function: "get_current_weather"
     description: "Get the current weather for a location"
     category: "utility"
@@ -459,7 +466,7 @@ tools:
   analyze_sentiment:
     name: "analyze_sentiment"
     type: "direct"
-    module: "rakam_systems.ai_agents.components.tools.example_tools"
+    module: "rakam_system_agent.components.tools.example_tools"
     function: "analyze_sentiment"
     description: "Analyze the sentiment of text"
     category: "nlp"
@@ -540,16 +547,20 @@ agents:
 
 ### Loading Agents from Configuration
 
+**Key Benefit**: Your application code stays the same - just swap config files!
+
 ```python
 import asyncio
-from rakam_systems.ai_core.config_loader import ConfigurationLoader
+from rakam_system_core.ai_core.config_loader import ConfigurationLoader
 
 async def main():
     # Initialize configuration loader
     loader = ConfigurationLoader()
     
     # Load configuration from YAML
-    config = loader.load_from_yaml("config/agent_config.yaml")
+    # Change behavior by using different config files - no code changes!
+    config_file = "config/agent_config.yaml"  # or "config/agent_config_prod.yaml"
+    config = loader.load_from_yaml(config_file)
     
     # Validate configuration (optional but recommended)
     is_valid, errors = loader.validate_config()
@@ -561,7 +572,7 @@ async def main():
     # Create a single agent
     support_agent = loader.create_agent("support_agent", config)
     
-    # Use the agent
+    # Use the agent - behavior determined by config, not code!
     result = await support_agent.arun("What's the weather in New York?")
     print(f"Support Agent: {result.output_text}")
     
@@ -581,11 +592,34 @@ async def main():
 asyncio.run(main())
 ```
 
+**Example: Switching Models Without Code Changes**
+
+```bash
+# Development: Use faster, cheaper model
+# config/agent_config_dev.yaml
+agents:
+  my_agent:
+    llm_config:
+      model: openai:gpt-4o-mini
+      temperature: 0.7
+
+# Production: Use more capable model
+# config/agent_config_prod.yaml
+agents:
+  my_agent:
+    llm_config:
+      model: openai:gpt-4o
+      temperature: 0.5
+
+# Application code stays the same - just change config file path!
+# config = loader.load_from_yaml("config/agent_config_prod.yaml")
+```
+
 ### Using Tool Registry
 
 ```python
-from rakam_systems.ai_core.config_loader import ConfigurationLoader
-from rakam_systems.ai_core.interfaces.tool_registry import ToolRegistry
+from rakam_system_core.ai_core.config_loader import ConfigurationLoader
+from rakam_system_core.ai_core.interfaces.tool_registry import ToolRegistry
 
 loader = ConfigurationLoader()
 config = loader.load_from_yaml("config/agent_config.yaml")
@@ -650,8 +684,8 @@ Create a vector store for semantic search:
 ### Using FAISS (In-Memory)
 
 ```python
-from rakam_systems.ai_vectorstore.components.vectorstore.faiss_vector_store import FaissStore
-from rakam_systems.ai_vectorstore.core import Node, NodeMetadata
+from rakam_system_vectorstore.components.vectorstore.faiss_vector_store import FaissStore
+from rakam_system_vectorstore.core import Node, NodeMetadata
 
 # Create sample documents
 documents = [
@@ -709,7 +743,7 @@ if not settings.configured:
     settings.configure(
         INSTALLED_APPS=[
             'django.contrib.contenttypes',
-            'rakam_systems.ai_vectorstore.components.vectorstore',
+            'rakam_system_vectorstore.components.vectorstore',
         ],
         DATABASES={
             'default': {
@@ -725,7 +759,7 @@ if not settings.configured:
     )
     django.setup()
 
-from rakam_systems.ai_vectorstore import (
+from rakam_system_vectorstore import (
     ConfigurablePgVectorStore,
     VectorStoreConfig,
     Node,
@@ -775,12 +809,19 @@ store.shutdown()
 
 ## Quick Start: Configurable Vector Store
 
-The `ConfigurablePgVectorStore` provides a production-ready vector store with comprehensive configuration options.
+**Configuration-Driven Vector Storage**: The `ConfigurablePgVectorStore` lets you change your entire vector store setup without modifying code:
+
+- **Switch embedding models**: From local to OpenAI embeddings by editing config
+- **Change search algorithms**: Toggle between BM25 and ts_rank for keyword search
+- **Adjust search behavior**: Change similarity metrics, hybrid search weights, etc.
+- **Tune performance**: Modify batch sizes, chunk sizes, all via YAML
+
+**Perfect for**: Testing different embedding models, optimizing search relevance, environment-specific settings
 
 ### VectorStoreConfig Overview
 
 ```python
-from rakam_systems.ai_vectorstore.config import (
+from rakam_system_vectorstore.config import (
     VectorStoreConfig,
     EmbeddingConfig,
     DatabaseConfig,
@@ -879,27 +920,61 @@ log_level: INFO
 Load and use:
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+from rakam_system_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
 
-# Load from YAML
+# Load from YAML - all behavior controlled by config!
 config = VectorStoreConfig.from_yaml("config/vectorstore.yaml")
 
 # Or load from JSON
 config = VectorStoreConfig.from_json("config/vectorstore.json")
 
 # Or use the helper function (auto-detects format)
-from rakam_systems.ai_vectorstore.config import load_config
+from rakam_system_vectorstore.config import load_config
 config = load_config("config/vectorstore.yaml")
 
-# Create store
+# Create store - behavior defined entirely by config
 store = ConfigurablePgVectorStore(config=config)
 store.setup()
+```
+
+**Example: Switching Embedding Models Without Code Changes**
+
+```yaml
+# config/vectorstore_local.yaml - Use local embeddings (free, private)
+embedding:
+  model_type: sentence_transformer
+  model_name: Snowflake/snowflake-arctic-embed-m
+
+# config/vectorstore_openai.yaml - Use OpenAI embeddings (better quality)
+embedding:
+  model_type: openai
+  model_name: text-embedding-3-large
+
+# Application code stays the same - just change config file!
+# config = VectorStoreConfig.from_yaml("config/vectorstore_openai.yaml")
+```
+
+**Example: Enabling Hybrid Search Without Code Changes**
+
+```yaml
+# Before: Vector search only
+search:
+  similarity_metric: cosine
+  default_top_k: 5
+  enable_hybrid_search: false
+
+# After: Hybrid search enabled - just update config!
+search:
+  similarity_metric: cosine
+  default_top_k: 5
+  enable_hybrid_search: true
+  hybrid_alpha: 0.7
 ```
 
 ### Using Different Embedding Models
 
 ```python
-from rakam_systems.ai_vectorstore.config import VectorStoreConfig, EmbeddingConfig
+from rakam_system_vectorstore.config import VectorStoreConfig, EmbeddingConfig
 
 # Local embeddings with Sentence Transformers
 config_local = VectorStoreConfig(
@@ -935,7 +1010,7 @@ config_cohere = VectorStoreConfig(
 Each embedding model automatically gets dedicated tables, preventing mixing of incompatible vector spaces:
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig, EmbeddingConfig
+from rakam_system_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig, EmbeddingConfig
 
 # Store using MiniLM model
 config_minilm = VectorStoreConfig(
@@ -967,7 +1042,7 @@ store_arctic = ConfigurablePgVectorStore(config=config_arctic)
 Combine vector similarity with keyword search:
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+from rakam_system_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
 
 config = VectorStoreConfig()
 config.search.enable_hybrid_search = True
@@ -995,7 +1070,7 @@ for r in results:
 Full-text search using PostgreSQL's BM25 or ts_rank:
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+from rakam_system_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
 
 # Configure keyword search
 config = VectorStoreConfig(
@@ -1010,7 +1085,7 @@ store = ConfigurablePgVectorStore(config=config)
 store.setup()
 
 # Add some documents
-from rakam_systems.ai_vectorstore import Node, NodeMetadata
+from rakam_system_vectorstore import Node, NodeMetadata
 
 nodes = [
     Node(
@@ -1070,7 +1145,7 @@ if not settings.configured:
     settings.configure(
         INSTALLED_APPS=[
             'django.contrib.contenttypes',
-            'rakam_systems.ai_vectorstore.components.vectorstore',
+            'rakam_system_vectorstore.components.vectorstore',
         ],
         DATABASES={
             'default': {
@@ -1086,14 +1161,14 @@ if not settings.configured:
     )
     django.setup()
 
-from rakam_systems.ai_vectorstore import (
+from rakam_system_vectorstore import (
     ConfigurablePgVectorStore,
     VectorStoreConfig,
     Node,
     NodeMetadata,
     VSFile
 )
-from rakam_systems.ai_vectorstore.components.loader import AdaptiveLoader
+from rakam_system_vectorstore.components.loader import AdaptiveLoader
 
 # Create configuration
 config = VectorStoreConfig.from_yaml("config/vectorstore.yaml")
@@ -1211,10 +1286,10 @@ Build a complete Retrieval-Augmented Generation pipeline:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_vectorstore.components.vectorstore.faiss_vector_store import FaissStore
-from rakam_systems.ai_vectorstore.components.loader import AdaptiveLoader
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_agent import BaseAgent
+from rakam_system_vectorstore.components.vectorstore.faiss_vector_store import FaissStore
+from rakam_system_vectorstore.components.loader import AdaptiveLoader
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 # Step 1: Load and index documents
 loader = AdaptiveLoader(config={"chunk_size": 512, "chunk_overlap": 50})
@@ -1223,7 +1298,7 @@ loader = AdaptiveLoader(config={"chunk_size": 512, "chunk_overlap": 50})
 # nodes = loader.load_as_nodes("path/to/document.pdf")
 
 # For demo, use sample text
-from rakam_systems.ai_vectorstore.core import Node, NodeMetadata
+from rakam_system_vectorstore.core import Node, NodeMetadata
 
 sample_docs = [
     "Our company was founded in 2020 and specializes in AI solutions.",
@@ -1311,7 +1386,7 @@ asyncio.run(main())
 Use the LLM Gateway for direct LLM interactions:
 
 ```python
-from rakam_systems.ai_agents.components.llm_gateway import (
+from rakam_system_agent.components.llm_gateway import (
     OpenAIGateway,
     MistralGateway,
     LLMGatewayFactory,
@@ -1341,7 +1416,7 @@ print(f"Tokens used: {response.usage}")
 
 ```python
 from pydantic import BaseModel
-from rakam_systems.ai_agents.components.llm_gateway import OpenAIGateway, LLMRequest
+from rakam_system_agent.components.llm_gateway import OpenAIGateway, LLMRequest
 
 class Recipe(BaseModel):
     name: str
@@ -1366,7 +1441,7 @@ print(f"Ingredients: {', '.join(recipe.ingredients)}")
 ### Streaming with Gateway
 
 ```python
-from rakam_systems.ai_agents.components.llm_gateway import OpenAIGateway, LLMRequest
+from rakam_system_agent.components.llm_gateway import OpenAIGateway, LLMRequest
 
 gateway = OpenAIGateway(model="gpt-4o")
 
@@ -1388,7 +1463,7 @@ print()
 Load and process various document types:
 
 ```python
-from rakam_systems.ai_vectorstore.components.loader import AdaptiveLoader
+from rakam_system_vectorstore.components.loader import AdaptiveLoader
 
 # Create loader
 loader = AdaptiveLoader(config={
@@ -1471,7 +1546,7 @@ agents:
 ```
 
 ```python
-from rakam_systems.ai_core.config_loader import ConfigurationLoader
+from rakam_system_core.ai_core.config_loader import ConfigurationLoader
 
 loader = ConfigurationLoader()
 
@@ -1520,7 +1595,7 @@ Now that you've completed the quick start:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 async def main():
     agent = BaseAgent(
@@ -1541,7 +1616,7 @@ asyncio.run(main())
 ### Context Manager Pattern
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore
+from rakam_system_vectorstore import ConfigurablePgVectorStore
 
 # Automatic setup and cleanup
 with ConfigurablePgVectorStore(config=config) as store:
@@ -1554,7 +1629,7 @@ with ConfigurablePgVectorStore(config=config) as store:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 async def process_queries(queries: list[str]):
     agent = BaseAgent(

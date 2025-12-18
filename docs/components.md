@@ -5,50 +5,70 @@ Rakam Systems is a modular AI framework designed to build production-ready AI ap
 ## 📑 Table of Contents
 
 1. [🏗️ Architecture Overview](#️-architecture-overview)
-2. [🧱 Core Module (`ai_core`)](#-core-module-ai_core)
-3. [🤖 Agents Module (`ai_agents`)](#-agents-module-ai_agents)
-4. [🔍 Vector Store Module (`ai_vectorstore`)](#-vector-store-module-ai_vectorstore)
-5. [🛠️ Utilities Module (`ai_utils`)](#️-utilities-module-ai_utils)
-6. [⚙️ Configuration System](#️-configuration-system)
-7. [🚀 Quick Start Examples](#-quick-start-examples)
-8. [🌍 Environment Variables](#-environment-variables)
-9. [✅ Best Practices](#-best-practices)
-10. [📚 Further Reading](#-further-reading)
+2. [🧱 Core Package (`rakam-system-core`)](#-core-package-rakam-system-core)
+3. [🤖 Agent Package (`rakam-system-agent`)](#-agent-package-rakam-system-agent)
+4. [🔍 Vectorstore Package (`rakam-system-vectorstore`)](#-vectorstore-package-rakam-system-vectorstore)
+5. [⚙️ Configuration System](#️-configuration-system)
+6. [🚀 Quick Start Examples](#-quick-start-examples)
+7. [🌍 Environment Variables](#-environment-variables)
+8. [✅ Best Practices](#-best-practices)
+9. [📚 Further Reading](#-further-reading)
 
 ---
 
 ## 🏗️ Architecture Overview
 
-Rakam Systems is organized into four main modules:
+Rakam Systems is organized into three independent packages:
 
 ```
-rakam_systems/
-├── ai_core/           # Core abstractions, interfaces, and base classes
-├── ai_agents/         # Agent implementations and LLM gateways
-├── ai_vectorstore/    # Vector storage, embeddings, and document loading
-├── ai_utils/          # Logging, metrics, and tracing utilities
-└── examples/          # Usage examples and configuration templates
+rakam-systems-inhouse/
+├── rakam-system-core/           # Core abstractions, interfaces, and base classes
+│   └── src/rakam_system_core/
+│       ├── ai_core/             # Core interfaces and base component
+│       │   ├── base.py          # BaseComponent
+│       │   ├── interfaces/      # Abstract interfaces
+│       │   ├── config_loader.py # Configuration system
+│       │   └── tracking.py      # Input/output tracking
+│       └── ai_utils/            # Logging utilities
+├── rakam-system-agent/          # Agent implementations (depends on core)
+│   └── src/rakam_system_agent/
+│       └── components/
+│           ├── base_agent.py    # BaseAgent implementation
+│           ├── llm_gateway/     # LLM provider gateways
+│           ├── chat_history/    # Chat history backends
+│           └── tools/           # Built-in tools
+└── rakam-system-vectorstore/    # Vector storage (depends on core)
+    └── src/rakam_system_vectorstore/
+        ├── core.py              # Node, VSFile data structures
+        ├── config.py            # VectorStoreConfig
+        └── components/
+            ├── vectorstore/     # Store implementations
+            ├── embedding_model/ # Embedding models
+            ├── loader/          # Document loaders
+            └── chunker/         # Text chunkers
 ```
 
 ### Design Principles
 
-- **Component-Based Architecture**: All components extend `BaseComponent` with lifecycle management (`setup()`, `shutdown()`)
+- **Modular Architecture**: Three independent packages that can be installed separately
+- **Clear Dependencies**: Agent and vectorstore packages depend on core
+- **Component-Based**: All components extend `BaseComponent` with lifecycle management (`setup()`, `shutdown()`)
 - **Interface-Driven**: Abstract interfaces define contracts for extensibility
 - **Configuration-First**: YAML/JSON configuration support for all components
 - **Provider-Agnostic**: Support for multiple LLM providers, embedding models, and vector stores
 
 ---
 
-## Core Module (`ai_core`)
+## Core Package (`rakam-system-core`)
 
-The core module provides foundational abstractions used throughout the system.
+The core package provides foundational abstractions used throughout the system. This package must be installed before using agent or vectorstore packages.
 
 ### BaseComponent
 
 The base class for all components, providing lifecycle management and evaluation capabilities.
 
 ```python
-from rakam_systems.ai_core.base import BaseComponent
+from rakam_system_core.ai_core.base import BaseComponent
 
 class BaseComponent(ABC):
     """
@@ -86,7 +106,7 @@ Located in `ai_core/interfaces/`, these define the contracts for various compone
 #### AgentComponent
 
 ```python
-from rakam_systems.ai_core.interfaces.agent import AgentComponent, AgentInput, AgentOutput
+from rakam_system_core.ai_core.interfaces.agent import AgentComponent, AgentInput, AgentOutput
 
 class AgentInput:
     """Input DTO for agents."""
@@ -111,7 +131,7 @@ class AgentComponent(BaseComponent, ABC):
 #### ToolComponent
 
 ```python
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 class ToolComponent(BaseComponent, ABC):
     """
@@ -135,7 +155,7 @@ class ToolComponent(BaseComponent, ABC):
 Central registry for managing tools across the system:
 
 ```python
-from rakam_systems.ai_core.interfaces.tool_registry import ToolRegistry, ToolMode
+from rakam_system_core.ai_core.interfaces.tool_registry import ToolRegistry, ToolMode
 
 registry = ToolRegistry()
 
@@ -166,7 +186,7 @@ tools = registry.get_tools_by_mode(ToolMode.DIRECT)
 #### LLMGateway
 
 ```python
-from rakam_systems.ai_core.interfaces.llm_gateway import LLMGateway, LLMRequest, LLMResponse
+from rakam_system_core.ai_core.interfaces.llm_gateway import LLMGateway, LLMRequest, LLMResponse
 
 class LLMRequest(BaseModel):
     system_prompt: Optional[str]
@@ -194,7 +214,7 @@ class LLMGateway(BaseComponent, ABC):
 #### VectorStore
 
 ```python
-from rakam_systems.ai_core.interfaces.vectorstore import VectorStore
+from rakam_system_core.ai_core.interfaces.vectorstore import VectorStore
 
 class VectorStore(BaseComponent, ABC):
     """Abstract vector store interface."""
@@ -207,7 +227,7 @@ class VectorStore(BaseComponent, ABC):
 #### Loader
 
 ```python
-from rakam_systems.ai_core.interfaces.loader import Loader
+from rakam_system_core.ai_core.interfaces.loader import Loader
 
 class Loader(BaseComponent, ABC):
     """Abstract document loader interface."""
@@ -223,7 +243,7 @@ class Loader(BaseComponent, ABC):
 Built-in input/output tracking for debugging and evaluation:
 
 ```python
-from rakam_systems.ai_core.tracking import TrackingManager, track_method, TrackingMixin
+from rakam_system_core.ai_core.tracking import TrackingManager, track_method, TrackingMixin
 
 class MyAgent(TrackingMixin, BaseAgent):
     @track_method()
@@ -246,7 +266,7 @@ stats = agent.get_tracking_statistics()
 Load agent configurations from YAML files:
 
 ```python
-from rakam_systems.ai_core.config_loader import ConfigurationLoader
+from rakam_system_core.ai_core.config_loader import ConfigurationLoader
 
 loader = ConfigurationLoader()
 config = loader.load_from_yaml("agent_config.yaml")
@@ -264,15 +284,17 @@ is_valid, errors = loader.validate_config("config.yaml")
 
 ---
 
-## 🤖 Agents Module (`ai_agents`)
+## 🤖 Agent Package (`rakam-system-agent`)
+
+The agent package provides AI agent implementations powered by Pydantic AI. Install with `pip install -e ./rakam-system-agent` (requires core).
 
 ### BaseAgent
 
 The main agent implementation using Pydantic AI:
 
 ```python
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_core.interfaces.agent import AgentInput, AgentOutput, ModelSettings
+from rakam_system_agent import BaseAgent
+from rakam_system_core.ai_core.interfaces.agent import AgentInput, AgentOutput, ModelSettings
 
 agent = BaseAgent(
     name="my_agent",
@@ -354,7 +376,7 @@ result = await agent.arun(
 #### OpenAI Gateway
 
 ```python
-from rakam_systems.ai_agents import OpenAIGateway, LLMRequest
+from rakam_system_agent import OpenAIGateway, LLMRequest
 
 gateway = OpenAIGateway(
     model="gpt-4o",
@@ -392,7 +414,7 @@ token_count = gateway.count_tokens("Hello, world!")
 #### Mistral Gateway
 
 ```python
-from rakam_systems.ai_agents import MistralGateway
+from rakam_system_agent import MistralGateway
 
 gateway = MistralGateway(
     model="mistral-large-latest",
@@ -403,7 +425,7 @@ gateway = MistralGateway(
 #### Gateway Factory
 
 ```python
-from rakam_systems.ai_agents import LLMGatewayFactory, get_llm_gateway
+from rakam_system_agent import LLMGatewayFactory, get_llm_gateway
 
 # Using factory
 gateway = LLMGatewayFactory.create(
@@ -421,7 +443,7 @@ gateway = get_llm_gateway(provider="openai", model="gpt-4o")
 #### JSON Chat History
 
 ```python
-from rakam_systems.ai_agents.components.chat_history import JSONChatHistory
+from rakam_system_agent.components.chat_history import JSONChatHistory
 
 history = JSONChatHistory(config={"storage_path": "./chat_history.json"})
 
@@ -447,7 +469,7 @@ history.clear_all()
 #### SQL Chat History (SQLite)
 
 ```python
-from rakam_systems.ai_agents.components.chat_history import SQLChatHistory
+from rakam_system_agent.components.chat_history import SQLChatHistory
 
 history = SQLChatHistory(config={"db_path": "./chat_history.db"})
 
@@ -469,7 +491,7 @@ history.save_messages("chat123", result.all_messages())
 For production deployments with PostgreSQL-backed storage:
 
 ```python
-from rakam_systems.ai_agents.components.chat_history import PostgresChatHistory
+from rakam_system_agent.components.chat_history import PostgresChatHistory
 
 # Configuration
 history = PostgresChatHistory(config={
@@ -507,12 +529,14 @@ history.shutdown()
 
 ---
 
-## 🔍 Vector Store Module (`ai_vectorstore`)
+## 🔍 Vectorstore Package (`rakam-system-vectorstore`)
+
+The vectorstore package provides vector database solutions and document processing. Install with `pip install -e ./rakam-system-vectorstore` (requires core).
 
 ### Core Data Structures
 
 ```python
-from rakam_systems.ai_vectorstore.core import Node, NodeMetadata, VSFile
+from rakam_system_vectorstore.core import Node, NodeMetadata, VSFile
 
 # VSFile - Represents a document source
 vsfile = VSFile(file_path="/path/to/document.pdf")
@@ -535,7 +559,7 @@ node.embedding = [0.1, 0.2, 0.3, ...]  # Set after embedding
 Enhanced PostgreSQL vector store with full configuration support:
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+from rakam_system_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
 
 # From configuration object
 config = VectorStoreConfig()
@@ -592,7 +616,7 @@ store.shutdown()
 Full-text search using PostgreSQL's built-in capabilities with BM25 or ts_rank ranking:
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
+from rakam_system_vectorstore import ConfigurablePgVectorStore, VectorStoreConfig
 
 config = VectorStoreConfig(
     search={
@@ -658,7 +682,7 @@ store = ConfigurablePgVectorStore(
 Multi-backend embedding model with unified interface:
 
 ```python
-from rakam_systems.ai_vectorstore import ConfigurableEmbeddings, create_embedding_model
+from rakam_system_vectorstore import ConfigurableEmbeddings, create_embedding_model
 
 # Using Sentence Transformers (local)
 embeddings = ConfigurableEmbeddings(config={
@@ -731,7 +755,7 @@ embeddings = create_embedding_model(
 Automatically detects and processes various file types:
 
 ```python
-from rakam_systems.ai_vectorstore import AdaptiveLoader, create_adaptive_loader
+from rakam_system_vectorstore import AdaptiveLoader, create_adaptive_loader
 
 loader = AdaptiveLoader(config={
     "encoding": "utf-8",
@@ -795,7 +819,7 @@ Located in `ai_vectorstore/components/loader/`:
 A lightweight alternative to PdfLoader using pymupdf4llm for efficient PDF processing:
 
 ```python
-from rakam_systems.ai_vectorstore.components.loader import PdfLoaderLight
+from rakam_system_vectorstore.components.loader import PdfLoaderLight
 
 loader = PdfLoaderLight(
     name="pdf_loader_light",
@@ -836,7 +860,7 @@ for img_id, img_path in image_paths.items():
 Multiple loaders now support image extraction:
 
 ```python
-from rakam_systems.ai_vectorstore.components.loader import DocLoader, OdtLoader, PdfLoaderLight
+from rakam_system_vectorstore.components.loader import DocLoader, OdtLoader, PdfLoaderLight
 
 # DocLoader with image extraction
 doc_loader = DocLoader(config={
@@ -870,7 +894,7 @@ nodes = pdf_loader.load_as_nodes("document.pdf")
 Sentence-based text chunking using Chonkie:
 
 ```python
-from rakam_systems.ai_vectorstore.components.chunker import TextChunker, create_text_chunker
+from rakam_system_vectorstore.components.chunker import TextChunker, create_text_chunker
 
 chunker = TextChunker(
     chunk_size=512,        # Tokens per chunk
@@ -891,7 +915,7 @@ all_chunks = chunker.run(["doc1 text", "doc2 text"])
 Advanced document chunking using Docling for context-aware chunking with heading preservation:
 
 ```python
-from rakam_systems.ai_vectorstore.components.chunker import AdvancedChunker
+from rakam_system_vectorstore.components.chunker import AdvancedChunker
 
 chunker = AdvancedChunker(
     name="advanced_chunker",
@@ -938,12 +962,12 @@ More content...
 
 ---
 
-## 🛠️ Utilities Module (`ai_utils`)
+### Logging Utilities
 
-### Logging
+The core package includes logging utilities:
 
 ```python
-from rakam_systems.ai_utils import logging
+from rakam_system_core.ai_utils import logging
 
 logger = logging.getLogger(__name__)
 logger.info("Processing document...")
@@ -951,18 +975,72 @@ logger.debug("Detailed debug info")
 logger.error("An error occurred")
 ```
 
-### Metrics and Tracing
-
-For production monitoring and observability.
-
 ---
 
 ## ⚙️ Configuration System
 
+**The Core Advantage: Configuration Without Code Changes**
+
+Rakam Systems embraces a configuration-first approach, allowing you to modify agent behavior, vector store settings, and system parameters without touching your application code. This provides:
+
+### Benefits of Configuration-First Design
+
+1. **Rapid Iteration**: Test different models, prompts, or parameters instantly
+2. **Environment Management**: Use different configs for dev/staging/production
+3. **A/B Testing**: Compare performance of different settings by swapping configs
+4. **Team Collaboration**: Non-developers can tune prompts and parameters
+5. **Cost Optimization**: Switch to cheaper models for development, expensive for production
+6. **Risk Reduction**: Change behavior without code deployment risks
+
+### Real-World Scenarios
+
+**Scenario 1: Model Optimization**
+```yaml
+# Week 1: Start with GPT-4o
+model: openai:gpt-4o
+temperature: 0.7
+
+# Week 2: Test GPT-4o-mini for cost savings (no code changes!)
+model: openai:gpt-4o-mini
+temperature: 0.7
+
+# Week 3: Back to GPT-4o for production (just revert config)
+model: openai:gpt-4o
+temperature: 0.5  # Also tuned temperature
+```
+
+**Scenario 2: Search Algorithm Testing**
+```yaml
+# Current: Using BM25 for keyword search
+search:
+  keyword_ranking_algorithm: bm25
+  
+# Test: Try ts_rank (just update config, no code changes!)
+search:
+  keyword_ranking_algorithm: ts_rank
+  
+# Decide: Compare results and keep the best one
+```
+
+**Scenario 3: Multi-Environment Deployment**
+```python
+# Application code (never changes)
+import os
+config_file = os.getenv("AGENT_CONFIG", "config/agent_config.yaml")
+config = loader.load_from_yaml(config_file)
+agent = loader.create_agent("my_agent", config)
+
+# Dev: AGENT_CONFIG=config/agent_config_dev.yaml
+# Staging: AGENT_CONFIG=config/agent_config_staging.yaml  
+# Prod: AGENT_CONFIG=config/agent_config_prod.yaml
+```
+
+## ⚙️ Configuration System Details
+
 ### VectorStoreConfig
 
 ```python
-from rakam_systems.ai_vectorstore.config import (
+from rakam_system_vectorstore.config import (
     VectorStoreConfig,
     EmbeddingConfig,
     DatabaseConfig,
@@ -1117,7 +1195,7 @@ tools:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 async def main():
     agent = BaseAgent(
@@ -1136,8 +1214,8 @@ asyncio.run(main())
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_agent import BaseAgent
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 def get_weather(city: str) -> str:
     return f"The weather in {city} is sunny, 25°C"
@@ -1170,7 +1248,7 @@ asyncio.run(main())
 ### Document Search Pipeline
 
 ```python
-from rakam_systems.ai_vectorstore import (
+from rakam_system_vectorstore import (
     ConfigurablePgVectorStore,
     VectorStoreConfig,
     AdaptiveLoader
@@ -1202,9 +1280,9 @@ store.shutdown()
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore, AdaptiveLoader, VectorStoreConfig
-from rakam_systems.ai_core.interfaces.tool import ToolComponent
+from rakam_system_agent import BaseAgent
+from rakam_system_vectorstore import ConfigurablePgVectorStore, AdaptiveLoader, VectorStoreConfig
+from rakam_system_core.ai_core.interfaces.tool import ToolComponent
 
 # Setup vector store
 config = VectorStoreConfig()
@@ -1286,8 +1364,8 @@ The system supports the following environment variables:
 
 ## 📚 Further Reading
 
-- Example configurations: `rakam_systems/examples/configs/`
-- Agent examples: `rakam_systems/examples/ai_agents_examples/`
-- Vector store examples: `rakam_systems/examples/ai_vectorstore_examples/`
-- Loader documentation: `rakam_systems/ai_vectorstore/components/loader/docs/`
-- Architecture documentation: `rakam_systems/ai_vectorstore/docs/ARCHITECTURE.md`
+- Example configurations: `examples/configs/`
+- Agent examples: `examples/ai_agents_examples/`
+- Vector store examples: `examples/ai_vectorstore_examples/`
+- Loader documentation: `rakam-system-vectorstore/src/rakam_system_vectorstore/components/loader/docs/`
+- Architecture documentation: `rakam-system-vectorstore/src/rakam_system_vectorstore/docs/ARCHITECTURE.md`

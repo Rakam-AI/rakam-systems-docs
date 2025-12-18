@@ -1,6 +1,6 @@
 # Rakam Systems Installation Guide
 
-Complete installation instructions for the `rakam_systems` modular AI framework.
+Complete installation instructions for Rakam Systems - a modular AI framework organized into three independent packages.
 
 ## 📑 Table of Contents
 
@@ -17,40 +17,41 @@ Complete installation instructions for the `rakam_systems` modular AI framework.
 
 ## Quick Start
 
-### Option 1: Install Everything
+### Option 1: Install All Packages
 
 ```bash
-# Navigate to the package directory
-cd app/rakam_systems
+# Install all three packages
+pip install -e ./rakam-system-core
+pip install -e ./rakam-system-agent
+pip install -e ./rakam-system-vectorstore
 
-# Install all features
-pip install -e ".[all]"
+# Or in one command
+pip install -e ./rakam-system-core ./rakam-system-agent ./rakam-system-vectorstore
 ```
 
-### Option 2: Install Specific Modules
+### Option 2: Install Specific Packages
 
 ```bash
-# AI Agents only
-pip install -e ".[ai-agents]"
+# Core only (required by others)
+pip install -e ./rakam-system-core
 
-# Vector Store only
-pip install -e ".[ai-vectorstore]"
+# Agent package (includes core as dependency)
+pip install -e ./rakam-system-agent
 
-# LLM Gateway only
-pip install -e ".[llm-gateway]"
+# Vectorstore package (includes core as dependency)
+pip install -e ./rakam-system-vectorstore
 
-# Multiple modules
-pip install -e ".[ai-agents,ai-vectorstore]"
+# Agent + Vectorstore (for RAG applications)
+pip install -e ./rakam-system-agent ./rakam-system-vectorstore
 ```
 
-### Option 3: Development Setup
+### Option 3: Install with Extras
 
 ```bash
-# Full installation with dev tools
-pip install -e ".[complete]"
-
-# Setup pre-commit hooks
-pre-commit install
+# Vectorstore with specific backends
+pip install -e "./rakam-system-vectorstore[postgres]"
+pip install -e "./rakam-system-vectorstore[faiss]"
+pip install -e "./rakam-system-vectorstore[all]"
 ```
 
 ---
@@ -85,12 +86,14 @@ pre-commit install
 
 ## Modular Installation
 
-Rakam Systems uses a modular architecture. Install only what you need:
+Rakam Systems uses a modular architecture with three independent packages. Install only what you need:
 
-### Core Package (Minimal)
+### Core Package (Required)
+
+The core package provides foundational interfaces and utilities. It's required by both agent and vectorstore packages.
 
 ```bash
-pip install -e .
+pip install -e ./rakam-system-core
 ```
 
 **Includes:**
@@ -100,10 +103,33 @@ pip install -e .
 - `colorlog` - Logging
 - `requests` - HTTP client
 
-### AI Vectorstore
+### Agent Package
+
+The agent package provides AI agent implementations powered by Pydantic AI.
 
 ```bash
-pip install -e ".[ai-vectorstore]"
+pip install -e ./rakam-system-agent
+```
+
+**Includes:**
+- All core package dependencies
+- `pydantic-ai` - Agent framework
+- `mistralai` - Mistral AI provider
+- `openai` - OpenAI provider
+- `tiktoken` - Token counting
+
+**Use Cases:**
+- Building AI agents with tools
+- Multi-step reasoning systems
+- Conversational AI
+- Structured output generation
+
+### Vectorstore Package
+
+The vectorstore package provides vector database solutions and document processing.
+
+```bash
+pip install -e ./rakam-system-vectorstore
 ```
 
 **Includes:**
@@ -136,97 +162,34 @@ pip install -e ".[ai-vectorstore]"
 - Document Q&A systems
 - Knowledge base management
 
-### AI Agents
+### Package-Specific Extras
+
+Each package supports optional extras for additional features:
 
 ```bash
-pip install -e ".[ai-agents]"
+# Vectorstore with PostgreSQL support
+pip install -e "./rakam-system-vectorstore[postgres]"
+
+# Vectorstore with FAISS support
+pip install -e "./rakam-system-vectorstore[faiss]"
+
+# Vectorstore with local embeddings
+pip install -e "./rakam-system-vectorstore[local-embeddings]"
+
+# Vectorstore with all features
+pip install -e "./rakam-system-vectorstore[all]"
 ```
 
-**Includes:**
+### Combining Packages
 
-| Package | Purpose |
-|---------|---------|
-| `pydantic-ai` | Agent framework |
-| `mistralai` | Mistral AI provider |
-| `tiktoken` | Token counting |
-
-**Use Cases:**
-- Building AI agents with tools
-- Multi-step reasoning systems
-- Conversational AI
-- Structured output generation
-
-### LLM Gateway
+Install multiple packages for complete functionality:
 
 ```bash
-pip install -e ".[llm-gateway]"
-```
+# RAG application (agent + vectorstore)
+pip install -e ./rakam-system-agent ./rakam-system-vectorstore
 
-**Includes:**
-
-| Package | Purpose |
-|---------|---------|
-| `openai` | OpenAI API client |
-| `mistralai` | Mistral AI client |
-| `tiktoken` | Token counting |
-
-**Use Cases:**
-- Multi-provider LLM abstraction
-- Chat interfaces
-- Text generation
-- Structured output
-
-### Document Loaders
-
-```bash
-pip install -e ".[loaders]"
-```
-
-**Includes:**
-
-| Package | Purpose |
-|---------|---------|
-| `beautifulsoup4` | HTML parsing |
-| `python-docx` | Word documents |
-| `pymupdf` | PDF documents |
-| `python-magic` | File type detection |
-| `playwright` | Web scraping |
-| `odfpy` | ODT files |
-| `openpyxl` | Excel files |
-| `docling` | Advanced document parsing |
-| `docling-core` | Core document processing |
-| `docling-ibm-models` | IBM document models |
-| `docling-parse` | Document parsing engine |
-
-### Development Tools
-
-```bash
-pip install -e ".[dev]"
-```
-
-**Includes:**
-
-| Package | Purpose |
-|---------|---------|
-| `pytest` | Testing framework |
-| `pytest-asyncio` | Async test support |
-| `black` | Code formatting |
-| `ruff` | Linting |
-| `pre-commit` | Git hooks |
-
-### Combining Modules
-
-Install multiple modules in a single command:
-
-```bash
-# Agents + Vector Store
-pip install -e ".[ai-agents,ai-vectorstore]"
-
-# Everything except dev tools
-pip install -e ".[all]"
-
-# Everything including dev tools
-pip install -e ".[complete]"
+# Complete installation
+pip install -e ./rakam-system-core ./rakam-system-agent "./rakam-system-vectorstore[all]"
 ```
 
 ---
@@ -238,7 +201,7 @@ pip install -e ".[complete]"
 Build a Retrieval-Augmented Generation system:
 
 ```bash
-pip install -e ".[ai-vectorstore,ai-agents]"
+pip install -e ./rakam-system-agent "./rakam-system-vectorstore[all]"
 ```
 
 This gives you:
@@ -252,7 +215,7 @@ This gives you:
 Build a conversational AI without vector storage:
 
 ```bash
-pip install -e ".[ai-agents]"
+pip install -e ./rakam-system-agent
 ```
 
 ### Recipe 3: Document Processing Pipeline
@@ -260,24 +223,15 @@ pip install -e ".[ai-agents]"
 Process and index documents without AI agents:
 
 ```bash
-pip install -e ".[ai-vectorstore]"
+pip install -e "./rakam-system-vectorstore[all]"
 ```
 
-### Recipe 4: LLM Abstraction Layer
-
-Use multiple LLM providers with a unified interface:
-
-```bash
-pip install -e ".[llm-gateway]"
-```
-
-### Recipe 5: Full Development Environment
+### Recipe 4: Development Environment
 
 Complete setup for contributing:
 
 ```bash
-pip install -e ".[complete]"
-pre-commit install
+pip install -e ./rakam-system-core ./rakam-system-agent "./rakam-system-vectorstore[all]"
 ```
 
 ---
@@ -373,7 +327,7 @@ if not settings.configured:
     settings.configure(
         INSTALLED_APPS=[
             'django.contrib.contenttypes',
-            'rakam_systems.ai_vectorstore.components.vectorstore',
+            'rakam_system_vectorstore.components.vectorstore',
         ],
         DATABASES={
             'default': {
@@ -398,8 +352,8 @@ if not settings.configured:
 
 ```python
 # Test core imports
-from rakam_systems.ai_core.base import BaseComponent
-from rakam_systems.ai_core.interfaces import ToolComponent, VectorStore
+from rakam_system_core.ai_core.base import BaseComponent
+from rakam_system_core.ai_core.interfaces import ToolComponent, VectorStore
 print("✅ Core installed successfully!")
 ```
 
@@ -407,8 +361,8 @@ print("✅ Core installed successfully!")
 
 ```python
 try:
-    from rakam_systems.ai_agents import BaseAgent
-    from rakam_systems.ai_core.interfaces.agent import AgentInput, AgentOutput
+    from rakam_system_agent import BaseAgent
+    from rakam_system_core.ai_core.interfaces.agent import AgentInput, AgentOutput
     print("✅ AI Agents installed successfully!")
 except ImportError as e:
     print(f"❌ AI Agents not installed: {e}")
@@ -418,7 +372,7 @@ except ImportError as e:
 
 ```python
 try:
-    from rakam_systems.ai_vectorstore import (
+    from rakam_system_vectorstore import (
         VectorStoreConfig,
         Node,
         VSFile,
@@ -433,7 +387,7 @@ except ImportError as e:
 
 ```python
 try:
-    from rakam_systems.ai_agents.components.llm_gateway import (
+    from rakam_system_agent.components.llm_gateway import (
         OpenAIGateway,
         MistralGateway,
         LLMGatewayFactory
@@ -469,25 +423,25 @@ def main():
     # Core (always required)
     results.append(check_module(
         "Core",
-        lambda: __import__('rakam_systems.ai_core.base', fromlist=['BaseComponent'])
+        lambda: __import__('rakam_system_core.ai_core.base', fromlist=['BaseComponent'])
     ))
     
     # AI Agents
     results.append(check_module(
         "AI Agents",
-        lambda: __import__('rakam_systems.ai_agents', fromlist=['BaseAgent'])
+        lambda: __import__('rakam_system_agent', fromlist=['BaseAgent'])
     ))
     
     # AI Vectorstore
     results.append(check_module(
         "AI Vectorstore",
-        lambda: __import__('rakam_systems.ai_vectorstore', fromlist=['VectorStoreConfig'])
+        lambda: __import__('rakam_system_vectorstore', fromlist=['VectorStoreConfig'])
     ))
     
     # LLM Gateway
     results.append(check_module(
         "LLM Gateway",
-        lambda: __import__('rakam_systems.ai_agents.components.llm_gateway', fromlist=['OpenAIGateway'])
+        lambda: __import__('rakam_system_agent.components.llm_gateway', fromlist=['OpenAIGateway'])
     ))
     
     print("=" * 50)
@@ -596,7 +550,7 @@ pip install -e .
 #### 2. Missing Optional Dependencies
 
 ```
-ImportError: cannot import name 'BaseAgent' from 'rakam_systems.ai_agents'
+ImportError: cannot import name 'BaseAgent' from 'rakam_system_agent'
 ```
 
 **Solution:** Install the required module:
@@ -618,13 +572,13 @@ import django
 from django.conf import settings
 
 settings.configure(
-    INSTALLED_APPS=['rakam_systems.ai_vectorstore.components.vectorstore'],
+    INSTALLED_APPS=['rakam_system_vectorstore.components.vectorstore'],
     DATABASES={'default': {...}}
 )
 django.setup()
 
 # Now import Django-dependent components
-from rakam_systems.ai_vectorstore import ConfigurablePgVectorStore
+from rakam_system_vectorstore import ConfigurablePgVectorStore
 ```
 
 #### 4. PyTorch Installation Issues
@@ -758,7 +712,7 @@ After installation:
 
 ```python
 import asyncio
-from rakam_systems.ai_agents import BaseAgent
+from rakam_system_agent import BaseAgent
 
 async def main():
     agent = BaseAgent(
