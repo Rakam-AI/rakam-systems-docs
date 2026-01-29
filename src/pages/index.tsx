@@ -69,7 +69,7 @@ export default function Home(): JSX.Element {
 
             <div className="kubeHeroCard">
               <img
-                src="/img/portal-illustration.svg"
+                src="img/portal-illustration.svg"
                 alt="Platform overview"
                 style={{ width: "100%", height: "auto", borderRadius: 14 }}
               />
