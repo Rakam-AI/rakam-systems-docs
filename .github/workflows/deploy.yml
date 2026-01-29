@@ -1,35 +1,50 @@
-name: Deploy MkDocs site to GitHub Pages
+name: Deploy site to Github pages
 
 on:
-    push:
-        branches:
-            - main # Deploy whenever main is updated
-    workflow_dispatch: # Allow manual deployments
+  push:
+    branches:
+      - main 
+  workflow_dispatch: # Allow manual deployments
 permissions:
-    contents: write
+  contents: write
+
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
+  deploy-github-page:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.11"
+      - name: Set up Node.js and yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: "yarn"
 
-            - name: Install MkDocs and dependencies
-              run: |
-                  pip install --upgrade pip
-                  pip install -r requirements.txt
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
-            - name: Build MkDocs site
-              run: mkdocs build --strict
+      - name: Cache yarn dependencies
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-            - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-gh-pages@v4
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: ./site
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile --prefer-offline
+      # Build the App
+      - name: Build App
+        env:
+          DOCS_URL: https://rakam-ai.github.io/
+          DOCS_BASEURL: /rakam-systems-docs/
+        run: yarn run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build 
