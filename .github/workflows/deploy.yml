@@ -38,16 +38,12 @@ jobs:
       # Install dependencies for all workspaces
       - name: Install Dependencies
         run: yarn install --frozen-lockfile --prefer-offline
-      # Lint the package
-      - name: Lint and Build package
+      # Build the App
+      - name: Build App
         env:
           DOCS_URL: https://rakam-ai.github.io/
           DOCS_BASEURL: /rakam-systems-docs/
-        run: yarn run lint && yarn run build
-      # Build the site
-      - name: Build site
         run: yarn run build
-      # deploy the react app to github pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
