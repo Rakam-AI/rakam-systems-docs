@@ -1,0 +1,183 @@
+/* ---- Kubernetes-inspired, clean & modern ---- */
+
+:root {
+  --ifm-color-primary: #2563eb;
+  --ifm-color-primary-dark: #1d4ed8;
+  --ifm-color-primary-darker: #1e40af;
+  --ifm-color-primary-light: #3b82f6;
+  --ifm-color-primary-lighter: #60a5fa;
+
+  --ifm-navbar-background-color: #0b1220;
+  --ifm-navbar-link-color: rgba(255,255,255,0.86);
+  --ifm-navbar-link-hover-color: #ffffff;
+  --ifm-footer-background-color: #0b1220;
+
+  --ifm-code-font-size: 90%;
+}
+
+[data-theme='dark'] {
+  --ifm-background-color: #0b1220;
+  --ifm-background-surface-color: #0f172a;
+  --ifm-color-content: rgba(255,255,255,0.88);
+  --ifm-color-content-secondary: rgba(255,255,255,0.70);
+}
+
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.kubeHero {
+  position: relative;
+  padding: 3.75rem 1.25rem 3rem;
+  overflow: hidden;
+}
+
+.kubeHero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/img/hero-bg.svg") center/cover no-repeat;
+  transform: scale(1.02);
+  z-index: 0;
+}
+
+.kubeHeroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 996px) {
+  .kubeHeroInner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kubeTitle {
+  color: #ffffff;
+  font-size: 3rem;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+.kubeSubtitle {
+  color: rgba(255,255,255,0.86);
+  font-size: 1.1rem;
+  max-width: 70ch;
+}
+
+.kubeCtas {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.kubeCtas .button {
+  border-radius: 999px;
+  padding: 0.7rem 1.05rem;
+}
+
+.kubeCtas .button--secondary {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.20);
+}
+
+.kubeCtas .button--secondary:hover {
+  background: rgba(255,255,255,0.16);
+  color: #fff;
+}
+
+.kubeHeroCard {
+  border-radius: 18px;
+  border: 1px solid rgba(148,163,184,0.35);
+  background: rgba(15,23,42,0.55);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+}
+
+.kubeGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.kubeCard {
+  grid-column: span 6;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+
+.kubeCard h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+}
+
+.kubeCard p {
+  margin: 0.25rem 0 0.9rem;
+  color: var(--ifm-color-content-secondary);
+}
+
+@media (max-width: 996px) {
+  .kubeCard { grid-column: span 12; }
+}
+
+.kubeSection {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem 0;
+}
+
+.kubeSection h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.kubeSectionLead {
+  color: var(--ifm-color-content-secondary);
+  max-width: 80ch;
+  margin-bottom: 1.2rem;
+}
+
+.kubeQuickLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.kubePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.kubePill:hover {
+  border-color: var(--ifm-color-primary-light);
+  text-decoration: none;
+}
+
+.kubeFooterNote {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem 2.75rem;
+  color: var(--ifm-color-content-secondary);
+}

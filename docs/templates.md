@@ -1,5 +1,0 @@
-#
-
-## Agent Templates
-
-## RAG Template
