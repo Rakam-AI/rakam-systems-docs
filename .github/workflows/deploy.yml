@@ -3,7 +3,7 @@ name: Deploy site to Github pages
 on:
   push:
     branches:
-      - feature/docusaurus-app # Deploy whenever main is updated
+      - main 
   workflow_dispatch: # Allow manual deployments
 permissions:
   contents: write
