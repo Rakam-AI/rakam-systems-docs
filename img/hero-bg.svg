@@ -1,0 +1,21 @@
+<svg width="1440" height="480" viewBox="0 0 1440 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.55" stop-color="#0e2a5a"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+    <pattern id="hex" width="72" height="62.3538" patternUnits="userSpaceOnUse" patternTransform="translate(0 0)">
+      <path d="M36 1 L71 19.1769 L71 43.1769 L36 61.3538 L1 43.1769 L1 19.1769 Z" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+      <path d="M36 1 L71 19.1769 L71 43.1769 L36 61.3538 L1 43.1769 L1 19.1769 Z" fill="rgba(255,255,255,0.03)"/>
+    </pattern>
+    <radialGradient id="r" cx="35%" cy="25%" r="75%">
+      <stop offset="0" stop-color="rgba(255,255,255,0.20)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="480" fill="url(#g)"/>
+  <rect width="1440" height="480" fill="url(#hex)" opacity="0.85"/>
+  <circle cx="520" cy="120" r="260" fill="url(#r)"/>
+  <circle cx="1120" cy="340" r="320" fill="url(#r)" opacity="0.8"/>
+</svg>

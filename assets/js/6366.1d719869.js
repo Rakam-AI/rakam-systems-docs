@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrakam_systems_docs_portal=self.webpackChunkrakam_systems_docs_portal||[]).push([[6366],{6366(s,e,a){a.d(e,{createArchitectureServices:()=>r.S});var r=a(8980);a(7960)}}]);
