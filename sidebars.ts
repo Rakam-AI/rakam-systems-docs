@@ -22,7 +22,8 @@ const sidebars: SidebarsConfig = {
         "core/modules",
         "core/pipelines",
         "core/configuration",
-        "core/observability"
+        "core/observability",
+        "core/s3-utils"
       ]
     },
     {
