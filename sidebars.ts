@@ -40,13 +40,13 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Developer Agent",
-      link: { type: "doc", id: "agent/index" },
-      items: ["tools/evaluation", "tools/s3-utils"],
+      link: { type: "doc", id: "agents/index" },
+      items: [],
     },
     {
       type: "category",
       label: "Vector Store",
-      link: { type: "doc", id: "vector-store/index" },
+      link: { type: "doc", id: "vectorstore/index" },
       items: [],
     },
     {
