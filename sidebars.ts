@@ -11,8 +11,8 @@ const sidebars: SidebarsConfig = {
         "overview/quickstart",
         "overview/installation",
         "overview/concepts",
-        "overview/glossary"
-      ]
+        "overview/glossary",
+      ],
     },
     {
       type: "category",
@@ -23,8 +23,7 @@ const sidebars: SidebarsConfig = {
         "core/pipelines",
         "core/configuration",
         "core/observability",
-        "core/s3-utils"
-      ]
+      ],
     },
     {
       type: "category",
@@ -35,8 +34,32 @@ const sidebars: SidebarsConfig = {
         "sdk/authentication",
         "sdk/clients",
         "sdk/apis",
-        "sdk/versioning"
-      ]
+        "sdk/versioning",
+      ],
+    },
+    {
+      type: "category",
+      label: "Developer Agent",
+      link: { type: "doc", id: "agent/index" },
+      items: ["tools/evaluation", "tools/s3-utils"],
+    },
+    {
+      type: "category",
+      label: "Vector Store",
+      link: { type: "doc", id: "vector-store/index" },
+      items: [],
+    },
+    {
+      type: "category",
+      label: "Developer Tools",
+      link: { type: "doc", id: "tools/evaluation" },
+      items: ["tools/evaluation", "tools/s3-utils"],
+    },
+    {
+      type: "category",
+      label: "Developer CLI",
+      link: { type: "doc", id: "cli/index" },
+      items: [],
     },
     {
       type: "category",
@@ -47,8 +70,8 @@ const sidebars: SidebarsConfig = {
         "console/registry",
         "console/governance",
         "console/rbac",
-        "console/audit"
-      ]
+        "console/audit",
+      ],
     },
     {
       type: "category",
@@ -57,8 +80,8 @@ const sidebars: SidebarsConfig = {
       items: [
         "solutions/templates",
         "solutions/turnkey",
-        "solutions/customization"
-      ]
+        "solutions/customization",
+      ],
     },
     {
       type: "category",
@@ -67,8 +90,8 @@ const sidebars: SidebarsConfig = {
       items: [
         "architecture/system-overview",
         "architecture/runtime",
-        "architecture/diagrams"
-      ]
+        "architecture/diagrams",
+      ],
     },
     {
       type: "category",
@@ -77,8 +100,8 @@ const sidebars: SidebarsConfig = {
       items: [
         "operations/deployment",
         "operations/environments",
-        "operations/troubleshooting"
-      ]
+        "operations/troubleshooting",
+      ],
     },
     {
       type: "category",
@@ -88,8 +111,8 @@ const sidebars: SidebarsConfig = {
         "security/threat-model",
         "security/data-handling",
         "security/compliance",
-        "security/secure-development"
-      ]
+        "security/secure-development",
+      ],
     },
     {
       type: "category",
@@ -100,8 +123,8 @@ const sidebars: SidebarsConfig = {
         "release/lifecycle",
         "release/deprecation",
         "release/changelog",
-        "release/support"
-      ]
+        "release/support",
+      ],
     },
     {
       type: "category",
@@ -110,10 +133,10 @@ const sidebars: SidebarsConfig = {
       items: [
         "contributing/code-of-conduct",
         "contributing/development",
-        "contributing/documentation"
-      ]
-    }
-  ]
+        "contributing/documentation",
+      ],
+    },
+  ],
 };
 
 export default sidebars;
