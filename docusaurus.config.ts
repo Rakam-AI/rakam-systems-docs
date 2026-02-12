@@ -20,7 +20,7 @@ const config: Config = {
 
   i18n: {
     defaultLocale: "en",
-    locales: ["en"]
+    locales: ["en"],
   },
 
   themes: ["@docusaurus/theme-mermaid"],
@@ -37,113 +37,85 @@ const config: Config = {
 
           lastVersion: "current",
           versions: {
-            current: { label: "Next" }
+            current: { label: "Next" },
           },
 
           editUrl: `${repoUrl}/edit/main/${docsPath}/`,
           showLastUpdateAuthor: true,
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
         },
         blog: false,
         sitemap: {
           changefreq: "weekly",
-          priority: 0.5
+          priority: 0.5,
         },
         theme: {
-          customCss: "./src/css/custom.css"
-        }
-      } satisfies Preset.Options
-    ]
+          customCss: "./src/css/custom.css",
+        },
+      } satisfies Preset.Options,
+    ],
   ],
 
   themeConfig: {
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: "light",
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
     announcementBar: {
-      id: 'rakam-systems-beta',
+      id: "rakam-systems-beta",
       content:
         '⭐️ <b>Rakam Systems Docs</b> — This portal is versioned. Use the version dropdown to switch releases. <a href="https://github.com/Rakam-AI/rakam_systems/issues/new/choose">Report an issue</a>.',
-      backgroundColor: '#0b1220',
-      textColor: '#ffffff',
+      backgroundColor: "#0b1220",
+      textColor: "#ffffff",
       isCloseable: true,
     },
 
     navbar: {
       hideOnScroll: true,
-      style: 'dark',
+      style: "dark",
       title: "Rakam Systems",
       logo: {
         alt: "Rakam Systems",
-        src: "img/logo.svg"
+        src: "img/logo.svg",
       },
       items: [
         { to: "/", label: "Docs", position: "left" },
         { to: "/overview/quickstart", label: "Quickstart", position: "left" },
         {
           type: "docsVersionDropdown",
-          position: "right"
+          position: "right",
         },
         {
           href: `${repoUrl}/issues/new/choose`,
           label: "Create issue",
-          position: "right"
+          position: "right",
         },
         {
           href: repoUrl,
           label: "GitHub",
-          position: "right"
-        }
-      ]
+          position: "right",
+        },
+      ],
     },
 
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Docs",
-          items: [
-            { label: "Overview", to: "/overview/" },
-            { label: "Core Library", to: "/core/" },
-            { label: "SDK", to: "/sdk/" },
-            { label: "Developer Console", to: "/console/" },
-            { label: "Solutions", to: "/solutions/" }
-          ]
-        },
-        {
-          title: "Operations",
-          items: [
-            { label: "Architecture", to: "/architecture/" },
-            { label: "Deployment", to: "/operations/deployment" },
-            { label: "Security & Compliance", to: "/security/" },
-            { label: "Release & Maintenance", to: "/release/" }
-          ]
-        },
-        {
-          title: "Community",
-          items: [
-            { label: "Contributing", to: "/contributing/" },
-            { label: "Code of Conduct", to: "/contributing/code-of-conduct" },
-            { label: "GitHub Issues", href: `${repoUrl}/issues` }
-          ]
-        }
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} ${orgName}`
+
+      copyright: `Copyright © ${new Date().getFullYear()} ${orgName}`,
     },
 
     docs: {
       sidebar: {
         hideable: true,
-        autoCollapseCategories: true
-      }
+        autoCollapseCategories: true,
+      },
     },
 
     prism: {
-      additionalLanguages: ["bash", "json", "yaml", "python", "typescript"]
-    }
-  } satisfies Preset.ThemeConfig
+      additionalLanguages: ["bash", "json", "yaml", "python", "typescript"],
+    },
+  } satisfies Preset.ThemeConfig,
 };
 
 export default config;
