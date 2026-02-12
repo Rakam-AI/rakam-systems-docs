@@ -3,8 +3,9 @@ name: Deploy site to Github pages
 on:
   push:
     branches:
-      - main 
-  workflow_dispatch: # Allow manual deployments
+      - main
+  workflow_dispatch:
+
 permissions:
   contents: write
 
@@ -15,6 +16,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      # 👇 NEW STEP: Pull docs from external repo
+      - name: Pull docs from rakam_systems repo
+        run: |
+          git clone --depth 1 --branch chores/restructure https://github.com/Rakam-AI/rakam_systems.git external_repo
+          rm -rf docs
+          cp -r external_repo/docs ./docs
+          rm -rf external_repo
 
       - name: Set up Node.js and yarn
         uses: actions/setup-node@v3
@@ -37,14 +46,15 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile --prefer-offline
-      # Build the App
+
       - name: Build App
         env:
           DOCS_URL: https://rakam-ai.github.io/
           DOCS_BASEURL: /rakam-systems-docs/
         run: yarn run build
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build 
+          publish_dir: ./build
