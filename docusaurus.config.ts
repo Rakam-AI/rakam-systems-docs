@@ -81,7 +81,7 @@ const config: Config = {
       },
       items: [
         { to: "/", label: "Docs", position: "left" },
-        { to: "/overview/quickstart", label: "Quickstart", position: "left" },
+        // { to: "/overview/quickstart", label: "Quickstart", position: "left" },
         {
           type: "docsVersionDropdown",
           position: "right",
