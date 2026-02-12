@@ -1,5 +1,5 @@
 ---
-title: Rakam System Vectorstore
+title: Vectorstore
 ---
 
 # Rakam System Vectorstore

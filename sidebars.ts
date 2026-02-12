@@ -3,67 +3,29 @@ import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 const sidebars: SidebarsConfig = {
   docsSidebar: [
     "intro",
+
     {
       type: "category",
-      label: "Overview",
-      link: { type: "doc", id: "overview/index" },
-      items: [
-        "overview/quickstart",
-        "overview/installation",
-        "overview/concepts",
-        "overview/glossary",
-      ],
+      label: "AI Components",
+      link: { type: "doc", id: "ai-components/agents/index" },
+      items: ["ai-components/agents/index", "ai-components/vectorstore/index"],
     },
+
     {
       type: "category",
-      label: "Core AI Modules Library",
-      link: { type: "doc", id: "core/index" },
-      items: [
-        "core/modules",
-        "core/pipelines",
-        "core/configuration",
-        "core/observability",
-      ],
-    },
-    {
-      type: "category",
-      label: "SDK",
-      link: { type: "doc", id: "sdk/index" },
-      items: [
-        "sdk/quickstart",
-        "sdk/authentication",
-        "sdk/clients",
-        "sdk/apis",
-        "sdk/versioning",
-      ],
-    },
-    {
-      type: "category",
-      label: "Developer Agent",
-      link: { type: "doc", id: "agents/index" },
-      items: [],
-    },
-    {
-      type: "category",
-      label: "Vector Store",
-      link: { type: "doc", id: "vectorstore/index" },
-      items: [],
-    },
-    {
-      type: "category",
-      label: "Developer Tools",
+      label: "Tools",
       link: { type: "doc", id: "tools/evaluation" },
       items: ["tools/evaluation", "tools/s3-utils"],
     },
     {
       type: "category",
-      label: "Developer CLI",
+      label: "CLI",
       link: { type: "doc", id: "cli/index" },
       items: [],
     },
     {
       type: "category",
-      label: "Developer Console",
+      label: "Console",
       link: { type: "doc", id: "console/index" },
       items: [
         "console/getting-started",
@@ -73,59 +35,7 @@ const sidebars: SidebarsConfig = {
         "console/audit",
       ],
     },
-    {
-      type: "category",
-      label: "Templates & Off-the-Shelf Solutions",
-      link: { type: "doc", id: "solutions/index" },
-      items: [
-        "solutions/templates",
-        "solutions/turnkey",
-        "solutions/customization",
-      ],
-    },
-    {
-      type: "category",
-      label: "Architecture",
-      link: { type: "doc", id: "architecture/index" },
-      items: [
-        "architecture/system-overview",
-        "architecture/runtime",
-        "architecture/diagrams",
-      ],
-    },
-    {
-      type: "category",
-      label: "Operations",
-      link: { type: "doc", id: "operations/index" },
-      items: [
-        "operations/deployment",
-        "operations/environments",
-        "operations/troubleshooting",
-      ],
-    },
-    {
-      type: "category",
-      label: "Security & Compliance",
-      link: { type: "doc", id: "security/index" },
-      items: [
-        "security/threat-model",
-        "security/data-handling",
-        "security/compliance",
-        "security/secure-development",
-      ],
-    },
-    {
-      type: "category",
-      label: "Release & Maintenance",
-      link: { type: "doc", id: "release/index" },
-      items: [
-        "release/versioning",
-        "release/lifecycle",
-        "release/deprecation",
-        "release/changelog",
-        "release/support",
-      ],
-    },
+
     {
       type: "category",
       label: "Contributing",
