@@ -9,6 +9,7 @@ const sidebars: SidebarsConfig = {
       link: { type: "doc", id: "getting-started/installation" },
       items: [
         "getting-started/installation",
+        "getting-started/CLI",
         "getting-started/quick_start",
         "getting-started/components",
         "getting-started/development_guide",
