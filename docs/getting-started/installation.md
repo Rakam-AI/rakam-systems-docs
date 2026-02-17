@@ -58,13 +58,13 @@ pip install  rakam-systems==0.2.5rc9
 pip install  rakam-systems-core
 
 # Agent package (includes core as dependency)
-pip install rakam-systems-agent[all]==0.1.1rc9
+pip install rakam-systems-agent[all]==0.1.1rc12
 
 # Vectorstore package (includes core as dependency)
-pip install rakam-systems-vectorstore[all]==0.1.1rc10
+pip install rakam-systems-agent[all]==0.1.1rc11
 
 # Agent + Vectorstore (for RAG applications)
-pip install rakam-systems-agent[all]==0.1.1rc9 rakam-systems-vectorstore[all]==0.1.1rc10
+pip install rakam-systems-agent[all]==0.1.1rc12 rakam-systems-agent[all]==0.1.1rc11
 ```
 
 ---
@@ -263,57 +263,6 @@ if not settings.configured:
 
 ---
 
-## Verification
-
-### Verify Core Installation
-
-```python
-# Test core imports
-from rakam_systems_core.base import BaseComponent
-from rakam_systems_core.interfaces import ToolComponent, VectorStore
-print("✅ Core installed successfully!")
-```
-
-### Verify AI Agents
-
-```python
-try:
-    from rakam_systems_agent import BaseAgent
-    from rakam_systems_core.interfaces.agent import AgentInput, AgentOutput
-    print("✅ AI Agents installed successfully!")
-except ImportError as e:
-    print(f"❌ AI Agents not installed: {e}")
-```
-
-### Verify AI Vectorstore
-
-```python
-try:
-    from rakam_systems_vectorstore import (
-        VectorStoreConfig,
-        Node,
-        VSFile,
-        ConfigurableEmbeddings
-    )
-    print("✅ AI Vectorstore installed successfully!")
-except ImportError as e:
-    print(f"❌ AI Vectorstore not installed: {e}")
-```
-
-### Verify LLM Gateway
-
-```python
-try:
-    from rakam_systems_agent.components.llm_gateway import (
-        OpenAIGateway,
-        MistralGateway,
-        LLMGatewayFactory
-    )
-    print("✅ LLM Gateway installed successfully!")
-except ImportError as e:
-    print(f"❌ LLM Gateway not installed: {e}")
-```
-
 ## Docker Setup
 
 ### Development with Docker
@@ -494,17 +443,55 @@ docker start postgres-vectorstore
 docker compose up -d postgres
 ```
 
-#### 8. Permission Errors
+### Verification
 
-Use a virtual environment:
+#### Verify Core Installation
 
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# or
-.\venv\Scripts\activate  # Windows
+```python
+# Test core imports
+from rakam_systems_core.base import BaseComponent
+from rakam_systems_core.interfaces import ToolComponent, VectorStore
+print("✅ Core installed successfully!")
+```
 
-pip install -e ".[all]"
+#### Verify AI Agents
+
+```python
+try:
+    from rakam_systems_agent import BaseAgent
+    from rakam_systems_core.interfaces.agent import AgentInput, AgentOutput
+    print("✅ AI Agents installed successfully!")
+except ImportError as e:
+    print(f"❌ AI Agents not installed: {e}")
+```
+
+#### Verify AI Vectorstore
+
+```python
+try:
+    from rakam_systems_vectorstore import (
+        VectorStoreConfig,
+        Node,
+        VSFile,
+        ConfigurableEmbeddings
+    )
+    print("✅ AI Vectorstore installed successfully!")
+except ImportError as e:
+    print(f"❌ AI Vectorstore not installed: {e}")
+```
+
+#### Verify LLM Gateway
+
+```python
+try:
+    from rakam_systems_agent.components.llm_gateway import (
+        OpenAIGateway,
+        MistralGateway,
+        LLMGatewayFactory
+    )
+    print("✅ LLM Gateway installed successfully!")
+except ImportError as e:
+    print(f"❌ LLM Gateway not installed: {e}")
 ```
 
 ### Getting Help
