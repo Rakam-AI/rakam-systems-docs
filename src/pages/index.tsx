@@ -52,27 +52,6 @@ export default function Home(): JSX.Element {
                   View on GitHub
                 </a>
               </div>
-
-              <div
-                className="kubeSection"
-                style={{ paddingLeft: 0, paddingRight: 0 }}
-              >
-                <div className="kubeSectionLead">Quick links</div>
-                <div className="kubeQuickLinks">
-                  <Pill to="/core/" label="Core library" />
-                  {/* <Pill to="/sdk/" label="SDK" /> */}
-                  <Pill to="/console/" label="Developer Console" />
-                  {/* <Pill to="/solutions/" label="Solutions" /> */}
-                  {/* <Pill to="/security/" label="Security & Compliance" /> */}
-                  {/* <Pill to="/release/" label="Release & Maintenance" /> */}
-                  <a
-                    className="kubePill"
-                    href="https://github.com/Rakam-AI/rakam_systems/issues/new/choose"
-                  >
-                    Create issue
-                  </a>
-                </div>
-              </div>
             </div>
 
             <div className="kubeHeroCard">
@@ -102,7 +81,7 @@ export default function Home(): JSX.Element {
               Module lifecycle, composition patterns, runtime expectations,
               observability.
             </Card>
-            <Card title="SDK" to="/tools/evaluation">
+            <Card title="SDK" to="/references/tools/evaluation">
               Clients, authentication, API usage patterns, and versioning
               policies.
             </Card>

@@ -3,47 +3,26 @@ import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 const sidebars: SidebarsConfig = {
   docsSidebar: [
     "intro",
-    {
-      type: "category",
-      label: "Getting Started",
-      link: { type: "doc", id: "getting-started/installation" },
-      items: [
-        "getting-started/installation",
-        "getting-started/CLI",
-        "getting-started/quick_start",
-        "getting-started/components",
-        "getting-started/development_guide",
-      ],
-    },
-    {
-      type: "category",
-      label: "AI Components",
-      link: { type: "doc", id: "ai-components/agents/index" },
-      items: ["ai-components/agents/index", "ai-components/vectorstore/index"],
-    },
+    "getting-started",
+    "user-guide",
+    "developer-guide",
 
     {
       type: "category",
-      label: "Tools",
-      link: { type: "doc", id: "tools/evaluation" },
-      items: ["tools/evaluation", "tools/s3-utils"],
-    },
-    {
-      type: "category",
-      label: "CLI",
-      link: { type: "doc", id: "cli/index" },
-      items: [],
-    },
-    {
-      type: "category",
-      label: "Console",
-      link: { type: "doc", id: "console/index" },
+      label: "Reference Guide",
+      link: { type: "doc", id: "references/core" },
       items: [
-        "console/getting-started",
-        "console/registry",
-        "console/governance",
-        "console/rbac",
-        "console/audit",
+        "references/core",
+        "references/cli",
+        "references/agent",
+        "references/vectorstore",
+
+        {
+          type: "category",
+          label: "Tools",
+          link: { type: "doc", id: "references/tools/evaluation" },
+          items: ["references/tools/evaluation", "references/tools/s3-utils"],
+        },
       ],
     },
 
