@@ -85,9 +85,9 @@ export default function Home(): JSX.Element {
               Clients, authentication, API usage patterns, and versioning
               policies.
             </Card>
-            <Card title="Developer Console" to="/console/">
+            {/* <Card title="Developer Console" to="/console/">
               Registry, governance, RBAC, audit, and enterprise controls.
-            </Card>
+            </Card> */}
             <Card title="Solutions" to="/ai-components/agents/">
               Templates and off-the-shelf solutions — customize and deploy
               quickly.
