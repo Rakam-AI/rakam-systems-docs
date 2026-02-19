@@ -9,6 +9,16 @@ This folder contains a Docusaurus documentation portal designed to scale across:
 
 ## Local development
 
+The `docs/` directory is not tracked in this repository. It is synced from [rakam_systems](https://github.com/Rakam-AI/rakam_systems) at build time by the CI pipeline.
+
+To run the site locally, first copy the docs from the source repository:
+
+```bash
+cp -r ../rakam_systems/docs ./docs
+```
+
+Then start the dev server:
+
 ```bash
 npm install
 npm run start
