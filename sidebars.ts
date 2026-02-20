@@ -10,7 +10,6 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Reference Guide",
-      link: { type: "doc", id: "references/core" },
       items: [
         "references/core",
         "references/cli",
@@ -20,7 +19,6 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Tools",
-          link: { type: "doc", id: "references/tools/evaluation" },
           items: ["references/tools/evaluation", "references/tools/s3-utils"],
         },
       ],
@@ -29,7 +27,6 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Contributing",
-      link: { type: "doc", id: "contributing/index" },
       items: [
         "contributing/code-of-conduct",
         "contributing/development",
