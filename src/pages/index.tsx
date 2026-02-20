@@ -35,9 +35,8 @@ export default function Home(): JSX.Element {
             <div>
               <h1 className="kubeTitle">Rakam Systems</h1>
               <p className="kubeSubtitle">
-                A versioned, scalable documentation portal for Core AI Modules,
-                SDKs, Developer Console, and Solutions — designed for enterprise
-                governance and open-source contributions.
+                A platform designed to industrialize the construction, deployment,
+                and operation of enterprise-grade AI systems.
               </p>
 
               <div className="kubeCtas">
@@ -65,61 +64,35 @@ export default function Home(): JSX.Element {
         </section>
 
         <section className="kubeSection">
-          <h2>Navigate by domain</h2>
+          <h2>Documentation Guides</h2>
           <div className="kubeSectionLead">
-            Clear separation between platform domains while keeping
-            cross-cutting guidance (architecture, operations, security, and
-            release management) consistent.
+            Explore Rakam Systems documentation organized by your use case and
+            level of expertise.
           </div>
 
           <div className="kubeGrid">
-            <Card title="Overview" to="/intro/">
-              Concepts, onboarding, glossary, and your quickest path to
-              production.
+            <Card title="Introduction" to="/intro/">
+              Platform overview, origins, target users, and core components.
+              Start here to understand what Rakam Systems is and how it can help you.
             </Card>
-            <Card title="Core AI Modules Library" to="/core/">
-              Module lifecycle, composition patterns, runtime expectations,
-              observability.
+            <Card title="Getting Started Guide" to="/getting-started">
+              Quick start with installation, evaluation, and observability.
+              Get up and running in minutes.
             </Card>
-            <Card title="SDK" to="/references/tools/evaluation">
-              Clients, authentication, API usage patterns, and versioning
-              policies.
+            <Card title="User Guide" to="/user-guide">
+              Comprehensive documentation for development and deployment.
+              Learn how to build production-ready AI systems.
             </Card>
-            {/* <Card title="Developer Console" to="/console/">
-              Registry, governance, RBAC, audit, and enterprise controls.
-            </Card> */}
-            <Card title="Solutions" to="/ai-components/agents/">
-              Templates and off-the-shelf solutions — customize and deploy
-              quickly.
+            <Card title="Developer Guide" to="/developer-guide">
+              In-depth development information, architecture patterns, and
+              advanced topics for contributors.
             </Card>
-            <Card title="Release & Maintenance" to="">
-              SemVer rules, lifecycle stages, deprecation windows, LTS support,
-              changelogs.
+            <Card title="Reference Guide" to="/references/core">
+              Component-by-component API reference with detailed specifications
+              for all modules and tools.
             </Card>
           </div>
         </section>
-
-        <section className="kubeSection">
-          <h2>Operational readiness</h2>
-          <div className="kubeSectionLead">
-            From day one: deployment guidance, environment promotion, and
-            security/compliance baselines.
-          </div>
-          <div className="kubeQuickLinks">
-            <Pill to="" label="Deployment" />
-            <Pill to="" label="Environments" />
-            <Pill to="" label="Troubleshooting" />
-            <Pill to="" label="Threat model" />
-            <Pill to="" label="Data handling" />
-            <Pill to="" label="Contributing" />
-          </div>
-        </section>
-
-        <div className="kubeFooterNote">
-          Tip: keep examples and APIs version-aligned. When you tag releases,
-          publish a new docs version so users always see the right instructions
-          for their SDK/runtime.
-        </div>
       </main>
     </Layout>
   );
