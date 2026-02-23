@@ -80,8 +80,6 @@ const config: Config = {
         src: "img/logo.svg",
       },
       items: [
-        { to: "/introduction", label: "Docs", position: "left" },
-        // { to: "/overview/quickstart", label: "Quickstart", position: "left" },
         {
           type: "docsVersionDropdown",
           position: "right",
