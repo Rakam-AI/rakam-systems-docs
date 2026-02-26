@@ -24,11 +24,11 @@ const sidebars: SidebarsConfig = {
       items: [
         "developer-guide/getting-started",
         "developer-guide/architecture",
-        "developer-guide/core-concepts",
+        "developer-guide/core",
         "developer-guide/agents",
         "developer-guide/llm-gateways",
         "developer-guide/chat-history",
-        "developer-guide/vector-pipelines",
+        "developer-guide/vectorstore",
         "developer-guide/search",
         "developer-guide/configuration",
         "developer-guide/tracking",
