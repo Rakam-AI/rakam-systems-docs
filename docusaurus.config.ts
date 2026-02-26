@@ -35,9 +35,9 @@ const config: Config = {
           routeBasePath: "/",
           path: docsPath,
 
-          lastVersion: "current",
+          // lastVersion: "current",
           versions: {
-            current: { label: "Next" },
+            current: { label: "v0.3.0" },
           },
 
           editUrl: `${repoUrl}/edit/main/${docsPath}/`,
@@ -74,14 +74,12 @@ const config: Config = {
     navbar: {
       hideOnScroll: true,
       style: "dark",
-      title: "Rakam Systems",
+      // title: "Rakam Systems",
       logo: {
         alt: "Rakam Systems",
         src: "img/logo.svg",
       },
       items: [
-        { to: "/", label: "Docs", position: "left" },
-        // { to: "/overview/quickstart", label: "Quickstart", position: "left" },
         {
           type: "docsVersionDropdown",
           position: "right",

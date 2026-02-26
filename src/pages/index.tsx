@@ -40,7 +40,7 @@ export default function Home(): JSX.Element {
               </p>
 
               <div className="kubeCtas">
-                <Link className="button button--primary" to="/intro">
+                <Link className="button button--primary" to="/introduction">
                   Docs
                 </Link>
 
@@ -71,7 +71,7 @@ export default function Home(): JSX.Element {
           </div>
 
           <div className="kubeGrid">
-            <Card title="Introduction" to="/intro/">
+            <Card title="Introduction" to="/introduction/">
               Platform overview, origins, target users, and core components.
               Start here to understand what Rakam Systems is and how it can help you.
             </Card>
