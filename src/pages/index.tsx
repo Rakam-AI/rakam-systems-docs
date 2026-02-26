@@ -1,6 +1,6 @@
-import React from "react";
-import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import Layout from "@theme/Layout";
+import React from "react";
 
 const Card = ({
   title,
@@ -35,8 +35,8 @@ export default function Home(): JSX.Element {
             <div>
               <h1 className="kubeTitle">Rakam Systems</h1>
               <p className="kubeSubtitle">
-                A platform designed to industrialize the construction, deployment,
-                and operation of enterprise-grade AI systems.
+                A platform designed to industrialize the construction,
+                deployment, and operation of enterprise-grade AI systems.
               </p>
 
               <div className="kubeCtas">
@@ -73,23 +73,20 @@ export default function Home(): JSX.Element {
           <div className="kubeGrid">
             <Card title="Introduction" to="/introduction/">
               Platform overview, origins, target users, and core components.
-              Start here to understand what Rakam Systems is and how it can help you.
+              Start here to understand what Rakam Systems is and how it can help
+              you.
             </Card>
             <Card title="Getting Started Guide" to="/getting-started">
-              Quick start with installation, evaluation, and observability.
-              Get up and running in minutes.
+              Quick start with installation, evaluation, and observability. Get
+              up and running in minutes.
             </Card>
             <Card title="User Guide" to="/user-guide">
-              Comprehensive documentation for development and deployment.
-              Learn how to build production-ready AI systems.
+              Comprehensive documentation for development and deployment. Learn
+              how to build production-ready AI systems.
             </Card>
             <Card title="Developer Guide" to="/developer-guide">
               In-depth development information, architecture patterns, and
               advanced topics for contributors.
-            </Card>
-            <Card title="Reference Guide" to="/references/core">
-              Component-by-component API reference with detailed specifications
-              for all modules and tools.
             </Card>
           </div>
         </section>
