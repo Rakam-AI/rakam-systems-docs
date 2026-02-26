@@ -9,23 +9,6 @@ const sidebars: SidebarsConfig = {
 
     {
       type: "category",
-      label: "Reference Guide",
-      items: [
-        "references/core",
-        "references/cli",
-        "references/agent",
-        "references/vectorstore",
-
-        {
-          type: "category",
-          label: "Tools",
-          items: ["references/tools/evaluation", "references/tools/s3-utils"],
-        },
-      ],
-    },
-
-    {
-      type: "category",
       label: "Contributing",
       items: [
         "contributing/code-of-conduct",
