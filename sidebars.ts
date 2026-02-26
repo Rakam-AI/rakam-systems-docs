@@ -9,6 +9,7 @@ const sidebars: SidebarsConfig = {
       label: "User Guide",
       link: { type: "doc", id: "user-guide/index" },
       items: [
+        "user-guide/getting-started",
         "user-guide/agents",
         "user-guide/vector-stores",
         "user-guide/evaluation",
@@ -21,10 +22,17 @@ const sidebars: SidebarsConfig = {
       label: "Developer Guide",
       link: { type: "doc", id: "developer-guide/index" },
       items: [
-        "developer-guide/core",
+        "developer-guide/getting-started",
+        "developer-guide/architecture",
+        "developer-guide/core-concepts",
         "developer-guide/agents",
-        "developer-guide/vectorstore",
+        "developer-guide/llm-gateways",
+        "developer-guide/chat-history",
+        "developer-guide/vector-pipelines",
+        "developer-guide/search",
         "developer-guide/configuration",
+        "developer-guide/tracking",
+        "developer-guide/environment",
       ],
     },
 
