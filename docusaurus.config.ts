@@ -35,9 +35,10 @@ const config: Config = {
           routeBasePath: "/",
           path: docsPath,
 
-          // lastVersion: "current",
+          lastVersion: "current",
           versions: {
-            current: { label: "v0.3.0" },
+            current: { label: "v0.3.1" },
+            "0.3.0": { label: "v0.3.0" },
           },
 
           editUrl: `${repoUrl}/edit/main/${docsPath}/`,
