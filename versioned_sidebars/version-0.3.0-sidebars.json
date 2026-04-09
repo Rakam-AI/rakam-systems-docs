@@ -1,0 +1,35 @@
+{
+  "docsSidebar": [
+    "introduction",
+    "getting-started",
+    "user-guide",
+    "developer-guide",
+    {
+      "type": "category",
+      "label": "References",
+      "items": [
+        "references/core",
+        "references/agent",
+        "references/vectorstore",
+        "references/cli",
+        {
+          "type": "category",
+          "label": "Tools",
+          "items": [
+            "references/tools/evaluation",
+            "references/tools/s3-utils"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Contributing",
+      "items": [
+        "contributing/code-of-conduct",
+        "contributing/development",
+        "contributing/documentation"
+      ]
+    }
+  ]
+}
