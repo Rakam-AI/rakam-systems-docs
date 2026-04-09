@@ -9,7 +9,7 @@ const docsPath = "docs";
 const config: Config = {
   title: "Rakam Systems",
   tagline: "Core Modules • SDKs • Developer Console • Solutions",
-  favicon: "img/favicon.svg",
+  favicon: "logo/rakam_ai.webp",
 
   url: process.env.DOCS_URL ?? "http://localhost",
   baseUrl: process.env.DOCS_BASEURL ?? "/",
@@ -78,7 +78,7 @@ const config: Config = {
       // title: "Rakam Systems",
       logo: {
         alt: "Rakam Systems",
-        src: "img/logo.svg",
+        src: "logo/rakam_ai.webp",
       },
       items: [
         {
